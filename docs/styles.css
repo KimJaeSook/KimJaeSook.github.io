@@ -1,0 +1,30 @@
+/* css styles */
+body {
+    font-family: 'NanumSquare', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'NanumSquare', sans-serif;
+}
+
+pre, code {
+    font-family: 'D2Coding', monospace;
+}
+
+div.sourceCode {
+    font-family: 'KoPub Dotum', monospace;
+}
+
+.my-table {
+    background-color: #F9FBE6;
+}
+
+.my-table2 {
+    background-color: #E4E4E4;
+}
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

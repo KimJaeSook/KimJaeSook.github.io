@@ -1,0 +1,492 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "소개",
+    "section": "",
+    "text": "Quarto를 배우며 만든 통계 R실습 Blog입니다.\n나눔스퀘어, D2Coding 폰트를 사용했습니다.\nEmail: jsviolet@sasa.hs.kr"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "JS_Land 수업자료실",
+    "section": "",
+    "text": "15. 로지스틱회귀분석\n\n\n\n\n\n\nStatistics\n\n\n교재 9장\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n14. 다중선형회귀분석\n\n\n\n\n\n\nStatistics\n\n\n교재 9장\n\n\n\n\n\n\n\n\n\nFeb 5, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n13. 분산분석\n\n\n\n\n\n\nStatistics\n\n\n교재 9장\n\n\n\n\n\n\n\n\n\nFeb 4, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n12. 카이제곱검정\n\n\n\n\n\n\nStatistics\n\n\n교재 9장\n\n\n\n\n\n\n\n\n\nFeb 3, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n11. 하나의 모집단에 대한 가설검정(분산)\n\n\n\n\n\n\nStatistics\n\n\n교재 8장\n\n\n\n\n\n\n\n\n\nFeb 2, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n10. 하나의 모집단에 대한 가설검정(평균)\n\n\n\n\n\n\nStatistics\n\n\n교재 8장\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n09. 모비율과 표본비율, 모비율의 추정\n\n\n\n\n\n\nStatistics\n\n\n교재 7장\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n08. 모집단과 표본, 모평균의 추정\n\n\n\n\n\n\nStatistics\n\n\n교재 7장\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n07. 감마분포\n\n\n\n\n\n\nStatistics\n\n\n교재 6장\n\n\n\n\n\n\n\n\n\nJan 29, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n06. 지수분포\n\n\n\n\n\n\nStatistics\n\n\n교재 6장\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n05. 포아송분포, 균등분포\n\n\n\n\n\n\nStatistics\n\n\n교재 5장\n\n\n교재 6장\n\n\n\n\n\n\n\n\n\nJan 27, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n04. 초기하분포, 기하분포\n\n\n\n\n\n\nStatistics\n\n\n교재 5장\n\n\n\n\n\n\n\n\n\nJan 26, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n03. 연속확률변수, 정규분포\n\n\n\n\n\n\nStatistics\n\n\n교재 4장\n\n\n\n\n\n\n\n\n\nJan 25, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n02. 이산확률변수, 이항분포\n\n\n\n\n\n\nStatistics\n\n\n교재 4장\n\n\n\n\n\n\n\n\n\nJan 24, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\n\n\n\n\n\n\n01. 기술통계(Descriptive Statistics)\n\n\n\n\n\n\nStatistics\n\n\n교재 3장\n\n\n\n\n\n\n\n\n\nJan 23, 2024\n\n\nKim Jae Sook\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/15/index.html",
+    "href": "posts/15/index.html",
+    "title": "15. 로지스틱회귀분석",
+    "section": "",
+    "text": "로지스틱 회귀분석(logistic regression)은 독립변수의 선형 결합을 이용하여 사건의 발생 가능성을 예측하는데 사용되는 통계기법으로 설명변수(독립변수, X)와 범주형 목표변수(종속변수, Y) 간의 관계를 모형화하여 목표변수를 분석하거나 분류하는 통계적 방법론이다. 로지스틱 회귀분석을 활용한 분류(classification) 문제에서는 목표변수를 직접 예측(prediction)하는 것이 아닌 2개의 클래스(e.g., ‘성공’ or ‘실패’) 중 하나의 클래스로 예측할 때 사용된다(i.e., Binary Classification)."
+  },
+  {
+    "objectID": "posts/15/index.html#학생들의-대학-합격-여부-예측",
+    "href": "posts/15/index.html#학생들의-대학-합격-여부-예측",
+    "title": "15. 로지스틱회귀분석",
+    "section": "학생들의 대학 합격 여부 예측",
+    "text": "학생들의 대학 합격 여부 예측\n\n학생들의 대학 합격 여부를 예측하는 로지스틱 회귀분석을 가정해보자. 여기서 종속 변수는 합격 여부(합격=1, 불합격=0)이고, 독립 변수로는 시험 점수(GRE), 학점(GPA), 그리고 추천서의 수(Recommendations)를 사용한다.\n(아래 코드에서 생성한 가상데이터가 통계적으로 유의미한 결과를 가져오지 않을 수 있음.)\n\n\n# 데이터 준비\ndata &lt;- data.frame(\n  admit = c(0, 1, 1, 0, 1, 1), # 합격 여부\n  gre = c(600, 700, 700, 500, 660, 680), # GRE 점수\n  gpa = c(3.3, 3.7, 3.9, 2.5, 3.3, 3.8), # GPA\n  recommendations = c(1, 2, 2, 1, 1, 2) # 추천서의 수\n)\n\n# 로지스틱 회귀 모델 적합\nmodel &lt;- glm(admit ~ gre + gpa + recommendations, family = binomial(link = \"logit\"), data = data)\n\nWarning: glm.fit: fitted probabilities numerically 0 or 1 occurred\n\n# 결과 해석\nsummary(model)\n\n\nCall:\nglm(formula = admit ~ gre + gpa + recommendations, family = binomial(link = \"logit\"), \n    data = data)\n\nCoefficients:\n                  Estimate Std. Error z value Pr(&gt;|z|)\n(Intercept)     -2.086e+02  5.506e+05       0        1\ngre              7.937e-01  2.117e+03       0        1\ngpa             -9.818e+01  3.886e+05       0        1\nrecommendations  3.257e+01  1.612e+05       0        1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 7.6382e+00  on 5  degrees of freedom\nResidual deviance: 3.9359e-10  on 2  degrees of freedom\nAIC: 8\n\nNumber of Fisher Scoring iterations: 23"
+  },
+  {
+    "objectID": "posts/15/index.html#은행에서-대출-승인-여부-예측",
+    "href": "posts/15/index.html#은행에서-대출-승인-여부-예측",
+    "title": "15. 로지스틱회귀분석",
+    "section": "은행에서 대출 승인 여부 예측",
+    "text": "은행에서 대출 승인 여부 예측\n\n은행에서 고객의 신용 데이터를 기반으로 개인 대출 승인 여부를 예측하는 경우를 들 수 있다. 이 예제에서는 고객의 신용 점수(credit score), 연 소득(annual income), 대출 요청 금액(loan amount)을 독립 변수로 사용하여 대출 승인 여부(loan approval)를 종속 변수로 예측하는 모델을 구축한다.\n(아래 코드에서 생성한 가상데이터가 통계적으로 유의미한 결과를 가져오지 않을 수 있음.)\n\n\n# 가상 데이터 생성\nset.seed(123) # 결과 재현성을 위한 시드 설정\nloan_approval &lt;- sample(0:1, 100, replace = TRUE)\ncredit_score &lt;- rnorm(100, mean = 650, sd = 100)\nannual_income &lt;- rnorm(100, mean = 50000, sd = 20000)\nloan_amount &lt;- rnorm(100, mean = 15000, sd = 5000)\ndata &lt;- data.frame(loan_approval, credit_score, annual_income, loan_amount)\n\n# 로지스틱 회귀 모델 적합\nmodel &lt;- glm(loan_approval ~ credit_score + annual_income + loan_amount, \n             family = binomial(link = \"logit\"), data = data)\n\n# 모델 요약 결과 출력\nsummary(model)\n\n\nCall:\nglm(formula = loan_approval ~ credit_score + annual_income + \n    loan_amount, family = binomial(link = \"logit\"), data = data)\n\nCoefficients:\n                Estimate Std. Error z value Pr(&gt;|z|)\n(Intercept)    1.879e-02  1.657e+00   0.011    0.991\ncredit_score  -1.656e-04  2.119e-03  -0.078    0.938\nannual_income -1.180e-05  1.129e-05  -1.046    0.296\nloan_amount    2.527e-05  4.156e-05   0.608    0.543\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 136.66  on 99  degrees of freedom\nResidual deviance: 135.24  on 96  degrees of freedom\nAIC: 143.24\n\nNumber of Fisher Scoring iterations: 4\n\n# 새로운 데이터에 대한 예측\nnew_data &lt;- data.frame(credit_score = c(700), annual_income = c(60000), loan_amount = c(10000))\npredict(model, newdata = new_data, type = \"response\")\n\n        1 \n0.3652591"
+  },
+  {
+    "objectID": "posts/13/index.html",
+    "href": "posts/13/index.html",
+    "title": "13. 분산분석",
+    "section": "",
+    "text": "분산분석(analysis of variance, ANOVA)은 분산을 분석하기 때문에 지어진 이름이지만 그 목적은 평균을 분석하는 것이다. 여러 집단의 평균이 같은지, 아니면 하나라도 평균이 다른 집단이 있는지 판단하려는 것이 목적이다."
+  },
+  {
+    "objectID": "posts/13/index.html#일원분산분석",
+    "href": "posts/13/index.html#일원분산분석",
+    "title": "13. 분산분석",
+    "section": "일원분산분석",
+    "text": "일원분산분석\n\n시장점유율 적합도 검정\n\n자동차 충돌실험의 결과가 다음과 같다.\n\n\n\n\n\n\n소형자동차\n준중형자동차\n중형자동차\n대형자동차\n\n\n\n\n\n681\n643\n469\n384\n\n\n\n728\n655\n727\n656\n\n\n\n917\n742\n525\n602\n\n\n\n898\n514\n454\n687\n\n\n\n620\n525\n459\n360\n\n\n평균\n768.8\n615.8\n526.8\n537.8\n\n\n표준편차\n132.4\n95.9\n115.5\n154.6\n\n\n\n\n이 데이터를 사용하여 인형의 파손 정도는 자동차의 크기에 관계없이 동일하다는 귀무가설을 검정하시오.\n\ny &lt;- c(681, 728, 917, 898, 620,\n       643, 655, 742, 514, 525,\n       469, 727, 525, 454, 459,\n       384, 656, 602, 687, 360) \n \nx &lt;- rep(c(\"소형\",\"준중형\",\"중형\",\"대형\"), c(5,5,5,5))\nx &lt;-factor(x)\n\naov.result=aov(y ~ x)\nsummary(aov.result)\n\n            Df Sum Sq Mean Sq F value Pr(&gt;F)  \nx            3 186825   62275   3.893  0.029 *\nResiduals   16 255923   15995                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n# F통계량값인 3.8934가 기각역에 있으므로 귀무가설을 기각한다.\n# 또는 p값 0.029가 유의수준 0.05보다 작으므로 귀무가설을 기각한다.\n# 자동차의 크기에 따른 등급은 인형모형의 파손 정도에 통계적으로 유의한 차이를 보인다."
+  },
+  {
+    "objectID": "posts/11/index.html",
+    "href": "posts/11/index.html",
+    "title": "11. 하나의 모집단에 대한 가설검정(분산)",
+    "section": "",
+    "text": "하나의 모집단에 대한 가설검정(분산) (sasa메일로 로그인해야 내용을 볼 수 있습니다.)"
+  },
+  {
+    "objectID": "posts/11/index.html#모분산의-신뢰구간",
+    "href": "posts/11/index.html#모분산의-신뢰구간",
+    "title": "11. 하나의 모집단에 대한 가설검정(분산)",
+    "section": "모분산의 신뢰구간",
+    "text": "모분산의 신뢰구간\n\n\\(\\chi^2\\)분포가 모분산의 신뢰구간을 추정하는 데에 어떻게 사용되는지 알아보자. Y식품은 캔음료를 생산하는 공장을 운영하며, \\(350\\textrm{mL}\\) 캔음료를 가장 많이 생산하고 있다. 생산공정은 캔에 평균 \\(350\\textrm{mL}\\)의 음료가 담기도록 조절하였음에도 표기된 용량보다 적다는 소비자들의 불만이 접수되었다. 용량의 변동성을 알아보기 위해 25개의 캔이 단순확률추출되었고, 표본분산은 \\(4(\\textrm{mL}^2)\\)로 계산되었다. 그러나 25개로 이루어진 표본에서 얻은 분산이 전체 음료 용량의 모분산의 정확한 값이라고 기대할 수 없으므로, 모분산의 신뢰구간을 추정하게 된다. 모분산 \\(\\sigma^2\\)의 95% 신뢰구간을 구하시오.\n\n\nsample_variance &lt;- 4  # 표본 분산과 표본 크기\nn &lt;- 25\nalpha &lt;- 0.05  # 신뢰 수준\n\n# 카이제곱 분포의 하위 및 상위 분위수\nlower_chi_sq &lt;- qchisq(alpha / 2, n - 1)\nupper_chi_sq &lt;- qchisq(1 - alpha / 2, n - 1)\n\n# 모분산의 95% 신뢰구간 계산\nlower_variance &lt;- ((n - 1) * sample_variance) / upper_chi_sq\nupper_variance &lt;- ((n - 1) * sample_variance) / lower_chi_sq\n\n# 결과 출력\ncat(\"모분산의 95% 신뢰구간: [\", lower_variance, \",\", upper_variance, \"]\\n\")\n\n모분산의 95% 신뢰구간: [ 2.438772 , 7.741217 ]"
+  },
+  {
+    "objectID": "posts/11/index.html#모분산에-대한-가설검정",
+    "href": "posts/11/index.html#모분산에-대한-가설검정",
+    "title": "11. 하나의 모집단에 대한 가설검정(분산)",
+    "section": "모분산에 대한 가설검정",
+    "text": "모분산에 대한 가설검정\n\n모분산에 대한 단측검정\n\nY식품은 모분산이 2.25 이하이면 현재의 생산과정을 유지하기로 하였다. 이에 귀무가설을 모분산이 2.25이고, 대립가설은 모분산이 2.25보다 크다고 세웠다. 가설검정을 하시오.\n\n\nsample_variance &lt;- 4  # 표본 분산과 표본 크기\nn &lt;- 25  # 귀무가설 하의 모분산\nsigma_squared_0 &lt;- 2.25\n\n# 카이제곱 검정 통계량 계산\nchi_sq_stat &lt;- (n - 1) * sample_variance / sigma_squared_0\n\n# p-값 계산 (단측 검정)\np_value &lt;- 1 - pchisq(chi_sq_stat, n - 1)\n\n# 결과 출력\ncat(\"검정 통계량:\", chi_sq_stat, \"\\n\")\n\n검정 통계량: 42.66667 \n\ncat(\"p-값:\", p_value, \"\\n\")\n\np-값: 0.01085479 \n\n# 결정 규칙: p-값이 유의 수준(alpha)보다 작으면 귀무가설 기각\nalpha &lt;- 0.05\nif (p_value &lt; alpha) {\n  cat(\"귀무가설 기각: 모분산은 2.25보다 크다.\\n\")\n} else {\n  cat(\"귀무가설 기각할 충분한 증거가 없음: 모분산이 2.25보다 크다고 할 수 없다.\\n\")\n}\n\n귀무가설 기각: 모분산은 2.25보다 크다.\n\n# Y식품은 캔에 음료를 주입하는 공정에 조정을 하여야 한다.\n\n\n\n모분산에 대한 양측검정\n\nH고등학교의 수학선생님들은 최근 새로운 입시에 알맞은 시험 방식을 도입하고자 한다. 적절한 변별력을 유지하기 위해 새로운 시험 방식도 종전까지 사용된 시험 방식과 같이 200이라는 시험 점수의 분산을 유지하고자 한다. H고등학교의 학생들의 시험 점수는 정규분포를 따른다고 가정하고, 새로운 시험 방식에서의 시험 점수의 분산을 평가하기 위한 가설은 \\[H_o : \\sigma^2 = 200~~vs~~H_1 : \\sigma^2 \\ne 200\\] 이 될 것이다. 만일 귀무가설을 기각하게 되면, 즉 새로운 시험 방식이 기존 시험의 변별력을 유지하지 못한다면, 기존의 방식과 비슷한 분산 수준으로 조정을 할 것이다. 새로운 시험의 변별력을 검정하기 위하여, 학생들 중 30명을 단순확률추출하여 새로운 방식의 시험을 치르게 하였으며, 10% 유의수준에서 검정을 한다. 30명이 응시한 시험 점수의 분산은 정규분포를 다르며 175이었다. 가설을 검정하시오.\n\n\n# 표본 분산과 표본 크기\nsample_variance &lt;- 175\nn &lt;- 30\n# 귀무가설 하의 모분산\nsigma_squared_0 &lt;- 200\n\n# 카이제곱 검정 통계량 계산\nchi_sq_stat &lt;- (n - 1) * sample_variance / sigma_squared_0\n\n# p-값 계산 (양측 검정)\np_value &lt;- 2 * min(pchisq(chi_sq_stat, n - 1), 1 - pchisq(chi_sq_stat, n - 1))\n\n# 결과 출력\ncat(\"검정 통계량:\", chi_sq_stat, \"\\n\")\n\n검정 통계량: 25.375 \n\ncat(\"p-값:\", p_value, \"\\n\")\n\np-값: 0.6826982 \n\n# 결정 규칙: p-값이 유의 수준(alpha)보다 작으면 귀무가설 기각\nalpha &lt;- 0.10\nif (p_value &lt; alpha) {\n  cat(\"귀무가설 기각: 모분산은 200이 아니다.\\n\")\n} else {\n  cat(\"귀무가설 기각할 충분한 증거가 없음: 모분산이 200이라고 할 수 없다.\\n\")\n}\n\n귀무가설 기각할 충분한 증거가 없음: 모분산이 200이라고 할 수 없다.\n\n\n\n단일 기계에서 생산된 플라스틱 판 두께의 분포가 정규분포를 따른다고 하자. 완성된 플라스틱 판들에 대한 두께의 분산이 2.25\\(\\textrm {mm}^2\\)이상이면, 이는 공정에 이상이 있는 것이라고 한다. 생산된 제품 중 10장의 확률표본을 추출하여 두께를 측정하였더니 다음과 같았다. \\[226, 226, 232, 227, 225, 228, 225, 228, 229, 230\\] 이 자료를 통해 모분산의 95% 신뢰구간을 구하고, \\(\\sigma^2 \\ge 2.25\\)인지 여부를 유의수준 5%로 검정하시오.\n\n\n# 샘플 데이터\nsample_data &lt;- c(226, 226, 232, 227, 225, 228, 225, 228, 229, 230)\n\n# 샘플 분산 계산\nsample_variance &lt;- var(sample_data)\nn &lt;- length(sample_data)\n\n# 모분산의 95% 신뢰구간 계산\nalpha &lt;- 0.05\nlower &lt;- qchisq(alpha / 2, n - 1)\nupper &lt;- qchisq(1 - alpha / 2, n - 1)\nconf_interval_lower &lt;- ((n - 1) * sample_variance) / upper\nconf_interval_upper &lt;- ((n - 1) * sample_variance) / lower\ncat(\"모분산의 95% 신뢰구간: [\", conf_interval_lower, \",\", conf_interval_upper, \"]\\n\")\n\n모분산의 95% 신뢰구간: [ 2.439182 , 17.18271 ]\n\n# 모분산이 2.25 이상인지 검정\nsigma_squared_0 &lt;- 2.25\nchi_sq_stat &lt;- (n - 1) * sample_variance / sigma_squared_0\np_value &lt;- pchisq(chi_sq_stat, n - 1, lower.tail = FALSE)\ncat(\"검정 통계량:\", chi_sq_stat, \"\\n\")\n\n검정 통계량: 20.62222 \n\ncat(\"p-값:\", p_value, \"\\n\")\n\np-값: 0.01443764 \n\n# 결정 규칙: p-값이 유의 수준보다 작으면 귀무가설 기각\nif (p_value &lt; alpha) {\n  cat(\"귀무가설 기각: 모분산은 2.25보다 크다.\\n\")\n} else {\n  cat(\"귀무가설 기각할 충분한 증거가 없음: 모분산이 2.25보다 크다고 할 수 없다.\\n\")\n}\n\n귀무가설 기각: 모분산은 2.25보다 크다."
+  },
+  {
+    "objectID": "posts/09/index.html",
+    "href": "posts/09/index.html",
+    "title": "09. 모비율과 표본비율, 모비율의 추정",
+    "section": "",
+    "text": "모비율과 표본비율, 모비율의 추정 (sasa메일로 로그인해야 내용을 볼 수 있습니다.)"
+  },
+  {
+    "objectID": "posts/09/index.html#모비율과-표본비율",
+    "href": "posts/09/index.html#모비율과-표본비율",
+    "title": "09. 모비율과 표본비율, 모비율의 추정",
+    "section": "모비율과 표본비율",
+    "text": "모비율과 표본비율\n평균이 일반적인 자료들의 대푯값이라면, 표본비율은 \\(0\\)과 $14로 된 특수한 자료의 평균이다. 즉 비율은 평균의 개념과 같다. 따라서 모비율의 구간추정은 모평균의 구간추정방법과 거의 동일하다. 모비율 \\(p\\)를 추정하기 위하여 \\(n\\)개의 표본을 추출하여 조사한 결과, ’성공’의 수가 \\(X\\)라면, 모비율 \\(p\\)의 점추정량인 표본비율(sample proportion) \\(\\bar{p}\\)은 다음과 같이 구해진다.\n\\[\\bar{p}=\\dfrac{X}{n},~X=0, 1, \\cdots, n\\]\n위의 식에서 표본의 수 \\(n\\)이 커지면 확률변수 \\(X\\)는 다음과 같은 평균과 분산을 갖는 정규분포를 근사적으로 따르게 된다.\n\\[X ~ \\dot{\\sim} ~ N(np, ~np(1-p))\\]\n따라서 표본비율 \\(\\bar{p}\\)은 근사적으로 다음과 같은 정규분포를 따른다.\n\\[\\bar{p} ~ \\dot\\sim ~ N \\left( p, ~\\frac{p(1-p)}{n} \\right)\\]"
+  },
+  {
+    "objectID": "posts/09/index.html#모평균-모비율의-구간추정",
+    "href": "posts/09/index.html#모평균-모비율의-구간추정",
+    "title": "09. 모비율과 표본비율, 모비율의 추정",
+    "section": "모평균, 모비율의 구간추정",
+    "text": "모평균, 모비율의 구간추정\n모평균과 모비율의 구간을 추정할때에는 모분산을 알고 있으면 \\(Z\\)값, 모분산을 몰라서 표본분산으로 대체하여 사용할 경우에는 \\(t\\)값을 사용한다. 만일 모집단이 정규분포를 하지 않는 경우는 표본수가 많다면 중심극한정리를 적용하여 근사적으로 \\(Z\\)값을 사용한다. 이때 모분산을 알고 있으면 그것을 사용하고, 모르면 표본분산을 사용한다. 정규분포를 하지 않고 표본수가 적은 경우는 그때 그때 분포 모양에 따라 계산된 값을 사용하거나 비모수통계 방법 등을 이용해야 한다.\n\n\n\n\n\n\n%%{init: {'themeVariables': { 'fontFamily': 'NanumSquare' }}}%%\ngraph TD\n\n    A(정규분포 모집단) --&gt; B(모분산 앎) --&gt; D(Z)\n    A --&gt; C(모분산 모름) --&gt; E(t)\n    \n    class A lightYellow;\n    class B,C mediumYellow;\n    class D,E darkYellow;\n    class A,B,C,D,E grayBorder;\n    class A,B,C,D,E blackText;\n    class A,B,C,D,E boldFont;\n\n    classDef lightYellow fill:#feffab;\n    classDef mediumYellow fill:#fcfd81;\n    classDef darkYellow fill:#fdff5c;\n    classDef grayBorder stroke:#808080,stroke-width:1px;\n    classDef blackText color:#000000;\n    classDef boldFont font-weight:bold;\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'themeVariables': { 'fontFamily': 'NanumSquare' }}}%%\ngraph TD\n    A(비정규분포 모집단) --&gt; B(대표본 근사) --&gt; D(Z)\n    A --&gt; C(소표본) --&gt; E(비모수통계 등)\n    class A lightYellow;\n    class B,C mediumYellow;\n    class D,E darkYellow;\n    class A,B,C,D,E grayBorder;\n    class A,B,C,D,E blackText;\n    class A,B,C,D,E boldFont;\n\n    classDef lightYellow fill:#feffab;\n    classDef mediumYellow fill:#fcfd81;\n    classDef darkYellow fill:#fdff5c;\n    classDef grayBorder stroke:#808080,stroke-width:1px;\n    classDef blackText color:#000000;\n    classDef boldFont font-weight:bold;"
+  },
+  {
+    "objectID": "posts/09/index.html#모비율의-추정",
+    "href": "posts/09/index.html#모비율의-추정",
+    "title": "09. 모비율과 표본비율, 모비율의 추정",
+    "section": "모비율의 추정",
+    "text": "모비율의 추정\n\n모비율의 구간추정, 신뢰구간\n\n어떤 자동차 회사에서 미니밴의 생산을 계획하는데 소비자들의 반응을 알아보려고 표본조사를 하였다. 1,000명의 표본을 추출하여, 향후 5년 내에 미니밴의 구매의사를 조사한 결과 40명이 미니밴을 살 의사가 있는 것으로 판단되었다. 향후 5년간 미니밴을 구매하려는 고객의 비율 \\(p\\)에 대한 95% 신뢰구간을 구하시오.\n\n\nk &lt;- 40\nn &lt;- 1000\npbar &lt;-  k/n\nSE &lt;- sqrt(pbar*(1-pbar)/n)\nE &lt;- qnorm(.975)*SE \npbar + c(-E, E) \n\n[1] 0.02785455 0.05214545\n\n\n\n\n표본수의 결정\n\n앞의 예제에서 오차한계 \\(d\\)가 \\(0.2\\)라면 표본수 \\(n\\)은 얼마가 되어야 하는지 구하시오. (\\(\\alpha=0.05\\))\n\n\n# p=0.5로 생각하고 n을 구하면 다음과 같음\nzstar = qnorm(.975) \np = 0.5\nE = 0.01\nzstar^2*p*(1-p)/E^2\n\n[1] 9603.647\n\n# p=0.1로 생각하고 n을 구하면 다음과 같음\nzstar = qnorm(.975) \np = 0.1\nE = 0.01\nzstar^2*p*(1-p)/E^2\n\n[1] 3457.313\n\n\n\n앞면이 나올 확률 \\(p\\)가 알려지지 않은 동전에서 \\(p\\)를 추정하기 위하여 이 동전을 \\(n\\)번 던져서 앞면이 나올 비율 \\(\\bar{p}\\)를 계산하게 된다. 이때 \\(\\bar{p}\\)가 참값 \\(p\\)로부터 0.1 이내에 있을 확률이 99% 이상이 되도록 하기 위한 \\(n\\)의 값을 구하시오.\n\n\nzstar = qnorm(.995) \np = 0.5\nE = 0.1\nzstar^2*p*(1-p)/E^2\n\n[1] 165.8724"
+  },
+  {
+    "objectID": "posts/07/index.html",
+    "href": "posts/07/index.html",
+    "title": "07. 감마분포",
+    "section": "",
+    "text": "감마분포 (sasa메일로 로그인해야 내용을 볼 수 있습니다.)"
+  },
+  {
+    "objectID": "posts/07/index.html#감마분포",
+    "href": "posts/07/index.html#감마분포",
+    "title": "07. 감마분포",
+    "section": "감마분포",
+    "text": "감마분포\n\nR명령어 설명\n\n감마분포(Gamma Distribution)에 관련된 R 명령어 설명  \n\n위에 링크로 달아놓았지만, ChatGPT에게 감마분포에 관련된 r명령어를 묻고, 명령어는 알지만 더 자세한 사용법을 알고 싶을때는 프로그램에서 명령어에 커서를 두고 F1을 누르면 설명이 나옵니다.\n\ndgamma(1, shape = 2, rate = 1)  # 형상매개변수가 2이고 비율매개변수가 1일 때, 1에서의 밀도를 계산\n\n[1] 0.3678794\n\npgamma(1, shape = 2, rate = 1)  # 형상매개변수가 2이고 비율매개변수가 1일 때, 1 이하의 값이 나올 누적확률 계산\n\n[1] 0.2642411\n\nqgamma(0.5, shape = 2, rate = 1)  # 형상매개변수가 2이고 비율매개변수가 1일 때, 50%의 확률로 발생할 수 있는 값 계산\n\n[1] 1.678347\n\nrgamma(5, shape = 2, rate = 1)  # 형상매개변수가 2이고 비율매개변수가 1인 감마분포에서 5개의 무작위 값 생성\n\n[1] 2.4544590 0.1867657 1.4363106 2.7571871 1.0064694\n\n# plot함수를 이용해서 감마분포의 확률밀도함수 그리기\nshape_param &lt;- 2  # 감마 분포의 형상(shape)과 비율(rate) 매개변수 설정\nrate_param &lt;- 1\nx_values &lt;- seq(0, 10, by = 0.1)  # 확률 밀도 함수를 계산할 값의 범위\ndensities &lt;- dgamma(x_values, shape = shape_param, rate = rate_param)  # 확률밀도 계산\nplot(x_values, densities, type = \"l\", col = \"blue\",  # 확률 밀도 그래프 그리기\n     main = \"Gamma Distribution Density\", \n     xlab = \"x\", ylab = \"Density\")\n\n\n\n\n\n\n\n# 다양한 매개변수의 감마분포의 확률밀도함수 그리기\nparams &lt;- list(\n  list(shape = 2, rate = 1),\n  list(shape = 2, rate = 2),\n  list(shape = 3, rate = 2)\n)  # 서로 다른 매개변수 설정\ncolors &lt;- c(\"red\", \"blue\", \"brown\")  # 색상 설정\ncurve(dgamma(x, shape = params[[1]]$shape, rate = params[[1]]$rate), from = 0, to = 10, ylim = c(0, 1),\n      xlab = \"x\", ylab = \"Density\",\n      main = \"Gamma Distributions with Different Parameters\",\n      col = colors[1])  # 첫 번째 분포 그리기\nfor (i in 2:length(params)) {\n  curve(dgamma(x, shape = params[[i]]$shape, rate = params[[i]]$rate), from = 0, to = 10, add = TRUE, col = colors[i])\n}  # 나머지 분포 추가\nlegend(\"topright\", legend = paste(\"Shape =\", sapply(params, function(x) x$shape), \", Rate =\", sapply(params, function(x) x$rate)), col = colors, lty = 1)  # 범례 추가\n\n\n\n\n\n\n\n# 다양한 매개변수의 감마분포의 누적분포함수 그리기\nparams &lt;- list(\n  list(shape = 2, rate = 1),\n  list(shape = 2, rate = 2),\n  list(shape = 3, rate = 2)\n)  # 서로 다른 매개변수 설정\ncolors &lt;- c(\"red\", \"blue\", \"brown\")  # 색상 설정\ncurve(pgamma(x, shape = params[[1]]$shape, rate = params[[1]]$rate), from = 0, to = 10, ylim = c(0, 1),\n      xlab = \"x\", ylab = \"Cumulative Probability\",\n      main = \"Gamma Distributions CDF with Different Parameters\",\n      col = colors[1])  # 첫 번째 분포의 누적분포함수 그리기\nfor (i in 2:length(params)) {  # 나머지 분포의 누적분포함수 추가\n  curve(pgamma(x, shape = params[[i]]$shape, rate = params[[i]]$rate), from = 0, to = 10, add = TRUE, col = colors[i])\n}\n# 범례 추가\nlegend(\"bottomright\", legend = paste(\"Shape =\", sapply(params, function(x) x$shape), \", Rate =\", sapply(params, function(x) x$rate)), col = colors, lty = 1)\n\n\n\n\n\n\n\n\n\n\n감마분포 관련 문제\n\n소프트웨어 개발 프로젝트가 있다. 프로젝트는 여러 단계로 나뉘며, 각 단계의 완료 시간은 독립적으로 지수 분포를 따른다. 각 단계를 완료하는 데 걸리는 평균 시간은 5일이며, 프로젝트를 완료하는 데 필요한 전체 단계의 수는 4단계이다. 이 프로젝트가 15일 이내에 완료될 확률을 구하시오.\n\n\n# 매개변수 설정\nshape &lt;- 4            # 단계 수\nrate &lt;- 1 / 5         # 일 당 단계 완료 비율\n\n# 특정 시간(예: 15일) 이내에 프로젝트를 완료할 확률 계산\ntime &lt;- 15            # 완료 시간\nprobability &lt;- pgamma(time, shape, rate)\n\n# 확률 출력\nprobability\n\n[1] 0.3527681"
+  },
+  {
+    "objectID": "posts/05/index.html",
+    "href": "posts/05/index.html",
+    "title": "05. 포아송분포, 균등분포",
+    "section": "",
+    "text": "포아송분포, 균등분포 (sasa메일로 로그인해야 내용을 볼 수 있습니다.)"
+  },
+  {
+    "objectID": "posts/05/index.html#포아송분포",
+    "href": "posts/05/index.html#포아송분포",
+    "title": "05. 포아송분포, 균등분포",
+    "section": "포아송분포",
+    "text": "포아송분포\n\nR명령어 설명\n\n포아송분포(Poisson Distribution)에 관련된 R 명령어 설명\n위에 링크로 달아놓았지만, ChatGPT에게 포아송분포에 관련된 r명령어를 묻고, 명령어는 알지만 더 자세한 사용법을 알고 싶을때는 프로그램에서 명령어에 커서를 두고 F1을 누르면 설명이 나옵니다.\n\n\n# 시간당 평균 3건의 사건이 발생하는 시스템\n# 확률밀도함수: 특정 시간에 5건의 사건이 발생할 확률 계산\ndpois(5, 3)\n\n[1] 0.1008188\n\n# 누적분포함수: 특정 시간에 최대 2건의 사건이 발생할 확률 계산\nppois(2, 3)\n\n[1] 0.4231901\n\n# 분위수 함수: 90%의 확률로 발생할 수 있는 최대 사건 수\nqpois(0.90, 3)\n\n[1] 5\n\n# 랜덤 샘플링: 5개의 무작위 시간에 발생할 사건 수를 시뮬레이션\nrpois(5, 3)\n\n[1] 4 1 3 3 4\n\n# 포아송분포의 확률질량함수 그리기\nlambda &lt;- 3  # 매개변수(평균 발생 횟수) 설정\nx_values &lt;- 0:10  # 확률을 계산할 이벤트 수의 범위\nprobabilities &lt;- dpois(x_values, lambda)  # 확률 질량 함수 계산\nplot(x_values, probabilities, type = \"h\", lwd = 2, col = \"blue\",\n     main = \"Poisson Distribution\",\n     xlab = \"Number of Events\", ylab = \"Probability\")  # 확률 분포 그래프 그리기\n\n\n\n\n\n\n\n\n\n\n포아송분포 관련 문제\n\n전국 고속도로에 버려진 자동차는 매주 평균 2.2대의 포아송 분포를따른다고 알려져 있다. 이때 다음 확률을 구하시오.\n(1) 다음 주에 버려진 차가 한 대도 없을 확률\n(2) 다음 주에 적어도 2대의 자동차가 버려져 있을 확률\n\n\nppois(0, 2.2) # (1)번 풀이\n\n[1] 0.1108032\n\n1-ppois(1, 2.2) # (2)번 풀이\n\n[1] 0.6454299\n\n\n\n삼삼 생명보험에 든 계약자 중에서 1년 동안 사망하는 사망자 수는 모수가 \\(\\lambda\\)인 포아송 분포를 따른다고 한다. \\(\\lambda =5\\)일 때 사망자 수가 적어도 3명 이상일 확률을 구하시오.\n\n\n1-ppois(2, 5)\n\n[1] 0.875348"
+  },
+  {
+    "objectID": "posts/05/index.html#균등분포",
+    "href": "posts/05/index.html#균등분포",
+    "title": "05. 포아송분포, 균등분포",
+    "section": "균등분포",
+    "text": "균등분포\n\nR명령어 설명\n\n균등분포(Uniform Distribution)에 관련된 R 명령어 설명\n\n\ndunif(0.5, 0, 1)  # 0과 1 사이의 균등분포에서 0.5의 밀도 계산\n\n[1] 1\n\npunif(0.5, 0, 1)  # 0과 1 사이의 균등분포에서 0.5 이하의 값이 나올 누적 확률 계산\n\n[1] 0.5\n\nqunif(0.5, 0, 1)  # 0과 1 사이의 균등분포에서 중앙값(50% 분위수) 계산\n\n[1] 0.5\n\nrunif(5, 0, 1)  # 0과 1 사이에서 균등분포를 따르는 5개의 랜덤 숫자를 생성\n\n[1] 0.8048346 0.7999068 0.3786974 0.2193735 0.3652728\n\n# curve 함수를 이용한 확률밀도함수 그리기\nmin_val &lt;- 0  # 균등 분포의 최소값과 최대값 설정\nmax_val &lt;- 1\ncurve(dunif(x, min_val, max_val), from = min_val, to = max_val, # 균등분포의 확률밀도함수 그래프 그리기\n      xlab = \"x\", ylab = \"Density\", \n      main = \"Uniform Distribution Density\", col = \"blue\")\n\n\n\n\n\n\n\n# plot 함수를 이용한 확률밀도함수 그리기\nx_values &lt;- seq(min_val, max_val, by = 0.01)  # 균등분포의 확률밀도함수를 계산할 값의 범위\ndensities &lt;- dunif(x_values, min_val, max_val)  # 확률밀도 계산\nplot(x_values, densities, type = \"l\", col = \"red\",  # 확률밀도 그래프 그리기\n     main = \"Uniform Distribution Density\", \n     xlab = \"x\", ylab = \"Density\")\n\n\n\n\n\n\n\n# 균등분포의 누적분포함수 그리기\nmin_val &lt;- 0  # 균등 분포의 최소값과 최대값 설정\nmax_val &lt;- 1\ncurve(punif(x, min_val, max_val), from = min_val, to = max_val, # 균등분포의 누적분포함수 그래프 그리기\n      xlab = \"x\", ylab = \"Cumulative Probability\", \n      main = \"Uniform Distribution CDF\", col = \"purple\")\n\n\n\n\n\n\n\n\n\n\n균등분포 관련 문제\n\n신나은행 콜센터에 있는 직원은 10통의 전화에 응답하는데 걸리는 시간(단위: 분)이 \\((8, 15)\\)에서 균등분포를 한다. \\(X\\)를 1통의 전화에 응답하는데 소요되는 시간이라 할때, \\(X\\)의 평균을 구하시오.\n\n\nmin_val &lt;- 0.8  # 최솟값과 최댓값 설정\nmax_val &lt;- 1.5\nmean_val &lt;- (min_val + max_val) / 2  # 균등 분포의 평균 계산\nmean_val  # 평균 값 출력\n\n[1] 1.15"
+  },
+  {
+    "objectID": "posts/03/index.html",
+    "href": "posts/03/index.html",
+    "title": "03. 연속확률변수, 정규분포",
+    "section": "",
+    "text": "대표적인 연속확률분포를 간단히 정리하면 다음과 같다.\n\n\n\n\n\n\n\n\n\n\n\n\n분포\n확률밀도함수\n평균(\\(\\mu\\))\n분산(\\(\\sigma^2\\))\n\n\n\n\n균등분포\\((a,~b)\\)\n\\(\\dfrac{1}{b-a},~a&lt;x&lt;b\\)\n\\(\\dfrac{a+b}{2}\\)\n\\(\\dfrac{(b-a)^2}{12}\\)\n\n\n정규분포\\((\\mu,~\\sigma^2\\))\n\\(\\dfrac{1}{\\sqrt{2\\pi}\\sigma}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}},~-\\infty&lt;x&lt;\\infty\\)\n\\(\\mu\\)\n\\(\\sigma^2\\)\n\n\n지수분포\\((\\lambda)\\)\n\\(\\lambda e^{-\\lambda x},~x&gt;0\\)\n\\(\\dfrac{1}{\\lambda}\\)\n\\(\\dfrac{1}{\\lambda^2}\\)\n\n\n감마분포\\((\\alpha,~\\lambda)\\)\n\\(\\dfrac{\\lambda^{\\alpha}}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-\\lambda x},~x&gt;0\\)\n\\(\\dfrac{\\alpha}{\\lambda}\\)\n\\(\\dfrac{\\alpha}{\\lambda^2}\\)\n\n\n\n\n이외에도 웨이블분포, 베타분포, 코쉬분포, 로그노말분포, 레일리분포 등이 있다.\n\n\n\n\n\n\n위험률함수 \\(\\lambda(t)=\\lambda\\), 비기억성을 가짐\n작은 \\(p\\)에서의 기하분포 \\(Geo(p)\\)의 근사분포, 포아송과정에서의 도착간격시간\n\n\n\n\n\n\\(X\\sim \\Gamma (n,~\\lambda)\\)일 때 \\(P(X \\le t) = 1- \\sum_\\limits{k=0}^{n-1} \\dfrac{(\\lambda t)^{k} e^{-\\lambda t}}{k!}\\)\n\\(\\chi ^2 (n) = \\Gamma \\left( \\dfrac{n}{2},~\\dfrac{1}{2}\\right)\\)\n포아송과정에서 \\(n\\)번째 사건이 일어날 때까지 기다린 시간\n모수 \\(r,~p\\)인 음이항분포에서 \\(p\\)가 작을 때의 근사분포\n\n\n\n\n\n\\(Z\\)가 표준정규분포이면 \\(E(Z^m )=0\\), \\(m\\)이 홀수\n\\(E(Z^{2m})=\\dfrac{(2m)!}{m!2^m},~m=0,1,2, \\cdots\\)\n\\(E(|Z|)=\\sqrt{\\dfrac{2}{\\pi}}\\)\n\\(Z^2 \\sim \\Gamma \\left( \\dfrac{1}{2},~\\dfrac{1}{2}\\right)\\)\n\\(Z_1 ,~Z_2\\)가 서로 독립이고 표준정규분포를 따르면 \\(Z_1 / Z_2 \\sim\\)표준코쉬분포"
+  },
+  {
+    "objectID": "posts/03/index.html#대표적인-연속확률분포",
+    "href": "posts/03/index.html#대표적인-연속확률분포",
+    "title": "03. 연속확률변수, 정규분포",
+    "section": "",
+    "text": "분포\n확률밀도함수\n평균(\\(\\mu\\))\n분산(\\(\\sigma^2\\))\n\n\n\n\n균등분포\\((a,~b)\\)\n\\(\\dfrac{1}{b-a},~a&lt;x&lt;b\\)\n\\(\\dfrac{a+b}{2}\\)\n\\(\\dfrac{(b-a)^2}{12}\\)\n\n\n정규분포\\((\\mu,~\\sigma^2\\))\n\\(\\dfrac{1}{\\sqrt{2\\pi}\\sigma}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}},~-\\infty&lt;x&lt;\\infty\\)\n\\(\\mu\\)\n\\(\\sigma^2\\)\n\n\n지수분포\\((\\lambda)\\)\n\\(\\lambda e^{-\\lambda x},~x&gt;0\\)\n\\(\\dfrac{1}{\\lambda}\\)\n\\(\\dfrac{1}{\\lambda^2}\\)\n\n\n감마분포\\((\\alpha,~\\lambda)\\)\n\\(\\dfrac{\\lambda^{\\alpha}}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-\\lambda x},~x&gt;0\\)\n\\(\\dfrac{\\alpha}{\\lambda}\\)\n\\(\\dfrac{\\alpha}{\\lambda^2}\\)\n\n\n\n\n이외에도 웨이블분포, 베타분포, 코쉬분포, 로그노말분포, 레일리분포 등이 있다."
+  },
+  {
+    "objectID": "posts/03/index.html#각-분포들의-특징",
+    "href": "posts/03/index.html#각-분포들의-특징",
+    "title": "03. 연속확률변수, 정규분포",
+    "section": "",
+    "text": "위험률함수 \\(\\lambda(t)=\\lambda\\), 비기억성을 가짐\n작은 \\(p\\)에서의 기하분포 \\(Geo(p)\\)의 근사분포, 포아송과정에서의 도착간격시간\n\n\n\n\n\n\\(X\\sim \\Gamma (n,~\\lambda)\\)일 때 \\(P(X \\le t) = 1- \\sum_\\limits{k=0}^{n-1} \\dfrac{(\\lambda t)^{k} e^{-\\lambda t}}{k!}\\)\n\\(\\chi ^2 (n) = \\Gamma \\left( \\dfrac{n}{2},~\\dfrac{1}{2}\\right)\\)\n포아송과정에서 \\(n\\)번째 사건이 일어날 때까지 기다린 시간\n모수 \\(r,~p\\)인 음이항분포에서 \\(p\\)가 작을 때의 근사분포\n\n\n\n\n\n\\(Z\\)가 표준정규분포이면 \\(E(Z^m )=0\\), \\(m\\)이 홀수\n\\(E(Z^{2m})=\\dfrac{(2m)!}{m!2^m},~m=0,1,2, \\cdots\\)\n\\(E(|Z|)=\\sqrt{\\dfrac{2}{\\pi}}\\)\n\\(Z^2 \\sim \\Gamma \\left( \\dfrac{1}{2},~\\dfrac{1}{2}\\right)\\)\n\\(Z_1 ,~Z_2\\)가 서로 독립이고 표준정규분포를 따르면 \\(Z_1 / Z_2 \\sim\\)표준코쉬분포"
+  },
+  {
+    "objectID": "posts/03/index.html#r명령어-설명",
+    "href": "posts/03/index.html#r명령어-설명",
+    "title": "03. 연속확률변수, 정규분포",
+    "section": "R명령어 설명",
+    "text": "R명령어 설명\n\n정규분포(Normal Distribution)에 관련된 R 명령어 설명  \n\n위에 링크로 달아놓았지만, ChatGPT에게 정규분포에 관련된 r명령어를 묻고, 명령어는 알지만 더 자세한 사용법을 알고 싶을때는 프로그램에서 명령어에 커서를 두고 F1을 누르면 설명이 나옵니다.\n\ndnorm(0, mean = 0, sd = 1)  # 평균이 0이고 표준편차가 1인 정규분포에서 0에서의 밀도 계산\n\n[1] 0.3989423\n\npnorm(0, mean = 0, sd = 1)  # 평균이 0이고 표준편차가 1일 때, 0 이하의 값이 나올 누적확률 계산\n\n[1] 0.5\n\nqnorm(0.5, mean = 0, sd = 1)  # 평균이 0이고 표준편차가 1일 때, 50%의 확률로 발생할 수 있는 값 계산\n\n[1] 0\n\nrnorm(5, mean = 0, sd = 1)  # 평균이 0이고 표준편차가 1인 정규분포에서 5개의 무작위 값 생성\n\n[1]  0.6361101  0.2081716 -0.3862178  0.9106152 -0.7625748\n\n# curve함수를 이용해서 정규분포의 확률밀도함수 그리기\nmean &lt;- 0\nsd &lt;- 1\ncurve(dnorm(x, mean, sd), from = -4, to = 4, \n      xlab = \"x\", ylab = \"Density\",\n      main = \"Normal Distribution Density (mean=0, sd=1)\", col = \"blue\")\n\n\n\n\n\n\n\n# 정규분포의 누적분포함수 그리기\nmean &lt;- 0\nsd &lt;- 1\ncurve(pnorm(x, mean, sd), from = -4, to = 4, \n      xlab = \"x\", ylab = \"Cumulative Probability\",\n      main = \"Normal Distribution CDF (mean=0, sd=1)\", col = \"red\")"
+  },
+  {
+    "objectID": "posts/03/index.html#정규분포의-확률-구하기",
+    "href": "posts/03/index.html#정규분포의-확률-구하기",
+    "title": "03. 연속확률변수, 정규분포",
+    "section": "정규분포의 확률 구하기",
+    "text": "정규분포의 확률 구하기\n\n\\(P(Z&lt;-0.155\\) 또는 \\(Z&gt;1.6)\\)를 구하여라.\n\n\n# pnorm함수는 정규분포의 확률값을 구해주는 함수이다. \n# pnorm(x, mean=a, sd=b)의 형태로 입력되며, \n# 뒤의 mean, sd 항목을 생략하면 mean=0, sd=1의 표준정규분포의 확률값을 구하는 것으로 인식하게 된다.\npnorm(-0.1555)+1-pnorm(1.6)\n\n[1] 0.4930129\n\n\n\n\\(P(-z≤Z≤z)=0.95\\)를 만족시키는 양의 실수 \\(z\\)를 구하여라.\n\n\n# qnorm함수는 확률값을 입력하였을때, 그에 해당하는 표준정규분포를 따르는 변수 Z값을 구해주는 함수이다.\nqnorm(0.025)\n\n[1] -1.959964\n\n\n\n어느 저울의 성질을 알아보기 위하여 질량이 1kg인 추를 반복적으로 잰다고 하자. 이때 측정된 질량은 평균이 1kg이고, 표준편차가 20g인 정규분포를 따른다고 한다. 이러한 측정을 계속 반복할 때, 측정된 값이 1kg으로부터 10g 이내에 있는 비율은 얼마인가?\n\n\npnorm(1010,mean=1000,sd=20)-pnorm(990,mean=1000,sd=20)\n\n[1] 0.3829249"
+  },
+  {
+    "objectID": "posts/03/index.html#주어진-자료의-정규성-알아보기",
+    "href": "posts/03/index.html#주어진-자료의-정규성-알아보기",
+    "title": "03. 연속확률변수, 정규분포",
+    "section": "주어진 자료의 정규성 알아보기",
+    "text": "주어진 자료의 정규성 알아보기\n\n어느 자료가 정규분포에 얼마나 근접한지 알고 싶으면 Q-Q(Quantile-Quantile) plot을 그려본다. Q-Q plot에서 직선은 정확한 정규분포 수식에서 나오는 값인데, 관찰값인 점들이 직선에서 크게 벗어나지 않으면 자료가 정규분포를 따른다고 할 수 있다.\n\n\nbody &lt;- read.table(\"BodyWeight.txt\", header=T)\nqqnorm(body$몸무게)\nqqline(body$몸무게, col=\"blue\")\n\n\n\n\n\n\n\n\n\n직선에 어느 정도 근접하느냐는 주관적이므로, 위 자료(100개)와 비교해보기 위해 정규분포를 이루는 난수를 발생하여 같은 그래프를 그려보자.\n\n\nx = rnorm(n=100, mean=0, sd=1) #평균이 0이고, 표준편차가 1인 표준정규분포에서 100개의 난수를 발생하여 x에 넣기\nqqnorm(x)\nqqline(x, col=\"blue\")"
+  },
+  {
+    "objectID": "posts/01/index.html",
+    "href": "posts/01/index.html",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "",
+    "text": "자료의 정리 (sasa메일로 로그인해야 내용을 볼 수 있습니다.)"
+  },
+  {
+    "objectID": "posts/01/index.html#데이터-불러오기",
+    "href": "posts/01/index.html#데이터-불러오기",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "데이터 불러오기",
+    "text": "데이터 불러오기\n\n데이터가 들어있는 텍스트 화일을 불러오기\n\n\nclub &lt;- read.table(\"SocietyClubVillage.txt\", header=T)"
+  },
+  {
+    "objectID": "posts/01/index.html#막대그림",
+    "href": "posts/01/index.html#막대그림",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "막대그림",
+    "text": "막대그림\n\n범주형 자료의 막대그래프 그리기\n\n\ntable(club)\n\n동호인마을\n미술 역술 영화 음악 \n   4    1    3    5 \n\nbarplot(table(club),xlab=\"동호인 마을\", main=\"요약\")"
+  },
+  {
+    "objectID": "posts/01/index.html#파이그림",
+    "href": "posts/01/index.html#파이그림",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "파이그림",
+    "text": "파이그림\n\n범주형 자료의 파이그래프 그리기\n\n\npie(table(club),xlab=\"동호인 마을\", main=\"요약\")"
+  },
+  {
+    "objectID": "posts/01/index.html#기술통계량",
+    "href": "posts/01/index.html#기술통계량",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "기술통계량",
+    "text": "기술통계량\n\n데이터 불러온 후, 데이터 확인하기\n\n\nbody &lt;- read.table(\"BodyWeight.txt\", header=T)\nhead(body)\n\n  몸무게\n1   68.5\n2   77.3\n3   62.5\n4   73.0\n5   72.6\n6   61.0\n\n\n\n아래 명령어를 입력하면서 뜻 생각해보기, 명령어 안에서 줄바꿈은 shift+엔터를 쳐야 함\n\n\ndescription &lt;- function(x){\n    mx=mean(x)\n    se=sd(x)/sqrt(length(x))\n    med=median(x)\n    mode=as.numeric(names(which.max(table(x))))\n    sx=sd(x)\n    vx=var(x)\n    kurt=mean((x-mean(x))^4)/(mean((x-mean(x))^2))^2-3\n    skew=mean((x-mean(x))^3)/(mean((x-mean(x))^2))^1.5\n    range=max(x)-min(x)\n    quantiles=quantile(x)\n    iqr=IQR(x)\n    cat(\"column1\",\"\\n\",\n    \"평균\",\"mx\",\"\\n\",\n    \"표준오차\",se,\"\\n\",\n    \"중앙값\",med,\"\\n\", \n    \"최빈값\",mode,\"\\n\",\n    \"표준편차\",sx,\"\\n\",\n    \"분산\",vx,\"\\n\",\n    \"첨도\",kurt,\"\\n\",\n    \"왜도\",skew,\"\\n\",\n    \"범위\",range,\"\\n\",\n    \"사분위수\",quantiles,\"\\n\",\n    \"사분위수범위\",iqr,\"\\n\",\n    \"최솟값\",min(x),\"\\n\",\n    \"최댓값\",max(x),\"\\n\",\n    \"합\",sum(x),\"\\n\",\n    \"관측수\",length(x),\"\\n\")\n}\n\ndescription(body$몸무게)\n\ncolumn1 \n 평균 mx \n 표준오차 0.4974663 \n 중앙값 68.5 \n 최빈값 71.5 \n 표준편차 4.974663 \n 분산 24.74727 \n 첨도 0.1990144 \n 왜도 0.1898622 \n 범위 27.4 \n 사분위수 55.6 64.5 68.5 71.75 83 \n 사분위수범위 7.25 \n 최솟값 55.6 \n 최댓값 83 \n 합 6849.8 \n 관측수 100"
+  },
+  {
+    "objectID": "posts/01/index.html#기술통계량-패키지-이용하기",
+    "href": "posts/01/index.html#기술통계량-패키지-이용하기",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "기술통계량 패키지 이용하기",
+    "text": "기술통계량 패키지 이용하기\n\ndlookr 패키지가 없으면 주석에 있는 명령어로 설치하고, 패키지를 불러온 후 describe 명령어 입력하기\n\n\n# devtools::install_github(\"choonghyunryu/dlookr\")\nlibrary(dlookr)\n\nRegistered S3 methods overwritten by 'dlookr':\n  method          from  \n  plot.transform  scales\n  print.transform scales\n\n\n\nAttaching package: 'dlookr'\n\n\nThe following object is masked from 'package:base':\n\n    transform\n\ndescribe(body)\n\n# A tibble: 1 × 26\n  described_variables     n    na  mean    sd se_mean   IQR skewness kurtosis\n  &lt;chr&gt;               &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 몸무게                100     0  68.5  4.97   0.497  7.25    0.193    0.272\n# ℹ 17 more variables: p00 &lt;dbl&gt;, p01 &lt;dbl&gt;, p05 &lt;dbl&gt;, p10 &lt;dbl&gt;, p20 &lt;dbl&gt;,\n#   p25 &lt;dbl&gt;, p30 &lt;dbl&gt;, p40 &lt;dbl&gt;, p50 &lt;dbl&gt;, p60 &lt;dbl&gt;, p70 &lt;dbl&gt;,\n#   p75 &lt;dbl&gt;, p80 &lt;dbl&gt;, p90 &lt;dbl&gt;, p95 &lt;dbl&gt;, p99 &lt;dbl&gt;, p100 &lt;dbl&gt;"
+  },
+  {
+    "objectID": "posts/01/index.html#도수분포표-히스토그램-그리기",
+    "href": "posts/01/index.html#도수분포표-히스토그램-그리기",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "도수분포표, 히스토그램 그리기",
+    "text": "도수분포표, 히스토그램 그리기\n\n숫자형 자료의 도수분포표와 히스토그램 그리기\n\n\nclass &lt;- seq(55,85,5)\nfrequency &lt;- as.numeric(rep(\"\",length(class)))\nfreq.table &lt;- cbind(class,frequency)\nfor(i in 1:length(class)) freq.table[i,2] &lt;- length(body[body&gt;(class[i]-5)&body &lt;= class[i]])\n\nfreq.table\n\n     class frequency\n[1,]    55         0\n[2,]    60         3\n[3,]    65        24\n[4,]    70        35\n[5,]    75        31\n[6,]    80         4\n[7,]    85         3\n\nhist(body$몸무게) #히스토그램 그리기"
+  },
+  {
+    "objectID": "posts/01/index.html#줄기-잎-그림-그리기",
+    "href": "posts/01/index.html#줄기-잎-그림-그리기",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "줄기-잎 그림 그리기",
+    "text": "줄기-잎 그림 그리기\n\n숫자형 자료의 줄기-잎 그림 그리기\n\n\nstem(body$몸무게)\n\n\n  The decimal point is 1 digit(s) to the right of the |\n\n  5 | 679\n  6 | 111133333344444444444\n  6 | 5555666666667777777888889999999999\n  7 | 00000111111222222222233333334444\n  7 | 5556667\n  8 | 113"
+  },
+  {
+    "objectID": "posts/01/index.html#summary함수-이용하기",
+    "href": "posts/01/index.html#summary함수-이용하기",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "Summary()함수 이용하기",
+    "text": "Summary()함수 이용하기\n\n데이터 불러온 후, 데이터 확인하기\n\n\n# 내장된 데이터를 불러오기\ntrees\n\n   Girth Height Volume\n1    8.3     70   10.3\n2    8.6     65   10.3\n3    8.8     63   10.2\n4   10.5     72   16.4\n5   10.7     81   18.8\n6   10.8     83   19.7\n7   11.0     66   15.6\n8   11.0     75   18.2\n9   11.1     80   22.6\n10  11.2     75   19.9\n11  11.3     79   24.2\n12  11.4     76   21.0\n13  11.4     76   21.4\n14  11.7     69   21.3\n15  12.0     75   19.1\n16  12.9     74   22.2\n17  12.9     85   33.8\n18  13.3     86   27.4\n19  13.7     71   25.7\n20  13.8     64   24.9\n21  14.0     78   34.5\n22  14.2     80   31.7\n23  14.5     74   36.3\n24  16.0     72   38.3\n25  16.3     77   42.6\n26  17.3     81   55.4\n27  17.5     82   55.7\n28  17.9     80   58.3\n29  18.0     80   51.5\n30  18.0     80   51.0\n31  20.6     87   77.0\n\n\n\nsummary() 함수를 이용하여 기술통계량 살펴보기\n\n\nsummary(trees)\n\n     Girth           Height       Volume     \n Min.   : 8.30   Min.   :63   Min.   :10.20  \n 1st Qu.:11.05   1st Qu.:72   1st Qu.:19.40  \n Median :12.90   Median :76   Median :24.20  \n Mean   :13.25   Mean   :76   Mean   :30.17  \n 3rd Qu.:15.25   3rd Qu.:80   3rd Qu.:37.30  \n Max.   :20.60   Max.   :87   Max.   :77.00  \n\n\n\nboxplot() 함수로 데이터 살펴보기\n\n\nboxplot(trees)\n\n\n\n\n\n\n\n\n\npairs()을 사용하여 산포도를 통해 변수들의 연관성을 한눈에 살펴보기\n\n\npairs(trees)"
+  },
+  {
+    "objectID": "posts/01/index.html#웹사이트-데이터-불러오기",
+    "href": "posts/01/index.html#웹사이트-데이터-불러오기",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "웹사이트 데이터 불러오기",
+    "text": "웹사이트 데이터 불러오기\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ tidyr::extract() masks dlookr::extract()\n✖ dplyr::filter()  masks stats::filter()\n✖ dplyr::lag()     masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(httr)\nlibrary(rvest)\n\n\nAttaching package: 'rvest'\n\nThe following object is masked from 'package:readr':\n\n    guess_encoding\n\nsigungu_url &lt;- \"https://ko.wikipedia.org/wiki/대한민국의_기초자치단체_목록\"\n\nsgg_html &lt;- read_html(sigungu_url)\n\nsgg_raw &lt;- sgg_html |&gt; \n  html_nodes(\"table\") |&gt;\n  html_table() %&gt;%\n  .[[1]]\n\nsgg_raw |&gt; \n  janitor::clean_names(ascii = FALSE)\n\n# A tibble: 226 × 5\n   이름   광역자치단체   형태  면적_km2 인구_명\n   &lt;chr&gt;  &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;  \n 1 가평군 경기도         군    843.71   62,814 \n 2 강남구 서울특별시     구    39.5     542,341\n 3 강동구 서울특별시     구    24.59    426,178\n 4 강릉시 강원특별자치도 시    1,040.34 212,858\n 5 강북구 서울특별시     구    23.6     318,268\n 6 강서구 부산광역시     구    181.48   125,309\n 7 강서구 서울특별시     구    41.44    596,602\n 8 강진군 전라남도       군    500.95   35,886 \n 9 강화군 인천광역시     군    411.43   68,940 \n10 거제시 경상남도       시    402.64   249,490\n# ℹ 216 more rows"
+  },
+  {
+    "objectID": "posts/01/index.html#광역자치단체별로-평균-인구수를-구하기",
+    "href": "posts/01/index.html#광역자치단체별로-평균-인구수를-구하기",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "광역자치단체별로 평균 인구수를 구하기",
+    "text": "광역자치단체별로 평균 인구수를 구하기\n\nssg_tbl &lt;- sgg_raw |&gt;\n  janitor::clean_names(ascii = FALSE) %&gt;%  \n  mutate(인구_명 = parse_number(인구_명)) |&gt;\n  group_by(광역자치단체) |&gt;\n  summarise(평균인구수 = mean(인구_명, na.rm = TRUE)) |&gt;\n  arrange(desc(평균인구수))"
+  },
+  {
+    "objectID": "posts/01/index.html#범주형-데이터를-예쁜-그래프로-그리기",
+    "href": "posts/01/index.html#범주형-데이터를-예쁜-그래프로-그리기",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "범주형 데이터를 예쁜 그래프로 그리기",
+    "text": "범주형 데이터를 예쁜 그래프로 그리기\n\nssg_gg &lt;- ssg_tbl %&gt;% \n  # 요기부터 그래프\n  ggplot(aes(x = fct_reorder(광역자치단체, 평균인구수),  y = 평균인구수)) +\n    geom_col(width = 0.1) +\n    geom_point(size = 3, color = \"red\") +\n    coord_flip() +\n    scale_y_continuous(labels = scales::comma) +\n    labs(\n      title = \"광역자치단체별 평균 인구수\",\n      subtitle = \"2024년 1월 기준\",\n      x = \"\",\n      y = \"평균 인구수\",\n      caption = \"출처: 위키백과\"\n    ) +\n    theme_minimal()\n\nssg_gg\n\n\n\n\n\n\n\nfs::dir_create(\"images\")\n\nggsave(\"images/ssg_gg.png\", width = 10, height = 6, dpi = 300)"
+  },
+  {
+    "objectID": "posts/01/index.html#범주형-데이터를-예쁜-표로-그리기",
+    "href": "posts/01/index.html#범주형-데이터를-예쁜-표로-그리기",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "범주형 데이터를 예쁜 표로 그리기",
+    "text": "범주형 데이터를 예쁜 표로 그리기\n\nlibrary(tidyverse)\nlibrary(gt)\nlibrary(gtExtras)\n\nssg_gt &lt;- ssg_tbl %&gt;% \n  # 표 그릴꺼야\n  gt() %&gt;% \n    gt::tab_header(\n      title = \"광역자치단체별 평균 인구수\",\n      subtitle = \"2024년 1월 기준\"\n    ) %&gt;% \n    gt::cols_align(column = 광역자치단체, align = \"center\") %&gt;% \n    gt::fmt_integer(columns = 평균인구수) %&gt;% \n    gtExtras::gt_theme_excel()\n\nssg_gt\n\n\n\n\n\n\n\n광역자치단체별 평균 인구수\n\n\n2024년 1월 기준\n\n\n광역자치단체\n평균인구수\n\n\n\n\n경기도\n422,732\n\n\n서울특별시\n390,826\n\n\n대전광역시\n297,521\n\n\n인천광역시\n295,606\n\n\n광주광역시\n291,842\n\n\n대구광역시\n275,767\n\n\n울산광역시\n230,747\n\n\n부산광역시\n214,764\n\n\n경상남도\n187,279\n\n\n충청북도\n145,352\n\n\n충청남도\n141,691\n\n\n전라북도\n130,873\n\n\n경상북도\n120,356\n\n\n강원특별자치도\n85,580\n\n\n전라남도\n85,266\n\n\n\n\n\n\n ssg_gt %&gt;% \n  gtsave(\"images/ssg_gt.png\")\n\nRegistered S3 method overwritten by 'webshot2':\n  method        from   \n  print.webshot webshot\n\n\n\n\n\n광역자치단체 평균 인구수"
+  },
+  {
+    "objectID": "posts/01/index.html#고급-쿼토",
+    "href": "posts/01/index.html#고급-쿼토",
+    "title": "01. 기술통계(Descriptive Statistics)",
+    "section": "고급 쿼토",
+    "text": "고급 쿼토\n\n그래프 이미지표 이미지"
+  },
+  {
+    "objectID": "link.html",
+    "href": "link.html",
+    "title": "Link",
+    "section": "",
+    "text": "￭ RTools https://cran.r-project.org/bin/windows/Rtools/\n - 설치위치를 C:\\Program Files\\Rtools 에서 C:\\Rtools 로 변경, 그 외에는 모두 그대로 설치\n￭ R 4.3.2 https://cran.yu.ac.kr/\n - 경로에서 공백과 한글은 오류 발생 가능하므로 수정하기\n - 설치위치를 C:\\Program Files\\R\\R-4.3.2 에서 C:\\R-4.3.2 로 변경\n￭ RStudio IDE(lastest) https://posit.co/downloads/\n - 설치위치를 C:\\Program Files\\RStudio 에서 C:\\RStudio 로 변경, 그 외에는 모두 그대로\n - 이 프로그램을 주로 사용, 작업표시줄 고정\n￭ D2Coding 폰트 https://github.com/naver/d2codingfont/releases/tag/VER1.3.2\n￭ 쿼토(Quarto) (V1.4 이상) https://quarto.org/docs/download/\n - Quarto는 데이터 과학, 학술 연구, 교육, 기술 문서 작성을 위한 오픈 소스 문서 생성 도구이고, 이는 R, Python, Julia, 다른 프로그래밍 언어의 코드를 포함한 문서를 만들 수 있게 해주며, 다양한 출력 형식(HTML, PDF, Microsoft Word, 슬라이드쇼 등)을 지원함."
+  },
+  {
+    "objectID": "link.html#프로그램",
+    "href": "link.html#프로그램",
+    "title": "Link",
+    "section": "",
+    "text": "￭ RTools https://cran.r-project.org/bin/windows/Rtools/\n - 설치위치를 C:\\Program Files\\Rtools 에서 C:\\Rtools 로 변경, 그 외에는 모두 그대로 설치\n￭ R 4.3.2 https://cran.yu.ac.kr/\n - 경로에서 공백과 한글은 오류 발생 가능하므로 수정하기\n - 설치위치를 C:\\Program Files\\R\\R-4.3.2 에서 C:\\R-4.3.2 로 변경\n￭ RStudio IDE(lastest) https://posit.co/downloads/\n - 설치위치를 C:\\Program Files\\RStudio 에서 C:\\RStudio 로 변경, 그 외에는 모두 그대로\n - 이 프로그램을 주로 사용, 작업표시줄 고정\n￭ D2Coding 폰트 https://github.com/naver/d2codingfont/releases/tag/VER1.3.2\n￭ 쿼토(Quarto) (V1.4 이상) https://quarto.org/docs/download/\n - Quarto는 데이터 과학, 학술 연구, 교육, 기술 문서 작성을 위한 오픈 소스 문서 생성 도구이고, 이는 R, Python, Julia, 다른 프로그래밍 언어의 코드를 포함한 문서를 만들 수 있게 해주며, 다양한 출력 형식(HTML, PDF, Microsoft Word, 슬라이드쇼 등)을 지원함."
+  },
+  {
+    "objectID": "link.html#유용한-사이트",
+    "href": "link.html#유용한-사이트",
+    "title": "Link",
+    "section": "유용한 사이트",
+    "text": "유용한 사이트\n￭ Posit Cloud(R설치 안하고 Web에서 R사용하는 곳) https://posit.cloud/\n￭ 데이터 사이언스를 위한 R프로그래밍 https://greendaygh.github.io/Rprog2021/\n￭ 챗GPT 디지털 글쓰기 https://r2bit.com/gpt-writing/\n￭ Quarto Pub https://quartopub.com/\n￭ Github.com https://github.com/\n￭ ChatGPT https://chat.openai.com/\n￭ 한국R 사용자회 https://r2bit.com/\n￭ 네이버 글꼴 모음 https://hangeul.naver.com/font\n￭ R배우는 곳 https://rtutor.ai/\n￭ 프로그램 언어 변경 https://analytica.shinyapps.io/codelingo/"
+  },
+  {
+    "objectID": "link.html#참고문헌",
+    "href": "link.html#참고문헌",
+    "title": "Link",
+    "section": "참고문헌",
+    "text": "참고문헌\n￭ Excel, SPSS, R로 배우는 통계학 입문(강상욱 외 13명) \n￭ R을 이용한 누구나 하는 통계분석(안재형) \n￭ 기초확률론(이외숙)"
+  },
+  {
+    "objectID": "posts/02/index.html",
+    "href": "posts/02/index.html",
+    "title": "02. 이산확률변수, 이항분포",
+    "section": "",
+    "text": "대표적인 이산확률분포를 간단히 정리하면 다음과 같다.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n분포\n\\(X\\)\n모수\n확률질량함수\n평균(\\(\\mu\\))\n분산(\\(\\sigma^2\\))\n\n\n\n\n베르누이 분포\n한번 시행에서 성공하면 \\(1\\), 실패면 \\(0\\)\n\\(p\\)\n\n\\(p\\)\n\\(pq\\)\n\n\n이항분포\n\\(n\\)번 시행했을 때 성공 횟수\n\\(n,~p\\)\n\\(\\begin{pmatrix}n \\\\x\\end{pmatrix}p^{x}(1-p)^{n-x}\\)\n\\(np\\)\n\\(npq\\)\n\n\n기하분포\n처음 성공할 때까지의 시행 횟수\n\\(p\\)\n\\(p(1-p)^{x-1}\\)\n\\(\\dfrac{1}{p}\\)\n\\(\\dfrac{1-p}{p^2}\\)\n\n\n음이항분포\n\\(r\\)번째 성공할때까지의 총 시행 횟수\n\\(r,~p\\)\n\\(\\begin{pmatrix}n-1 \\\\r-1\\end{pmatrix}p^{r}(1-p)^{n-r}\\)\n\\(\\dfrac{r}{p}\\)\n\\(\\dfrac{r(1-p)}{p^2}\\)\n\n\n포아송 분포\n이항분포의 근사분포(\\(\\lambda=np\\), \\(n \\to \\infty\\))\n\\(\\lambda\\)\n\\(e^{-\\lambda}\\dfrac{\\lambda^{x}}{x!}\\)\n\\(\\lambda\\)\n\\(\\lambda\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n분포\n\\(X\\)\n모수\n확률질량함수\n평균(\\(\\mu\\))\n분산(\\(\\sigma^2\\))\n\n\n\n\n초기하분포\n\\(n\\)개 중 들어있는 \\(Type1\\)의 개수\n\\(N,~r,~n\\)\n\\(\\frac{\\begin{pmatrix}r \\\\x\\end{pmatrix}\\begin{pmatrix}N-r \\\\n-x\\end{pmatrix}}{\\begin{pmatrix}N \\\\n\\end{pmatrix}}\\)\n\\(n \\dfrac{r}{N}\\)\n\\(n \\dfrac{r}{N} \\left(1-\\dfrac{r}{N}\\right)\\left(\\dfrac{N-n}{N-1}\\right)\\)\n\n\n\n\n\n\n\n\n\n\n\n최빈값: \\([(n+1)p]\\)\n포아송분포로의 근사: \\(P(X=k)\\approx \\frac{e^{-\\lambda} \\lambda^k}{k!}\\), \\((\\lambda=np,~p\\approx 0)\\)\n정규분포로의 근사: \\(n\\)이 충분히 클때, \\(\\Phi\\left(\\frac{b+0.5-\\mu}{\\sigma}\\right)-\\Phi\\left(\\frac{a-0.5-\\mu}{\\sigma}\\right)\\), \\(\\Phi\\)는 표준정규분포의 누적분포함수\n\\(n\\)개의 서로 독립인 베르누이 분포를 따르는 확률변수들의 합의 분포\n\n\n\n\n\n꼬리확률(tail probability): \\(P(X&gt;n)=(1-p)^n\\)\n비기억성(memoryless property)을 가짐: \\(P(X&gt;n+k~|~X&gt;n)=P(X&gt;k)\\)\n\n\n\n\n\n\\(r\\)개의 서로 독립인 기하분포를 하는 확률분포들의 합의 분포\n\n\n\n\n\n최빈값: \\([\\lambda]\\)\n정규분포로의 근사: 모수 \\(\\lambda\\)가 클때\n\n\n\n\n\n포아송분포로의 근사: \\(p=\\frac{r}{N}\\)은 충분히 작고 \\(r\\)과 \\(N\\)은 클때\n이항분포로의 근사: \\(n\\ll N\\) 그리고 \\(r\\)과 \\(N-r\\)은 클때"
+  },
+  {
+    "objectID": "posts/02/index.html#대표적인-이산확률분포",
+    "href": "posts/02/index.html#대표적인-이산확률분포",
+    "title": "02. 이산확률변수, 이항분포",
+    "section": "",
+    "text": "분포\n\\(X\\)\n모수\n확률질량함수\n평균(\\(\\mu\\))\n분산(\\(\\sigma^2\\))\n\n\n\n\n베르누이 분포\n한번 시행에서 성공하면 \\(1\\), 실패면 \\(0\\)\n\\(p\\)\n\n\\(p\\)\n\\(pq\\)\n\n\n이항분포\n\\(n\\)번 시행했을 때 성공 횟수\n\\(n,~p\\)\n\\(\\begin{pmatrix}n \\\\x\\end{pmatrix}p^{x}(1-p)^{n-x}\\)\n\\(np\\)\n\\(npq\\)\n\n\n기하분포\n처음 성공할 때까지의 시행 횟수\n\\(p\\)\n\\(p(1-p)^{x-1}\\)\n\\(\\dfrac{1}{p}\\)\n\\(\\dfrac{1-p}{p^2}\\)\n\n\n음이항분포\n\\(r\\)번째 성공할때까지의 총 시행 횟수\n\\(r,~p\\)\n\\(\\begin{pmatrix}n-1 \\\\r-1\\end{pmatrix}p^{r}(1-p)^{n-r}\\)\n\\(\\dfrac{r}{p}\\)\n\\(\\dfrac{r(1-p)}{p^2}\\)\n\n\n포아송 분포\n이항분포의 근사분포(\\(\\lambda=np\\), \\(n \\to \\infty\\))\n\\(\\lambda\\)\n\\(e^{-\\lambda}\\dfrac{\\lambda^{x}}{x!}\\)\n\\(\\lambda\\)\n\\(\\lambda\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n분포\n\\(X\\)\n모수\n확률질량함수\n평균(\\(\\mu\\))\n분산(\\(\\sigma^2\\))\n\n\n\n\n초기하분포\n\\(n\\)개 중 들어있는 \\(Type1\\)의 개수\n\\(N,~r,~n\\)\n\\(\\frac{\\begin{pmatrix}r \\\\x\\end{pmatrix}\\begin{pmatrix}N-r \\\\n-x\\end{pmatrix}}{\\begin{pmatrix}N \\\\n\\end{pmatrix}}\\)\n\\(n \\dfrac{r}{N}\\)\n\\(n \\dfrac{r}{N} \\left(1-\\dfrac{r}{N}\\right)\\left(\\dfrac{N-n}{N-1}\\right)\\)"
+  },
+  {
+    "objectID": "posts/02/index.html#각-분포들의-특징",
+    "href": "posts/02/index.html#각-분포들의-특징",
+    "title": "02. 이산확률변수, 이항분포",
+    "section": "",
+    "text": "최빈값: \\([(n+1)p]\\)\n포아송분포로의 근사: \\(P(X=k)\\approx \\frac{e^{-\\lambda} \\lambda^k}{k!}\\), \\((\\lambda=np,~p\\approx 0)\\)\n정규분포로의 근사: \\(n\\)이 충분히 클때, \\(\\Phi\\left(\\frac{b+0.5-\\mu}{\\sigma}\\right)-\\Phi\\left(\\frac{a-0.5-\\mu}{\\sigma}\\right)\\), \\(\\Phi\\)는 표준정규분포의 누적분포함수\n\\(n\\)개의 서로 독립인 베르누이 분포를 따르는 확률변수들의 합의 분포\n\n\n\n\n\n꼬리확률(tail probability): \\(P(X&gt;n)=(1-p)^n\\)\n비기억성(memoryless property)을 가짐: \\(P(X&gt;n+k~|~X&gt;n)=P(X&gt;k)\\)\n\n\n\n\n\n\\(r\\)개의 서로 독립인 기하분포를 하는 확률분포들의 합의 분포\n\n\n\n\n\n최빈값: \\([\\lambda]\\)\n정규분포로의 근사: 모수 \\(\\lambda\\)가 클때\n\n\n\n\n\n포아송분포로의 근사: \\(p=\\frac{r}{N}\\)은 충분히 작고 \\(r\\)과 \\(N\\)은 클때\n이항분포로의 근사: \\(n\\ll N\\) 그리고 \\(r\\)과 \\(N-r\\)은 클때"
+  },
+  {
+    "objectID": "posts/02/index.html#이산확률변수의-분포",
+    "href": "posts/02/index.html#이산확률변수의-분포",
+    "title": "02. 이산확률변수, 이항분포",
+    "section": "이산확률변수의 분포",
+    "text": "이산확률변수의 분포\n\n이산확률변수의 분포에서 확률질량함수, 누적확률분포함수, 평균, 분산 표준편차를 구하기\n\n[어느 대리점의 자동차 판매 대수], X=하루 동안 판매한 자동차의 대수\nX의 값 / 도수\n0 / 54\n1 / 117\n2 / 72\n3 / 42\n4 / 12\n5 / 3\n합계 / 300\n\n\n\nx1 &lt;-   rbind( 0, 1, 2, 3, 4, 5)\nfreq &lt;- rbind(54, 117, 72, 42, 12, 3)\ntotal &lt;- function(x,y){\n  fx=y/sum(y)\n  cdf=cumsum(fx)\n  prob=sum(fx)\n  xfx=x*fx\n  mean=sum(xfx)\n  x2fx=x^2*fx\n  mix=(x-1.5)^2*fx\n  variance=sum(mix)\n  s.d=sqrt(variance)\n  cat( \" &lt;x&gt;               0    1    2    3    4    5 \", \"\\n\",\n  \"&lt;f(x)&gt;          \",fx,\"\\n\",\n  \"&lt;F(x)&gt;          \",cdf,\"\\n\",\n  \"&lt;x*f(x)&gt;        \",xfx,\"\\n\",\n  \"&lt;x^2*f(x)&gt;      \",x2fx,\"\\n\",\n  \"&lt;(x-1.5)^2*f(x)&gt;\",mix,\"\\n\",\"\\n\",\n  \"&lt;sum(f(x))&gt;     \",prob,\"\\n\",\n  \"&lt;E(x)&gt;          \",mean,\"\\n\",\n  \"&lt;V(x)&gt;          \",variance,\"\\n\",\n  \"&lt;S(x)&gt;          \",s.d,\"\\n\")\n}\n\ntotal(x1, freq)\n\n &lt;x&gt;               0    1    2    3    4    5  \n &lt;f(x)&gt;           0.18 0.39 0.24 0.14 0.04 0.01 \n &lt;F(x)&gt;           0.18 0.57 0.81 0.95 0.99 1 \n &lt;x*f(x)&gt;         0 0.39 0.48 0.42 0.16 0.05 \n &lt;x^2*f(x)&gt;       0 0.39 0.96 1.26 0.64 0.25 \n &lt;(x-1.5)^2*f(x)&gt; 0.405 0.0975 0.06 0.315 0.25 0.1225 \n \n &lt;sum(f(x))&gt;      1 \n &lt;E(x)&gt;           1.5 \n &lt;V(x)&gt;           1.25 \n &lt;S(x)&gt;           1.118034"
+  },
+  {
+    "objectID": "posts/02/index.html#r명령어-설명",
+    "href": "posts/02/index.html#r명령어-설명",
+    "title": "02. 이산확률변수, 이항분포",
+    "section": "R명령어 설명",
+    "text": "R명령어 설명\n\n이항분포(Binomial Distribution)에 관련된 R 명령어 설명  \n\n위에 링크로 달아놓았지만, ChatGPT에게 이항분포에 관련된 r명령어를 묻고, 명령어는 알지만 더 자세한 사용법을 알고 싶을때는 프로그램에서 명령어에 커서를 두고 F1을 누르면 설명이 나옵니다.\n\ndbinom(3, 10, 0.3)  # 10번의 시행에서 성공 확률이 0.3인 경우에 3번 성공할 확률\n\n[1] 0.2668279\n\npbinom(3, 10, 0.3)  # 10번의 시행에서 성공 확률이 0.3인 경우에 3번 이하로 성공할 확률\n\n[1] 0.6496107\n\nqbinom(0.25, 10, 0.3)  # 10번의 시행에서 성공 확률이 0.3인 이항분포에서 하위 25%에 해당하는 성공 횟수\n\n[1] 2\n\nrbinom(5, 10, 0.3)  # 10번의 시행에서 성공 확률이 0.3인 이항분포를 따르는 난수 5개 생성\n\n[1] 2 2 3 3 3\n\n# 이항분포의 확률질량함수 그리기\nsize &lt;- 10  # 시행 횟수와 성공 확률 설정\nprob &lt;- 0.5\n\nx &lt;- 0:size  # 가능한 모든 성공 횟수에 대한 확률 계산\ny &lt;- dbinom(x, size, prob)\nbarplot(y, names.arg=x, xlab=\"성공 횟수\", ylab=\"확률\", main=\"이항 분포 (n=10, p=0.5)\")  # 막대 그래프로 그리기\n\n\n\n\n\n\n\n# 이항분포의 누적분포함수 그리기\ncumulative_probs &lt;- pbinom(x, size, prob)  # 누적 확률 계산\n# 계단 형태의 그래프로 그리기\nplot(x, cumulative_probs, type=\"s\", xlab=\"성공 횟수\", ylab=\"누적 확률\", main=\"이항 분포의 누적 분포 함수 (n=10, p=0.5)\")"
+  },
+  {
+    "objectID": "posts/02/index.html#이항분포-관련-문제",
+    "href": "posts/02/index.html#이항분포-관련-문제",
+    "title": "02. 이산확률변수, 이항분포",
+    "section": "이항분포 관련 문제",
+    "text": "이항분포 관련 문제\n\n확률변수 \\(X\\)가 이항분포 \\(B(10, 1/3)\\)을 따를 때, \\(P(X≤2)\\)와 \\(P(X≥3)\\)를 구하여라.\n\n\npbinom(2, 10, 0.3333)\n\n[1] 0.2992194\n\n1-pbinom(3, 10, 0.3333)\n\n[1] 0.4406446\n\n\n\n어떤 병이 새로운 치료법으로 치료될 확률이 20%라고 한다. 15명의 환자에게 이 치료법을 적용하였을때 4명 이상 7명 이하가 치료될 확률을 구하여라.\n\n\npbinom(7, 15, 0.2) - pbinom(3, 15, 0.2)\n\n[1] 0.3475981"
+  },
+  {
+    "objectID": "posts/04/index.html",
+    "href": "posts/04/index.html",
+    "title": "04. 초기하분포, 기하분포",
+    "section": "",
+    "text": "초기하분포, 기하분포 (sasa메일로 로그인해야 내용을 볼 수 있습니다.)"
+  },
+  {
+    "objectID": "posts/04/index.html#초기하분포",
+    "href": "posts/04/index.html#초기하분포",
+    "title": "04. 초기하분포, 기하분포",
+    "section": "초기하분포",
+    "text": "초기하분포\n\nR명령어 설명\n\n초기하분포(Hypergeometric Distribution)에 관련된 R 명령어 설명\n위에 링크로 달아놓았지만, ChatGPT에게 초기하분포에 관련된 r명령어를 묻고, 명령어는 알지만 더 자세한 사용법을 알고 싶을때는 프로그램에서 명령어에 커서를 두고 F1을 누르면 설명이 나옵니다.\n\n\n# 성공적인 요소 20개, 실패적인 요소 80개, 총 15개의 요소를 뽑는 경우\nm &lt;- 20\nn &lt;- 80\nk &lt;- 15\n\n# 확률밀도함수: 5개의 성공적인 요소를 뽑을 확률\ndhyper(5, m, n, k)\n\n[1] 0.1007633\n\n# 누적분포함수: 5개 이하의 성공적인 요소를 뽑을 누적 확률\nphyper(5, m, n, k)\n\n[1] 0.9538525\n\n# 분위수 함수: 누적 확률 0.5에 해당하는 성공적인 요소의 수\nqhyper(0.5, m, n, k)\n\n[1] 3\n\n# 랜덤 샘플링: 위 조건을 갖는 초기하분포에서 10개의 샘플 생성\nrhyper(10, m, n, k)\n\n [1] 2 5 3 5 0 4 2 2 0 4\n\n# 초기하분포의 확률질량함수 그리기\nm &lt;- 20  # 성공 가능한 항목의 수\nn &lt;- 30  # 실패 가능한 항목의 수\nk &lt;- 10  # 추출되는 항목의 총 수\nx_values &lt;- 0:min(k, m)  # 가능한 성공 횟수의 범위\nprobabilities &lt;- dhyper(x_values, m, n, k)  # 확률 질량 함수 계산\nplot(x_values, probabilities, type = \"h\", lwd = 2, col = \"blue\",\n     main = \"Hypergeometric Distribution\",\n     xlab = \"Number of Successes\", ylab = \"Probability\")  # 확률 분포 그래프 그리기\n\n\n\n\n\n\n\n# 확률질량 또는 매개변수 N, n, k가 있는 초기하분포와 관련된 분포함수를 그리기\nlibrary(LearningStats)\n\nN=20;n=12;k=5\nplotHyper(N,n,k,type=\"d\")\n\n\n\n\n\n\n\n\nProbability mass and distribution function associated with a H(N,n,k)\n \n\n\n x P(H(N,n,k)=x) P(H(N,n,k)&lt;=x)\n 0       0.00361        0.00361\n 1       0.05418        0.05779\n 2       0.23839        0.29618\n 3       0.39732        0.69350\n 4       0.25542        0.94892\n 5       0.05108        1.00000\n\nplotHyper(N,n,k,type=\"p\",col=\"pink\")\n\n\n\n\n\n\n\n\nProbability mass and distribution function associated with a H(N,n,k)\n \n\n\n x P(H(N,n,k)=x) P(H(N,n,k)&lt;=x)\n 0       0.00361        0.00361\n 1       0.05418        0.05779\n 2       0.23839        0.29618\n 3       0.39732        0.69350\n 4       0.25542        0.94892\n 5       0.05108        1.00000\n\nplotHyper(N,n,k)\n\n\n\n\n\n\n\n\nProbability mass and distribution function associated with a H(N,n,k)\n \n\n\n x P(H(N,n,k)=x) P(H(N,n,k)&lt;=x)\n 0       0.00361        0.00361\n 1       0.05418        0.05779\n 2       0.23839        0.29618\n 3       0.39732        0.69350\n 4       0.25542        0.94892\n 5       0.05108        1.00000\n\n\n\n\n초기하분포 관련 문제\n\n4개의 불량품이 섞여있는 20개의 부품이 들어있는 상자로부터 3개의 부품을 꺼내었을 때의 불량품의 수를 \\(X\\)라 하자. \\(E(X)\\)와 \\(Var(x)\\)를 구하여라.\n\n\n# 파라미터 설정\nM &lt;- 20  # 전체 요소의 수\nn &lt;- 4   # 성공 요소의 수\nN &lt;- 3   # 시행 횟수\n\n# 확률 질량 함수 계산\nk &lt;- seq(max(0, N - (M-n)), min(n, N))\npmf &lt;- dhyper(k, n, M - n, N)\n\n# 그래프 그리기\nplot(k, pmf, type=\"h\", lwd=2, col=\"blue\",\n     xlab=\"Number of Successes\", ylab=\"Probability\",\n     main=\"Hypergeometric Distribution PMF\")\n\n\n\n\n\n\n\n# 평균과 분산 계산\nmean &lt;- N * n / M\nvariance &lt;- N * n * (M - n) * (M - N) / (M^2 * (M - 1))\n\n# 결과 출력\nmean\n\n[1] 0.6\n\nvariance\n\n[1] 0.4294737"
+  },
+  {
+    "objectID": "posts/04/index.html#기하분포",
+    "href": "posts/04/index.html#기하분포",
+    "title": "04. 초기하분포, 기하분포",
+    "section": "기하분포",
+    "text": "기하분포\n\nR명령어 설명\n\n기하분포(Geometric Distribution)에 관련된 R 명령어 설명\n\n\n# 성공 확률이 0.2인 기하분포를 만들기 위해 모수 정의\nprob &lt;- 0.2\n\n# 확률밀도함수: 3번 실패 후 4번째 처음 성공할 확률\ndgeom(3, prob)\n\n[1] 0.1024\n\n# 누적분포함수: 4번의 사건발생에서 첫번째 ~ 네번째에서 처음 성공한 확률을 모두 더함\npgeom(3, prob)\n\n[1] 0.5904\n\n# 분위수 함수, 누적분포함수의 역함수: 누적 확률 0.5이 될때까지의 실패 횟수\nqgeom(0.5, prob)\n\n[1] 3\n\n# 임의추출: 성공 확률이 0.2인 기하분포로부터 5개 샘플 생성\nrgeom(5, prob)\n\n[1] 2 6 5 3 4\n\n# 확률질량함수\npar(mar=c(5.1, 4.1, 4.1, 7),xpd=TRUE)\nplot(0,type=\"n\", xlim=c(0,100),ylim=c(0,1),ann=FALSE)\np=c(0.1,0.3,0.5,0.7,0.9)\nfor (i in 1:length(p)){\n  x=0:100\n  y=dgeom(x,p[i])\n  points(x,y,type=\"l\",col=rainbow(length(p))[i])\n}\ntitle(main=\"PMF of geom\",xlab=\"x\",ylab=\"p(x)\",cex.main=2,cex.lab=1.2)\nbox(\"outer\",col=\"gray\")\nlegend(\"topright\",inset=c(-0.15,0), legend=paste(\"p=\",p),col=rainbow(length(p)),lty=1)\n\n\n\n\n\n\n\n# 누적분포함수\npar(mar=c(5.1, 4.1, 4.1, 7),xpd=TRUE)\nplot(0,type=\"n\", xlim=c(0,100),ylim=c(0,1),ann=FALSE)\np=c(0.1,0.3,0.5,0.7,0.9)\nfor (i in 1:length(p)){\n  x=0:100\n  y=pgeom(x,p[i])\n  points(x,y,type=\"l\",col=rainbow(length(p))[i])\n  }\n\ntitle(main=\"CMF of binom\",xlab=\"x\",ylab=\"p(x)\",cex.main=2,cex.lab=1.2)\nbox(\"outer\",col=\"gray\")\nlegend(\"topright\",inset=c(-0.15,0),legend=paste(\"p=\",p),col=rainbow(length(p)),lty=1)\n\n\n\n\n\n\n\n\n\n\n기하분포 관련 문제\n\n로또복권에 당첨될 확률(3등 이상)은 0.028이다. 매주 복권을 1장씩 산다.\n(1) 1년 이내에 당첨될 확률은 얼마인가?\n(2) 당첨될 확률이 90% 이상 되기 위해서는 얼마동안 복권을 사야 할까?\n(3) 작년 한 해 동안 당첨되지 못하였다. 올해에는 당첨될 확률은?\n\n\noptions(digits=5) # 값을 소수점 5자리까지 출력\nprob &lt;- 0.028\npgeom(51, prob) # (1) 누적분포함수 이용, 52회 실행하며 첫 번째 당첨이 발생하기 전에 51번 이하로 실패할 누적확률\n\n[1] 0.77163\n\nqgeom(0.1, prob) # (2) 이 함수의 결과는 오답이며, qgeom은 첫 번째 성공이 발생하기 전까지의 실패 확률이 90% 이하가 되는 지점을 찾는 것을 의미하며, 적어도 한 번 성공할 확률이 90% 이상이 되기 위한 시도 횟수를 찾는 것과는 다른 접근이며, 문제를 해결하기 위해서는 while 루프 방식의 계산이 적합함\n\n[1] 3\n\n# ChatGPT가 알려준 (2)번 풀이에 대한 코드\nwin_probability &lt;- 0.028\ntarget_probability &lt;- 0.90\nn &lt;- 0  # 주 수 카운터\ncurrent_probability &lt;- 0\nwhile (current_probability &lt; target_probability) {\n  n &lt;- n + 1  # 90% 이상 당첨 확률이 될 때까지 반복\n  current_probability &lt;- 1 - (1 - win_probability)^n\n}\nn  # 필요한 주 수 출력\n\n[1] 82\n\npgeom(51, prob) # (3) 기하분포의 무기억성의 성질에 의해 (1)과 같은 확률임\n\n[1] 0.77163"
+  },
+  {
+    "objectID": "posts/06/index.html",
+    "href": "posts/06/index.html",
+    "title": "06. 지수분포",
+    "section": "",
+    "text": "지수분포 (sasa메일로 로그인해야 내용을 볼 수 있습니다.)"
+  },
+  {
+    "objectID": "posts/06/index.html#지수분포",
+    "href": "posts/06/index.html#지수분포",
+    "title": "06. 지수분포",
+    "section": "지수분포",
+    "text": "지수분포\n\nR명령어 설명\n\n지수분포(Exponential Distribution)에 관련된 R 명령어 설명   \n\n\n위에 링크로 달아놓았지만, ChatGPT에게 지수분포에 관련된 r명령어를 묻고, 명령어는 알지만 더 자세한 사용법을 알고 싶을때는 프로그램에서 명령어에 커서를 두고 F1을 누르면 설명이 나옵니다.\n\ndexp(1, 0.2)  # 비율이 0.2일 때, 1단위시간 내에 사건이 발생할 밀도 계산\n\n[1] 0.1637462\n\npexp(1, 0.2)  # 비율이 0.2일 때, 1단위시간 이내에 사건이 발생할 누적 확률 계산\n\n[1] 0.1812692\n\nqexp(0.5, 0.2)  # 비율이 0.2일 때, 50%의 확률로 발생할 수 있는 사건의 시간 계산\n\n[1] 3.465736\n\nrexp(5, 0.2)  # 비율이 0.2인 지수 분포에서 5개의 무작위 사건 시간 생성\n\n[1] 11.374880  3.239535  8.815600  5.755029  3.175466\n\n# curve함수를 이용해서 지수분포의 확률밀도함수 그리기\nrate &lt;- 0.5  # 지수 분포의 비율(λ) 설정\ncurve(dexp(x, rate), from = 0, to = 10, # 지수 분포의 확률 밀도 함수 그래프 그리기\n      xlab = \"x\", ylab = \"Density\", \n      main = \"Exponential Distribution Density\", col = \"blue\")\n\n\n\n\n\n\n\n# plot함수를 이용해서 지수분포의 확률밀도함수 그리기\nx_values &lt;- seq(0, 10, by = 0.1)  # 확률 밀도 함수를 계산할 값의 범위\ndensities &lt;- dexp(x_values, rate)  # 확률 밀도 계산\nplot(x_values, densities, type = \"l\", col = \"red\",  # 확률 밀도 그래프 그리기\n     main = \"Exponential Distribution Density\", \n     xlab = \"x\", ylab = \"Density\")\n\n\n\n\n\n\n\n# curve함수를 이용해서 지수분포의 누적분포함수 그리기\nrate &lt;- 0.5  # 지수 분포의 비율(λ) 설정\ncurve(pexp(x, rate), from = 0, to = 10,  # 지수 분포의 누적 분포 함수 그래프 그리기\n      xlab = \"x\", ylab = \"Cumulative Probability\", \n      main = \"Exponential Distribution CDF\", col = \"purple\")\n\n\n\n\n\n\n\n# 세 개의 모수(0.5, 1, 1.5)에 대한 지수분포의 확률밀도함수 그리기\nrates &lt;- c(0.5, 1, 1.5)  # 세 개의 모수 설정\ncolors &lt;- c(\"red\", \"blue\", \"brown\")  # 색상 설정\ncurve(dexp(x, rates[1]), from = 0, to = 10, ylim = c(0, 1.5),  # 첫 번째 분포 그리기\n      xlab = \"x\", ylab = \"Density\",\n      main = \"Exponential Distributions with Different Rates\",\n      col = colors[1])\nfor (i in 2:length(rates)) {  # 나머지 분포 추가\n  curve(dexp(x, rates[i]), from = 0, to = 10, add = TRUE, col = colors[i])\n}\nlegend(\"topright\", legend = paste(\"Rate =\", rates), col = colors, lty = 1)# 범례 추가\n\n\n\n\n\n\n\n\n\n\n지수분포 관련 문제\n\n어떤 화학물질에서 \\(\\alpha\\)입자가 10초당 평균 5개씩 포아송 과정을 따라 발생한다고 하자. 이때 첫번째 입자가 발생될 때까지 걸리는 시간 \\(X\\)가 5초 이상일 확률을 구하시오.\n\n\n1-pexp(5, 0.5)\n\n[1] 0.082085"
+  },
+  {
+    "objectID": "posts/08/index.html",
+    "href": "posts/08/index.html",
+    "title": "08. 모집단과 표본, 모평균의 추정",
+    "section": "",
+    "text": "모집단과 표본, 모평균의 추정 (sasa메일로 로그인해야 내용을 볼 수 있습니다.)"
+  },
+  {
+    "objectID": "posts/08/index.html#모집단과-표본",
+    "href": "posts/08/index.html#모집단과-표본",
+    "title": "08. 모집단과 표본, 모평균의 추정",
+    "section": "모집단과 표본",
+    "text": "모집단과 표본\n\n표본평균의 분포\n\n히스토그램을 그려 표본수의 증가에 따른 변화를 관찰하기\n\n\n# 난수발생에 따라 평균값이 xlim=c(0.3, 1.7)을 벗어나거나, \n# 도수가 40보다 많아 ylim=c(0, 40)의 범위를 벗어나는 경우가 있을 수 있다.\n\npar(mfrow=c(2,2))\n\ncolumn_1 &lt;- c()\nfor (i in 1:100) column_1[i] &lt;- mean(runif(5,0,2)) # 균등분포에서 난수발생하기\nhist(column_1, border=\"white\", col=\"blue\", main=\"mean of 5 samples\",\n     xlim=c(0.3,1.7), ylim=c(0,40), xlab=\"Class\", ylab=\"Frequency\")\n\ncolumn_2 &lt;- c()\nfor (i in 1:100) column_2[i] &lt;- mean(runif(10,0,2))\nhist(column_2, border=\"white\", col=\"blue\", main=\"mean of 10 samples\",\n     xlim=c(0.3,1.7), ylim=c(0,40), xlab=\"Class\", ylab=\"Frequency\")\n\ncolumn_3 &lt;- c()\nfor (i in 1:100) column_3[i] &lt;- mean(runif(30,0,2))\nhist(column_3, border=\"white\", col=\"blue\", main=\"mean of 30 samples\",\n     xlim=c(0.3,1.7), ylim=c(0,40), xlab=\"Class\", ylab=\"Frequency\")\n\ncolumn_4 &lt;- c()\nfor (i in 1:100) column_4[i] &lt;- mean(runif(100,0,2))\nhist(column_4, border=\"white\", col=\"blue\", main=\"mean of 100 samples\",\n     xlim=c(0.3,1.7), ylim=c(0,40), xlab=\"Class\", ylab=\"Frequency\")\n\n\n\n\n\n\n\n\n\n표본수의 증가에 따른 기술통계량의 변화를 관찰하기\n\n중심극한정리에 의하면 표본평균 \\(\\bar{X}\\)의 분포는 이론적으로 평균이 \\(\\mu=\\frac{0+2}{2}=1\\), 분산이 \\(\\frac{\\sigma^2}{n}=\\frac{(2-0)^2}{12}\\times\\frac{1}{5}=\\frac{1}{15}=0.06667\\)이다. 계산된 요약 통계량을 보면 이론값과 근사적으로 같다는 것을 확인할 수 있다. 최솟값은 점점 커지면서 1로 가고 있고 최댓값은 점점 작아지면서 1로 가고 있기에 대수의 법칙이 작동하고 있음을 알 수 있다.\n\nstat_1 &lt;- c(mean(column_1), var(column_1), median(column_1), \n            min(column_1), max(column_1))\nstat_2 &lt;- c(mean(column_2), var(column_2), median(column_2), \n            min(column_2), max(column_2))\nstat_3 &lt;- c(mean(column_3), var(column_3), median(column_3), \n            min(column_3), max(column_3))\nstat_4 &lt;- c(mean(column_4), var(column_4), median(column_4), \n            min(column_4), max(column_4))\n\nSimStat &lt;- cbind(stat_1, stat_2, stat_3, stat_4) \nrownames(SimStat) &lt;- c(\"mean\", \"var\", \"median\", \"min\", \"max\")\ncolnames(SimStat) &lt;- c(\"n=5\", \"n=10\", \"n=30\", \"n=100\") \n\nSimStat\n\n             n=5       n=10        n=30      n=100\nmean   0.9729752 0.97978835 0.989203485 1.00230931\nvar    0.0687147 0.02721471 0.009337185 0.00292739\nmedian 0.9503002 1.00031873 0.986953764 1.00875891\nmin    0.3816914 0.58072214 0.691923772 0.84858816\nmax    1.5875276 1.32769674 1.202487758 1.12337011"
+  },
+  {
+    "objectID": "posts/08/index.html#모평균의-추정",
+    "href": "posts/08/index.html#모평균의-추정",
+    "title": "08. 모집단과 표본, 모평균의 추정",
+    "section": "모평균의 추정",
+    "text": "모평균의 추정\n\n모평균의 구간추정, 신뢰구간\n\n다음은 베어링의 평균 직경을 알아보고자 9개의 베어링 표본을 대상으로 조사한 것이다. 3.4, 3.3, 4.2, 4.4, 3.7, 4.5, 4.6, 3.8, 4.1 평균 직경에 대한 95% 신뢰구간을 구하시오.\n\n\nx &lt;- c(3.4, 3.3, 4.2, 4.4, 3.7, 4.5, 4.6, 3.8, 4.1)\n\nlibrary(TeachingDemos)\nz.test(x, sd=0.4, 9)  # 과거로부터 σ=0.4로 알려졌을때 신뢰구간\n\n\n    One Sample z-test\n\ndata:  x\nz = -37.5, n = 9.00000, Std. Dev. = 0.40000, Std. Dev. of the sample\nmean = 0.13333, p-value &lt; 2.2e-16\nalternative hypothesis: true mean is not equal to 9\n95 percent confidence interval:\n 3.738671 4.261329\nsample estimates:\nmean of x \n        4 \n\nt.test(x)  # 모표준편차를 모를때 표본표준편차를 이용한 t분포로 구한 신뢰구간\n\n\n    One Sample t-test\n\ndata:  x\nt = 25.298, df = 8, p-value = 6.384e-09\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n 3.635389 4.364611\nsample estimates:\nmean of x \n        4 \n\n\n\n\n표본수의 결정\n\n앞의 예제에서 오차한계 \\(d\\)가 \\(0.2\\)라면 표본수 \\(n\\)은 얼마가 되어야 하는지 구하시오. (\\(\\alpha=0.05\\))\n\n\n# 오차한계 d=0.2일때때\nzstar = qnorm(.975) # σ=0.4로 알려졌을때 n의 개수\nsigma = 0.4 \nE = 0.2 \nzstar^2 * sigma^2/ E^2\n\n[1] 15.36584\n\nzstar = qt(.975, 15) # 모표준편차를 모를때, 자유도를 15로 사용할때의 n의 개수\nsigma = 0.4 \nE = 0.2 \nzstar^2 * sigma^2/ E^2  \n\n[1] 18.17231\n\nzstar = qt(.975, 17) # 모표준편차를 모를때, 자유도를 17로 사용할때의 n의 개수 \nsigma = 0.4 \nE = 0.2 \nzstar^2 * sigma^2/ E^2    \n\n[1] 17.80529\n\n# 따라서 n=18이면 적절하다."
+  },
+  {
+    "objectID": "posts/10/index.html",
+    "href": "posts/10/index.html",
+    "title": "10. 하나의 모집단에 대한 가설검정(평균)",
+    "section": "",
+    "text": "하나의 모집단에 대한 가설검정(평균) (sasa메일로 로그인해야 내용을 볼 수 있습니다.)"
+  },
+  {
+    "objectID": "posts/10/index.html#모평균-mu에-대한-검정",
+    "href": "posts/10/index.html#모평균-mu에-대한-검정",
+    "title": "10. 하나의 모집단에 대한 가설검정(평균)",
+    "section": "모평균 \\(\\mu\\)에 대한 검정",
+    "text": "모평균 \\(\\mu\\)에 대한 검정\n\n\\(\\sigma\\)를 아는 경우\n\n어떤 이들은 한국 청소년들의 하루 평균 TV 시청 시간이 3시간이라 주장하고, 다른 이들은 공부하느라 시청 시간이 3시간이 안될 것이라 주장하고 있다. 어느 편이 맞는지 알아보기 위하여 단순임의 추출한 100명을 조사한 결과 평균이 2.75시간이었다. TV 시청 시간은 정규분포를 하며 분산은 과거 조사에서 1로 알려져 있다.\n\n\n# 가설검정을 위한 변수 설정(양측검정)\nmu0 &lt;- 3 # 귀무 가설의 평균\nxbar &lt;- 2.75 # 표본의 평균\nsigma &lt;- 1 # 모집단의 분산 (표준편차)\nn &lt;- 100 # 표본의 크기\n\nz &lt;- (xbar - mu0) / (sigma / sqrt(n))  # z-검정 수행\np_value &lt;- 2 * pnorm(-abs(z))  # p-값 계산\nz\n\n[1] -2.5\n\np_value  # 결과 출력\n\n[1] 0.01241933\n\n# p값이 σ=0.05보다 작으므로 귀무가설을 기각하게 되어 \n# 청소년들의 하루 평균 TV 시청 시간이 3시간이라고 할 수 없다.\n\n\n\n\\(\\sigma\\)를 모르는 경우\n\n건강한 성인의 콜레스테롤 수치는 220 이하라고 한다. 콜레스테롤이 높은 사람은 심장마비가 발생할 가능성이 더 높은 것으로 알려져 있다. 이를 확인하기 위해 30명의 심장마비 환자를 조사하여 평균 콜레스테롤이 231이며, 표준편차가 20인 것을 알아냈다. 심장마비 환자들의 평균 콜레스테롤은 정상인의 평균 콜레스테롤보다 높은 수치라고 결론내릴 수 있는가?\n\n\nt_test &lt;- function(alpha, mu0, xbar, s, n){\n    se = s/sqrt(n)\n    t = (xbar-mu0)/se\n    cr = qt(1-alpha, df=n-1)\n    p_value = pt(t, df= n-1, lower.tail=F)\n    if(p_value &lt; alpha) result = \"Reject H0\" else result = \"Accept H0\"\n    \n    print(paste(\"Hypothesis testing for H0: mu = \",mu0,\"or Ha: mu &gt; \",mu0))\n    print(c(paste(\"t Statistics is \", round(t,4), \n          \"and Critical Region is \", round(cr, 4)), paste(\"p-value =\", round(p_value,4))))\n    print(paste(result, \"at significance level\", alpha))\n}\n\nt_test(0.05, 220, 231, 20, 30)  \n\n[1] \"Hypothesis testing for H0: mu =  220 or Ha: mu &gt;  220\"\n[1] \"t Statistics is  3.0125 and Critical Region is  1.6991\"\n[2] \"p-value = 0.0027\"                                      \n[1] \"Reject H0 at significance level 0.05\"\n\n# p값이 σ=0.05보다 작으므로 귀무가설을 기각하게 되어 \n# 심장마비 환자들의 평균 콜레스테롤은 정상의 평균 콜레스테롤보다 높다고 결론을 내린다."
+  },
+  {
+    "objectID": "posts/10/index.html#모비율-p에-대한-검정",
+    "href": "posts/10/index.html#모비율-p에-대한-검정",
+    "title": "10. 하나의 모집단에 대한 가설검정(평균)",
+    "section": "모비율 \\(p\\)에 대한 검정",
+    "text": "모비율 \\(p\\)에 대한 검정\n\n경기도 어떤 지역에 새로운 지역 신문을 발행하기 위해서는 구독률이 12%를 넘어야 광고주를 안정적으로 확보할 수 있다고 한다. 새로운 지역 신문의 발행을 고심하는 한 신문사에서는 400명의 주민을 대상으로 만약 신문이 발행되면 구독을 할 것인지를 물어서 58명이 구독할 것이라는 답을 얻었다. 새로운 지역 신문의 구독률이 12%를 초과할 것이라고 결론내릴 수 있는가?(유의수준 5% 사용)\n\n\nprop_test &lt;- function(alpha, p, N, n){\n    phat = n/N\n    se = sqrt((p*(1-p))/N)\n    z = (phat - p) / se\n    cr = qnorm(1-alpha)\n    p_value = pnorm(z, lower.tail=F)\n    if(p_value &lt; alpha) result = \"Reject H0\" else result = \"Accept H0\"\n    \n    print(paste(\"Hypothesis testing for H0: mu = \",p,\"or Ha: mu &gt; \",p))\n    print(c(paste(\"p_hat is \", round(phat,5), \"/ Z Statistics is \", round(z,4),\n           \"and Critical Region is \", round(cr, 4)), paste(\"p-value =\", round(p_value,4))))\n    print(paste(result, \"at significance level\", alpha))\n}\n\nprop_test(0.05, 0.12, 400,58)\n\n[1] \"Hypothesis testing for H0: mu =  0.12 or Ha: mu &gt;  0.12\"\n[1] \"p_hat is  0.145 / Z Statistics is  1.5386 and Critical Region is  1.6449\"\n[2] \"p-value = 0.0619\"                                                        \n[1] \"Accept H0 at significance level 0.05\"\n\n# p값이 유의수준 σ=0.05를 초과하므로 귀무가설을 기각하지 못한다.\n# 새로운 지역 신문은 구독률이 12%를 초과할 것이라 결론내릴 수 없다."
+  },
+  {
+    "objectID": "posts/12/index.html",
+    "href": "posts/12/index.html",
+    "title": "12. 카이제곱검정",
+    "section": "",
+    "text": "날씨가 맑고, 흐리고, 눈 오고, 비 오고 등으로 조사되고, 직업이 전문직, 사무직, 노무직 등으로 분류되는 등 숫자가 아닌 범주형 형태로 얻어지는 자료를 분석하는 기본적인 도구로 카이제곱통계를 이용한다. 표본으로 얻어진 범주의 분포들이 주어진 분포에 부합하는지 알아보려는 적합도 검정, 범주형 변수들끼리의 독립성 여부를 알아보려는 독립성 검정, 두 개 이상의 집단에서의 분포가 같은지 알아보려는 동질성 검정을 할 수 있다."
+  },
+  {
+    "objectID": "posts/12/index.html#적합도-검정",
+    "href": "posts/12/index.html#적합도-검정",
+    "title": "12. 카이제곱검정",
+    "section": "적합도 검정",
+    "text": "적합도 검정\n\n시장점유율 적합도 검정\n\n다음은 제품 4개에 대해 알려진 시장점유율과 실제 500명을 대상으로 사용하고 있는 제품의 사용자수를 나타낸 것이다.  알려진 시장점유율과 관측값이 차이가 나는지 검정하시오.\n\n\nx &lt;- c(110, 195,  47, 148)\np &lt;- c(0.2, 0.4, 0.1, 0.3)\n\nchisq.test(x, p=p)\n\n\n    Chi-squared test for given probabilities\n\ndata:  x\nX-squared = 1.3317, df = 3, p-value = 0.7216\n\n# 검정 통계량이 1.3317이고, p값이 0.7216이다.\n# p값이 0.05(5%) 이상이므로 귀무가설을 기각할 수 없고,\n# 관측된 데이터는 기대되는 빈도와 통계적으로 유의미한 차이가 없다.\n\n\n\n주사위- 균등분포 적합도 검정\n\n주사위의 각 면이 나올 확률이 같은지 알아보기 위해 1200번을 던졌더니 210, 180, 185, 220, 195, 210이 나왔다. 이에 대해 이 주사위의 각 면이 나올 확률이 동일한지 검정하시오.\n\n\np &lt;- rep(1/6, 6)\nx &lt;- c(210, 180, 185, 220, 195, 210)\n\nchisq.test(x, p=p)\n\n\n    Chi-squared test for given probabilities\n\ndata:  x\nX-squared = 6.25, df = 5, p-value = 0.2826\n\n# 검정 통계량이 6.25이고, p값이 0.2826이다.\n# p값이 0.05(5%) 이상이므로 귀무가설을 기각할 수 없고,\n# 주사위의 각 면이 나올 확률이 다르지 않으며, 각 면이 200번으로 나오지 않은 것은 확률적인 우연 변동이다.\n\n\n\nAS접수건수- 포아송분포 적합도 검정\n\n다음은 하루에 발생한 의료영상기기 AS접수건수이다. 이 자료로부터 하루에 발생하는 AS요청건수가 포아송분포를 따른다고 가정하는 것이 적합한지 적합도 검정을 하시오. \n\n\nobserved &lt;- c(94, 67, 33, 3, 3)  # 관측된 빈도\ntotal &lt;- sum(observed)  # 총 건수\nlambda &lt;- sum(0:4 * observed) / total  # 포아송 분포의 평균 발생빈도 계산(하루 평균)\nexpected &lt;- dpois(0:4, lambda) * total  # 기대 빈도 계산\nexpected[5] &lt;- total - sum(expected[1:4])  # 마지막 카테고리는 4 이상의 모든 값 포함\nchisq_test &lt;- chisq.test(x = observed, p = expected / total)  # 카이제곱 적합도 검정 수행\n\nWarning in chisq.test(x = observed, p = expected/total): Chi-squared\napproximation may be incorrect\n\nprint(chisq_test)  # 검정 결과 출력\n\n\n    Chi-squared test for given probabilities\n\ndata:  observed\nX-squared = 4.9623, df = 4, p-value = 0.2912\n\n# 각 범주의 기대빈도가 5보다 작은 경우에는 잘 맞지 않기에 경고메시지가 뜬다.\n\n기대빈도가 낮은 주위의 범주들을 하나의 범주로 묶어서 붕괴된(collapsed) 빈도표를 만들어 카이제곱 적합도 검정을 수행한다. \n\nx &lt;- 0:4\nObs &lt;- c(94, 67, 33, 3, 3)\n(n &lt;- sum(Obs))\n\n[1] 200\n\n(sample.mean &lt;- drop(x%*%Obs/sum(Obs)))  # %*% := inner product, drop := as scalar\n\n[1] 0.77\n\nprob &lt;- dpois(x, lambda=sample.mean)\nprob &lt;- c(prob, 1-sum(prob))\nExp &lt;- n*prob\nx &lt;- c(x, 5)\nObs &lt;- c(Obs, 0)\ncbind(x, Obs, prob, Exp)\n\n     x Obs        prob        Exp\n[1,] 0  94 0.463013068 92.6026137\n[2,] 1  67 0.356520063 71.3040125\n[3,] 2  33 0.137260224 27.4520448\n[4,] 3   3 0.035230124  7.0460248\n[5,] 4   3 0.006781799  1.3563598\n[6,] 5   0 0.001194722  0.2389444\n\n(Exp &gt;= 5)  # 기대빈도가 5 이상인지 확인\n\n[1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE\n\nObs[4] &lt;- sum(Obs[4:6])\nprob[4] &lt;- sum(prob[4:6])\nExp[4] &lt;- sum(Exp[4:6])\n\nx &lt;- x[1:4]\nObs &lt;- Obs[1:4]\nprob &lt;- prob[1:4]\nExp &lt;- Exp[1:4]\n\nchisq &lt;- (Obs-Exp)^2/Exp\ncbind(x, Obs, prob, Exp, chisq)\n\n     x Obs       prob       Exp      chisq\n[1,] 0  94 0.46301307 92.602614 0.02108675\n[2,] 1  67 0.35652006 71.304013 0.25979637\n[3,] 2  33 0.13726022 27.452045 1.12122091\n[4,] 3   6 0.04320664  8.641329 0.80735485\n\nsum.chisq &lt;- sum(chisq)\n(p.value &lt;-1 -pchisq(sum.chisq, df=4-1-1))\n\n[1] 0.3313005\n\n# 하루에 발생하는 AS요청건수의 분포가 포아송분포를 따른다는 귀무가설을 기각할 수 없다.\n\n## vcd package --&gt; does not collapes!!!\nObs &lt;- c(94, 67, 33, 3, 3)\nx.poi &lt;- c(rep(0,94), rep(1,67), rep(2, 33), rep(3, 3), rep(4, 3))\nlibrary(vcd)\n\nLoading required package: grid\n\ngf &lt;- goodfit(x.poi, type= \"poisson\", method=\"MinChisq\")\nsummary(gf)\n\nWarning in summary.goodfit(gf): Chi-squared approximation may be incorrect\n\n\n\n     Goodness-of-fit test for poisson distribution\n\n             X^2 df  P(&gt; X^2)\nPearson 4.760495  3 0.1901988\n\nplot(gf, main=\"Count data vs Poisson distribution\")\n\n\n\n\n\n\n\n\n\n\n머리둘레- 정규분포 적합도 검정\n\n어느 모자 제작업체가 야구모자를 제작하여 야구팬들을 대상으로 판매하려는 계획을 세웠다. 어떤 크기의 모자를 얼마나 많이 만들어야 할지 결정하기 전에 야구팬들의 머리둘레길이가 어떤 분포를 이루고 있는지 알아야 하였다. 이를 조사하기 위해 야구장을 찾은 야구팬 중 임의로 50명을 선정하고 머리둘레를 재어 다음과 같은 크기 순으로 정렬된 자료를 얻었다.\n\n51.92, 52.10, 52.25, 52.41, 52.48, 52.64, 53.02, 53.39, 53.40, 53.77, 54.00, 54.04, 54.30, 54.42, 54.77, 54.78, 54.85, 55.31, 55.33, 55.38, 55.49, 55.51, 55.68, 55.69, 55.80, 55.85, 56.03, 56.05, 56.10, 56.18, 56.22, 56.26, 56.29, 56.32, 56.35, 56.45, 56.57, 56.64, 56.71, 56.84, 56.91, 57.03, 57.14, 57.18, 58.00, 58.07, 58.32, 58.66, 59.26, 59.37\n이 자료로부터 야구팬들의 머리둘레길이가 정규분포를 따른다고 가정하는 것이 적절한지 적합도 검정을 하시오.\n\nx &lt;- c(51.92, 52.10, 52.25, 52.41, 52.48, 52.64, 53.02, 53.39, 53.40, 53.77, 54.00, 54.04, 54.30, 54.42, 54.77, 54.78, 54.85, 55.31, 55.33, 55.38, 55.49, 55.51, 55.68, 55.69, 55.80, 55.85, 56.03, 56.05, 56.10, 56.18, 56.22, 56.26, 56.29, 56.32, 56.35, 56.45, 56.57, 56.64, 56.71, 56.84, 56.91, 57.03, 57.14, 57.18, 58.00, 58.07, 58.32, 58.66, 59.26, 59.37)\n(x.mean &lt;- mean(x))\n\n[1] 55.5506\n\n(x.sd &lt;- sd(x))\n\n[1] 1.859135\n\nprob &lt;- rep(0.1, 10)\np &lt;- cumsum(prob)\n(z &lt;- qnorm(p, x.mean, x.sd))\n\n [1] 53.16802 53.98591 54.57567 55.07959 55.55060 56.02161 56.52553 57.11529\n [9] 57.93318      Inf\n\nz\n\n [1] 53.16802 53.98591 54.57567 55.07959 55.55060 56.02161 56.52553 57.11529\n [9] 57.93318      Inf\n\ncount &lt;- as.vector(10)\nfor (i in 1:10){\n  count[i] &lt;- length(x[x&lt;z[i]])\n}\ncount\n\n [1]  7 10 14 17 22 26 36 42 44 50\n\nfor (i in 10:2){\n  count[i] &lt;- count[i] - count[i-1]\n}\ncount\n\n [1]  7  3  4  3  5  4 10  6  2  6\n\nexp &lt;- rep(5, 10)\nchisq_i &lt;- (count - exp)^2 / exp\ncbind(count, prob, exp, chisq_i)\n\n      count prob exp chisq_i\n [1,]     7  0.1   5     0.8\n [2,]     3  0.1   5     0.8\n [3,]     4  0.1   5     0.2\n [4,]     3  0.1   5     0.8\n [5,]     5  0.1   5     0.0\n [6,]     4  0.1   5     0.2\n [7,]    10  0.1   5     5.0\n [8,]     6  0.1   5     0.2\n [9,]     2  0.1   5     1.8\n[10,]     6  0.1   5     0.2\n\n(chisq &lt;- sum(chisq_i))\n\n[1] 10\n\n1-pchisq(chisq, 7)  # p-value\n\n[1] 0.1885735\n\n# 야구팬들의 머리둘레길이가 정규분포를 따른다는 귀무가설을 기각할 수 없다."
+  },
+  {
+    "objectID": "posts/12/index.html#독립성-검정",
+    "href": "posts/12/index.html#독립성-검정",
+    "title": "12. 카이제곱검정",
+    "section": "독립성 검정",
+    "text": "독립성 검정\n혈액형과 성별, 학년과 학점 등 두 개의 범주형 변수에 대해서 먼저 두 변수 간의 관련성이 주된 관심이 된다. 즉 두 변수가 독립인지 검정하게 되는데, 이를 독립성 검정이라고 한다.\n\n전공과 학점 분할표\n\n130명의 대학원생을 대상으로 학부학점과 대학원전공을 조사한 결과가 다음 표와 같다. 대학원전공과 학부학점 간의 관련이 있는지 검정하시오. \n\n\ny &lt;- matrix(c(30, 13, 16,\n               8, 16,  7,\n              12, 11, 17), nrow=3, ncol=3, byrow=T)\ndimnames(y) &lt;- list(c(\"3.5-4.5\",\"2.5-3.5\",\"1.5-2.5\"), c(\"사회과학\",\"자연과학\",\"공학\"))\ny\n\n        사회과학 자연과학 공학\n3.5-4.5       30       13   16\n2.5-3.5        8       16    7\n1.5-2.5       12       11   17\n\nchisq.test(y, correct=F)\n\n\n    Pearson's Chi-squared test\n\ndata:  y\nX-squared = 13.088, df = 4, p-value = 0.01085\n\n# 학부성적과 대학원전공이 독립이라는 가정을 기각한다.\n\nx &lt;- chisq.test(y, correct=F)  # 독립된 가정에서의 기댓값 출력\nx$expected\n\n        사회과학  자연과학      공학\n3.5-4.5 22.69231 18.153846 18.153846\n2.5-3.5 11.92308  9.538462  9.538462\n1.5-2.5 15.38462 12.307692 12.307692\n\nx$residuals^2  # 독립된 가정에서의 카이제곱값\n\n         사회과학  자연과학      공학\n3.5-4.5 2.3533246 1.4631682 0.2555411\n2.5-3.5 1.2908189 4.3771712 0.6755583\n1.5-2.5 0.7446154 0.1389423 1.7889423"
+  },
+  {
+    "objectID": "posts/12/index.html#동질성-검정",
+    "href": "posts/12/index.html#동질성-검정",
+    "title": "12. 카이제곱검정",
+    "section": "동질성 검정",
+    "text": "동질성 검정\n\nHomogeneity Test 동질성 검정\n\n남녀별 대학생의 전공자수를 조사하였다. 남학생은 45명 중 독문학, 불문학을 각각 30, 15명이 전공하고 있었고, 125명의 여학생은 각각 50, 75명이 전공하고 있었다. 남녀별 전공의 분포가 같은지 알아보고자 한다. 즉 남학생 집단에서의 전공에 대한 이항분포의 두 범주에 대한 확률과 여학생 집단에서의 전공비율이 각각 같은지 검정하시오.\n\n\nhomo &lt;- matrix(c(30, 15, 50, 75), nrow=2, ncol=2, byrow=T)\ndimnames(homo) &lt;- list(c(\"남자\",\"여자\"), c(\"독문학\",\"불문학\"))\nn.marginal &lt;- rowSums(homo)\np.obs &lt;- homo / n.marginal\np.exp &lt;- colSums(homo)/350\nhomo.exp &lt;- n.marginal%o%p.exp\nhomo.exp\n\n       독문학   불문학\n남자 10.28571 11.57143\n여자 28.57143 32.14286\n\nhomo.chisq &lt;- (homo - homo.exp)^2 / homo.exp\nhomo.chisq\n\n       독문학    불문학\n남자 37.78571  1.015873\n여자 16.07143 57.142857\n\nrowSums(homo.chisq)\n\n    남자     여자 \n38.80159 73.21429 \n\n(xx &lt;- chisq.test(homo))\n\n\n    Pearson's Chi-squared test with Yates' continuity correction\n\ndata:  homo\nX-squared = 8.4044, df = 1, p-value = 0.003743\n\nxx$expected\n\n       독문학   불문학\n남자 21.17647 23.82353\n여자 58.82353 66.17647\n\nxx$residuals^2  # 독립이라는 가정 하에 기댓값\n\n       독문학   불문학\n남자 3.676471 3.267974\n여자 1.323529 1.176471\n\nsum(xx$residuals^2)  # 독립이라는 가정 하에 카이제곱값\n\n[1] 9.444444\n\n# p값이 유의 수준(0.05)보다 낮으므로, 두 집단의 분포가 같다는 가정을 기각한다.\n\n\nR에서 이러한 검정을 수행하기 위해 prop.test 함수를 사용할 수 있고, 이 함수는 두 또는 그 이상의 비율을 비교하는 데 사용된다.\n\n\n# 남학생과 여학생의 독문학과 불문학 전공자 수\nmale_students &lt;- c(30, 15)   # 남학생 독문학 30명, 불문학 15명\nfemale_students &lt;- c(50, 75) # 여학생 독문학 50명, 불문학 75명\n\n# prop.test를 사용하여 두 집단 간의 비율 차이 검정\nprop.test(x = c(sum(male_students), sum(female_students)), \n          n = c(sum(male_students) + sum(female_students), sum(female_students) + sum(male_students)), \n          alternative = \"two.sided\")\n\n\n    2-sample test for equality of proportions with continuity correction\n\ndata:  c(sum(male_students), sum(female_students)) out of c(sum(male_students) + sum(female_students), sum(female_students) + sum(male_students))\nX-squared = 73.424, df = 1, p-value &lt; 2.2e-16\nalternative hypothesis: two.sided\n95 percent confidence interval:\n -0.5702594 -0.3709171\nsample estimates:\n   prop 1    prop 2 \n0.2647059 0.7352941 \n\n# p값이 유의 수준(0.05)보다 낮으므로, 두 집단의 분포가 같다는 가정을 기각한다."
+  },
+  {
+    "objectID": "posts/14/index.html",
+    "href": "posts/14/index.html",
+    "title": "14. 다중선형회귀분석",
+    "section": "",
+    "text": "국민총생산에 영향을 주는 것이 이자율 이외에 수출, 수입, R&D비율, 실업률 등 여러가지일 수 있다. 몸무게를 설명할 수 있는 변수가 키뿐 아니라 하루 칼로리 섭취량과 운동량도 영향을 줄 것이라고 생각한다면 키, 칼로리 섭취량과 운동량을 동시에 고려하여 선형회귀분석을 시도할 수 있다. 이와 같이 둘 이상의 설명변수를 고려하는 것을 다중선형회귀분석이라고 한다."
+  },
+  {
+    "objectID": "posts/14/index.html#다중선형회귀분석",
+    "href": "posts/14/index.html#다중선형회귀분석",
+    "title": "14. 다중선형회귀분석",
+    "section": "다중선형회귀분석",
+    "text": "다중선형회귀분석\n\n광고비 및 설비투자와 매출액 연관성 비교 자료\n\n다음 표는 광고비와 설비투자가 매출액에 어떤 영향을 미치는지 보여주고 있다.\n\n\n\n\n\n광고비\n5\n6\n7\n8\n9\n11\n12\n13\n14\n15\n\n\n설비투자\n2\n1.9\n4\n5.6\n6.1\n6.2\n7\n7.2\n8\n9\n\n\n매출액\n16\n19\n18\n20\n24\n26\n30\n32\n31\n34\n\n\n\n\n매출액(\\(Y\\))에 대한 광고비(\\(X_{1}\\))와 설비투자(\\(X_{2}\\))의 다중선형회귀모형을 구하시오.\n\nx =matrix(c(5,6,7,8,9,11,12,13,14,15,2,1.9,4,5.6,6.1,6.2,7,7.2,8,9,16,19,18,20,24,26,30,32,31,34), nrow=10, ncol=3)\ncolnames(x)=c(\"광고비\",\"설비투자\",\"매출액\")\nx=data.frame(x)\nattach(x)\nx\n\n   광고비 설비투자 매출액\n1       5      2.0     16\n2       6      1.9     19\n3       7      4.0     18\n4       8      5.6     20\n5       9      6.1     24\n6      11      6.2     26\n7      12      7.0     30\n8      13      7.2     32\n9      14      8.0     31\n10     15      9.0     34\n\nfit &lt;- lm(매출액 ~ 광고비 + 설비투자)\nfit\n\n\nCall:\nlm(formula = 매출액 ~ 광고비 + 설비투자)\n\nCoefficients:\n(Intercept)       광고비     설비투자  \n      6.099        2.257       -0.643  \n\nanova(fit)\n\nAnalysis of Variance Table\n\nResponse: 매출액\n          Df Sum Sq Mean Sq  F value    Pr(&gt;F)    \n광고비     1 370.95  370.95 232.5153 1.256e-06 ***\n설비투자   1   1.89    1.89   1.1828    0.3128    \nResiduals  7  11.17    1.60                       \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nsummary(fit)\n\n\nCall:\nlm(formula = 매출액 ~ 광고비 + 설비투자)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-1.5477 -0.8391 -0.1286  1.0417  1.5139 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   6.0985     1.3618   4.478 0.002872 ** \n광고비        2.2567     0.4048   5.575 0.000838 ***\n설비투자     -0.6430     0.5913  -1.088 0.312805    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.263 on 7 degrees of freedom\nMultiple R-squared:  0.9709,    Adjusted R-squared:  0.9626 \nF-statistic: 116.8 on 2 and 7 DF,  p-value: 4.195e-06\n\nconfint(fit)\n\n                2.5 %    97.5 %\n(Intercept)  2.878488 9.3186072\n광고비       1.299484 3.2138731\n설비투자    -2.041147 0.7550655\n\nplot(fit$fitted, fit$residuals, xlab=\"예측치 매출액\", ylab=\"잔차\", main=\"잔차그림\")\nabline(0,0)"
+  },
+  {
+    "objectID": "webr.html",
+    "href": "webr.html",
+    "title": "Web-R",
+    "section": "",
+    "text": "mtcars는 내장된 데이터입니다. 지금 상태에서 Run Code를 click해 보세요.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "webr.html#쿼토-안에-r",
+    "href": "webr.html#쿼토-안에-r",
+    "title": "Web-R",
+    "section": "",
+    "text": "mtcars는 내장된 데이터입니다. 지금 상태에서 Run Code를 click해 보세요.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "webr.html#히스토그램",
+    "href": "webr.html#히스토그램",
+    "title": "Web-R",
+    "section": "히스토그램",
+    "text": "히스토그램\n아래 명령어 실행 후 “mtcars”를 입력하여 실행해보세요. 내장된 데이터를 살펴볼 수 있습니다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "webr.html#실습",
+    "href": "webr.html#실습",
+    "title": "Web-R",
+    "section": "실습",
+    "text": "실습\n중량과 배기량(disp)를 이용하여 연비를 예측하는 다중회귀모형을 구축하시오.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  }
+]
