@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>확률과 통계(2024) - JS_Land 수업자료실</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">확률과 통계(2024)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">소개</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./webr.html"> 
+<span class="menu-text">Web-R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./link.html"> 
+<span class="menu-text">Link</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">JS_Land 수업자료실</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(15)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(15)</span></div><div class="category" data-category="교재 3장">교재 3장 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="교재 4장">교재 4장 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="교재 5장">교재 5장 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="교재 6장">교재 6장 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="교재 7장">교재 7장 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="교재 8장">교재 8장 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="교재 9장">교재 9장 <span class="quarto-category-count">(4)</span></div></div></div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="Statistics,교재 9장" data-listing-date-sort="1707145200000" data-listing-file-modified-sort="1707277926754" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="358">
+<div class="thumbnail">
+<p><a href="./posts/15/index.html" class="no-external"></a></p><a href="./posts/15/index.html" class="no-external">
+<p><img src="./posts/15/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/15/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/15/index.html" class="no-external">15. 로지스틱회귀분석</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/15/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 9장'); return false;">
+교재 9장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/15/index.html" class="no-external"><strong>로지스틱 회귀분석</strong>(logistic regression)은 독립변수의 선형 결합을 이용하여 사건의 발생 가능성을 예측하는데 사용되는 통계기법으로 설명변수<small>(독립변수, X)</small>와 범주형 목표변수<small>(종속변수, Y)</small> 간의 관계를 모형화하여 목표변수를 분석하거나 분류하는 통계적 방법론이다. 로지스틱 회귀분석을 활용한…<small></small><small></small></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/15/index.html" class="no-external">
+<div class="listing-date">
+Feb 6, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Statistics,교재 9장" data-listing-date-sort="1707058800000" data-listing-file-modified-sort="1707130438525" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="223">
+<div class="thumbnail">
+<p><a href="./posts/14/index.html" class="no-external"></a></p><a href="./posts/14/index.html" class="no-external">
+<p><img src="./posts/14/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/14/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/14/index.html" class="no-external">14. 다중선형회귀분석</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/14/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 9장'); return false;">
+교재 9장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/14/index.html" class="no-external">국민총생산에 영향을 주는 것이 이자율 이외에 수출, 수입, R&amp;D비율, 실업률 등 여러가지일 수 있다. 몸무게를 설명할 수 있는 변수가 키뿐 아니라 하루 칼로리 섭취량과 운동량도 영향을 줄 것이라고 생각한다면 키, 칼로리 섭취량과 운동량을 동시에 고려하여 선형회귀분석을 시도할 수 있다. 이와 같이 둘 이상의…<strong></strong></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/14/index.html" class="no-external">
+<div class="listing-date">
+Feb 5, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="Statistics,교재 9장" data-listing-date-sort="1706972400000" data-listing-file-modified-sort="1706589176169" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="358">
+<div class="thumbnail">
+<p><a href="./posts/13/index.html" class="no-external"></a></p><a href="./posts/13/index.html" class="no-external">
+<p><img src="./posts/13/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/13/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/13/index.html" class="no-external">13. 분산분석</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/13/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 9장'); return false;">
+교재 9장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/13/index.html" class="no-external"><strong>분산분석(analysis of variance, ANOVA)</strong>은 분산을 분석하기 때문에 지어진 이름이지만 그 목적은 평균을 분석하는 것이다. 여러 집단의 평균이 같은지, 아니면 하나라도 평균이 다른 집단이 있는지 판단하려는 것이 목적이다.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/13/index.html" class="no-external">
+<div class="listing-date">
+Feb 4, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="Statistics,교재 9장" data-listing-date-sort="1706886000000" data-listing-file-modified-sort="1706577283791" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="966">
+<div class="thumbnail">
+<p><a href="./posts/12/index.html" class="no-external"></a></p><a href="./posts/12/index.html" class="no-external">
+<p><img src="./posts/12/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/12/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/12/index.html" class="no-external">12. 카이제곱검정</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/12/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 9장'); return false;">
+교재 9장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/12/index.html" class="no-external">날씨가 맑고, 흐리고, 눈 오고, 비 오고 등으로 조사되고, 직업이 전문직, 사무직, 노무직 등으로 분류되는 등 숫자가 아닌 범주형 형태로 얻어지는 자료를 분석하는 기본적인 도구로 카이제곱통계를 이용한다. 표본으로 얻어진 범주의 분포들이 주어진 분포에 부합하는지 알아보려는 <strong>적합도 검정</strong>, 범주형 변수들끼리의…<strong></strong><strong></strong></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/12/index.html" class="no-external">
+<div class="listing-date">
+Feb 3, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="Statistics,교재 8장" data-listing-date-sort="1706799600000" data-listing-file-modified-sort="1706520106575" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="640">
+<div class="thumbnail">
+<p><a href="./posts/11/index.html" class="no-external"></a></p><a href="./posts/11/index.html" class="no-external">
+<p><img src="./posts/11/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/11/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/11/index.html" class="no-external">11. 하나의 모집단에 대한 가설검정(분산)</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/11/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 8장'); return false;">
+교재 8장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/11/index.html" class="no-external">
+
+<ul>
+<li>하나의 모집단에 대한 가설검정(분산) <small>(sasa메일로 로그인해야 내용을 볼 수 있습니다.)</small></li>
+</ul>
+</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/11/index.html" class="no-external">
+<div class="listing-date">
+Feb 2, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="Statistics,교재 8장" data-listing-date-sort="1706713200000" data-listing-file-modified-sort="1706517846000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="500">
+<div class="thumbnail">
+<p><a href="./posts/10/index.html" class="no-external"></a></p><a href="./posts/10/index.html" class="no-external">
+<p><img src="./posts/10/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/10/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/10/index.html" class="no-external">10. 하나의 모집단에 대한 가설검정(평균)</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/10/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 8장'); return false;">
+교재 8장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/10/index.html" class="no-external">
+
+<ul>
+<li>하나의 모집단에 대한 가설검정(평균) <small>(sasa메일로 로그인해야 내용을 볼 수 있습니다.)</small></li>
+</ul>
+</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/10/index.html" class="no-external">
+<div class="listing-date">
+Feb 1, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-categories="Statistics,교재 7장" data-listing-date-sort="1706626800000" data-listing-file-modified-sort="1708685109860" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="506">
+<div class="thumbnail">
+<p><a href="./posts/09/index.html" class="no-external"></a></p><a href="./posts/09/index.html" class="no-external">
+<p><img src="./posts/09/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/09/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/09/index.html" class="no-external">09. 모비율과 표본비율, 모비율의 추정</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/09/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 7장'); return false;">
+교재 7장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/09/index.html" class="no-external">평균이 일반적인 자료들의 대푯값이라면, 표본비율은 <span class="math inline">\(0\)</span>과 $14로 된 특수한 자료의 평균이다. 즉 비율은 평균의 개념과 같다. 따라서 모비율의 구간추정은 모평균의 구간추정방법과 거의 동일하다. 모비율 <span class="math inline">\(p\)</span>를 추정하기 위하여 <span class="math inline">\(n\)</span>개의 표본을 추출하여 조사한 결과, ’성공’의 수가 <span class="math inline">\(X\)</span>라면…<span class="math inline"></span><strong></strong><span class="math inline"></span></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/09/index.html" class="no-external">
+<div class="listing-date">
+Jan 31, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="7" data-categories="Statistics,교재 7장" data-listing-date-sort="1706540400000" data-listing-file-modified-sort="1706492402503" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="416">
+<div class="thumbnail">
+<p><a href="./posts/08/index.html" class="no-external"></a></p><a href="./posts/08/index.html" class="no-external">
+<p><img src="./posts/08/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/08/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/08/index.html" class="no-external">08. 모집단과 표본, 모평균의 추정</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/08/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 7장'); return false;">
+교재 7장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/08/index.html" class="no-external"><strong>중심극한정리</strong>에 의하면 표본평균 <span class="math inline">\(\bar{X}\)</span>의 분포는 이론적으로 평균이 <span class="math inline">\(\mu=\frac{0+2}{2}=1\)</span>, 분산이 <span class="math inline">\(\frac{\sigma^2}{n}=\frac{(2-0)^2}{12}\times\frac{1}{5}=\frac{1}{15}=0.06667\)</span>이다. 계산된 요약 통계량을 보면…<strong></strong></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/08/index.html" class="no-external">
+<div class="listing-date">
+Jan 30, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-categories="Statistics,교재 6장" data-listing-date-sort="1706454000000" data-listing-file-modified-sort="1706263632012" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="601">
+<div class="thumbnail">
+<p><a href="./posts/07/index.html" class="no-external"></a></p><a href="./posts/07/index.html" class="no-external">
+<p><img src="./posts/07/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/07/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/07/index.html" class="no-external">07. 감마분포</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/07/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 6장'); return false;">
+교재 6장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/07/index.html" class="no-external">위에 링크로 달아놓았지만, ChatGPT에게 감마분포에 관련된 r명령어를 묻고, 명령어는 알지만 더 자세한 사용법을 알고 싶을때는 프로그램에서 명령어에 커서를 두고 <strong>F1</strong>을 누르면 설명이 나옵니다.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/07/index.html" class="no-external">
+<div class="listing-date">
+Jan 29, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="Statistics,교재 6장" data-listing-date-sort="1706367600000" data-listing-file-modified-sort="1706263201065" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="407">
+<div class="thumbnail">
+<p><a href="./posts/06/index.html" class="no-external"></a></p><a href="./posts/06/index.html" class="no-external">
+<p><img src="./posts/06/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/06/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/06/index.html" class="no-external">06. 지수분포</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/06/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 6장'); return false;">
+교재 6장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/06/index.html" class="no-external">위에 링크로 달아놓았지만, ChatGPT에게 지수분포에 관련된 r명령어를 묻고, 명령어는 알지만 더 자세한 사용법을 알고 싶을때는 프로그램에서 명령어에 커서를 두고 <strong>F1</strong>을 누르면 설명이 나옵니다.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/06/index.html" class="no-external">
+<div class="listing-date">
+Jan 28, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-categories="Statistics,교재 5장,교재 6장" data-listing-date-sort="1706281200000" data-listing-file-modified-sort="1706259770154" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="525">
+<div class="thumbnail">
+<p><a href="./posts/05/index.html" class="no-external"></a></p><a href="./posts/05/index.html" class="no-external">
+<p><img src="./posts/05/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/05/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/05/index.html" class="no-external">05. 포아송분포, 균등분포</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/05/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 5장'); return false;">
+교재 5장
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 6장'); return false;">
+교재 6장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/05/index.html" class="no-external">
+
+<ul>
+<li>포아송분포, 균등분포 <small>(sasa메일로 로그인해야 내용을 볼 수 있습니다.)</small></li>
+</ul>
+</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/05/index.html" class="no-external">
+<div class="listing-date">
+Jan 27, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="11" data-categories="Statistics,교재 5장" data-listing-date-sort="1706194800000" data-listing-file-modified-sort="1706259859131" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="597">
+<div class="thumbnail">
+<p><a href="./posts/04/index.html" class="no-external"></a></p><a href="./posts/04/index.html" class="no-external">
+<p><img src="./posts/04/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/04/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/04/index.html" class="no-external">04. 초기하분포, 기하분포</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/04/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 5장'); return false;">
+교재 5장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/04/index.html" class="no-external">
+
+<ul>
+<li>초기하분포, 기하분포 <small>(sasa메일로 로그인해야 내용을 볼 수 있습니다.)</small></li>
+</ul>
+</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/04/index.html" class="no-external">
+<div class="listing-date">
+Jan 26, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="12" data-categories="Statistics,교재 4장" data-listing-date-sort="1706108400000" data-listing-file-modified-sort="1708679467294" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="553">
+<div class="thumbnail">
+<p><a href="./posts/03/index.html" class="no-external"></a></p><a href="./posts/03/index.html" class="no-external">
+<p><img src="./posts/03/thumbnail.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/03/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/03/index.html" class="no-external">03. 연속확률변수, 정규분포</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/03/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 4장'); return false;">
+교재 4장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/03/index.html" class="no-external">대표적인 연속확률분포를 간단히 정리하면 다음과 같다.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/03/index.html" class="no-external">
+<div class="listing-date">
+Jan 25, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="13" data-categories="Statistics,교재 4장" data-listing-date-sort="1706022000000" data-listing-file-modified-sort="1708679821881" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1135">
+<div class="thumbnail">
+<p><a href="./posts/02/index.html" class="no-external"></a></p><a href="./posts/02/index.html" class="no-external">
+<p><img src="./posts/02/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/02/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/02/index.html" class="no-external">02. 이산확률변수, 이항분포</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/02/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 4장'); return false;">
+교재 4장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/02/index.html" class="no-external">대표적인 이산확률분포를 간단히 정리하면 다음과 같다.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/02/index.html" class="no-external">
+<div class="listing-date">
+Jan 24, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="14" data-categories="Statistics,교재 3장" data-listing-date-sort="1705935600000" data-listing-file-modified-sort="1706154222783" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="563">
+<div class="thumbnail">
+<p><a href="./posts/01/index.html" class="no-external"></a></p><a href="./posts/01/index.html" class="no-external">
+<p><img src="./posts/01/image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/01/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/01/index.html" class="no-external">01. 기술통계(Descriptive Statistics)</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/01/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('교재 3장'); return false;">
+교재 3장
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/01/index.html" class="no-external">R 프로그램을 사용하는 방법을 배워봅시다.<br>
+오른쪽 위 Link를 클릭하여 프로그램 설치안내를 읽고, 프로그램을 설치하세요.<br>
+R 프로그램을 더 공부하고 싶은 학생은 아래 사이트를 참고하세요.<br>
+- 데이터 사이언스를 위한 R 프로그래밍</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/01/index.html" class="no-external">
+<div class="listing-date">
+Jan 23, 2024
+</div>
+<div class="listing-author">
+Kim Jae Sook
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
