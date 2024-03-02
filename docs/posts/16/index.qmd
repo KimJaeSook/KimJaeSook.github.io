@@ -1,0 +1,38 @@
+---
+title: "16. 정원 가꾸기"
+author: "Kim Jae Sook"
+date: "2024-03-02"
+categories: [Gardening, YouTube]
+image: "image.png"
+---
+
+# 학교 담장에 클레마티스 심기
+
+**클레마티스 심기**(Clematis) 2020. 5. 18.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2lELyUXLerA?si=QhYiYADOmW928sfi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+# 학교 정원에 장미정원 만들기
+
+**장미정원 만들기 1**(Rose Garden) 2020. 10. 19.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SPB6C2dEv-M?si=GWJw8L2EKaJTao-L" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+**장미정원 만들기 2**(Rose Garden) 2020. 10. 20.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/y0fTuLv_7eI?si=BOjFm3nOHNLo_N54" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+# 학교 정원을 아름답게 꾸미기
+
+**연못 꾸미기** 2020. 4. 20.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jTb0FWPhLF8?si=eD4TxQMuPoLkLxgr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+**튤립 심기** 2020. 4. 20.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lqzW-b7GjZo?si=ryAzHksWrW0S_9-V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+**백합 심기** 2020. 6. 28.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZIMIMkbTjP8?si=qDJ3P07i1-Q8Forr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
