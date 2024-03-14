@@ -257,63 +257,63 @@ window.Quarto = {
 <div class="my-table">
 <table class="table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 34%">
 <col style="width: 9%">
-<col style="width: 15%">
-<col style="width: 11%">
+<col style="width: 34%">
+<col style="width: 5%">
+<col style="width: 29%">
+<col style="width: 8%">
 <col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">분포</th>
-<th style="text-align: center;"><span class="math inline">\(X\)</span></th>
-<th style="text-align: center;">모수</th>
-<th style="text-align: center;">확률질량함수</th>
-<th style="text-align: center;">평균(<span class="math inline">\(\mu\)</span>)</th>
-<th style="text-align: center;">분산(<span class="math inline">\(\sigma^2\)</span>)</th>
+<th>분포</th>
+<th><span class="math inline">\(X\)</span></th>
+<th>모수</th>
+<th>확률질량함수</th>
+<th>평균(<span class="math inline">\(\mu\)</span>)</th>
+<th>분산(<span class="math inline">\(\sigma^2\)</span>)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><strong>베르누이 분포</strong></td>
-<td style="text-align: center;">한번 시행에서 성공하면 <span class="math inline">\(1\)</span>, 실패면 <span class="math inline">\(0\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(pq\)</span></td>
+<td><strong>베르누이 분포</strong></td>
+<td>한번 시행에서 성공하면 <span class="math inline">\(1\)</span>, 실패면 <span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(p\)</span></td>
+<td></td>
+<td><span class="math inline">\(p\)</span></td>
+<td><span class="math inline">\(pq\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><strong>이항분포</strong></td>
-<td style="text-align: center;"><span class="math inline">\(n\)</span>번 시행했을 때 성공 횟수</td>
-<td style="text-align: center;"><span class="math inline">\(n,~p\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\begin{pmatrix}n \\x\end{pmatrix}p^{x}(1-p)^{n-x}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(np\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(npq\)</span></td>
+<td><strong>이항분포</strong></td>
+<td><span class="math inline">\(n\)</span>번 시행했을 때 성공 횟수</td>
+<td><span class="math inline">\(n,~p\)</span></td>
+<td><span class="math inline">\(\begin{pmatrix}n \\x\end{pmatrix}p^{x}(1-p)^{n-x}\)</span></td>
+<td><span class="math inline">\(np\)</span></td>
+<td><span class="math inline">\(npq\)</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><strong>기하분포</strong></td>
-<td style="text-align: center;">처음 성공할 때까지의 시행 횟수</td>
-<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(p(1-p)^{x-1}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\dfrac{1}{p}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\dfrac{1-p}{p^2}\)</span></td>
+<td><strong>기하분포</strong></td>
+<td>처음 성공할 때까지의 시행 횟수</td>
+<td><span class="math inline">\(p\)</span></td>
+<td><span class="math inline">\(p(1-p)^{x-1}\)</span></td>
+<td><span class="math inline">\(\dfrac{1}{p}\)</span></td>
+<td><span class="math inline">\(\dfrac{1-p}{p^2}\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><strong>음이항분포</strong></td>
-<td style="text-align: center;"><span class="math inline">\(r\)</span>번째 성공할때까지의 총 시행 횟수</td>
-<td style="text-align: center;"><span class="math inline">\(r,~p\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\begin{pmatrix}n-1 \\r-1\end{pmatrix}p^{r}(1-p)^{n-r}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\dfrac{r}{p}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\dfrac{r(1-p)}{p^2}\)</span></td>
+<td><strong>음이항분포</strong></td>
+<td><span class="math inline">\(r\)</span>번째 성공할때까지의 총 시행 횟수</td>
+<td><span class="math inline">\(r,~p\)</span></td>
+<td><span class="math inline">\(\begin{pmatrix}n-1 \\r-1\end{pmatrix}p^{r}(1-p)^{n-r}\)</span></td>
+<td><span class="math inline">\(\dfrac{r}{p}\)</span></td>
+<td><span class="math inline">\(\dfrac{r(1-p)}{p^2}\)</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><strong>포아송 분포</strong></td>
-<td style="text-align: center;">이항분포의 근사분포<small>(<span class="math inline">\(\lambda=np\)</span>, <span class="math inline">\(n \to \infty\)</span>)</small></td>
-<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(e^{-\lambda}\dfrac{\lambda^{x}}{x!}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+<td><strong>포아송 분포</strong></td>
+<td>이항분포의 근사분포<small>(<span class="math inline">\(\lambda=np\)</span>, <span class="math inline">\(n \to \infty\)</span>)</small></td>
+<td><span class="math inline">\(\lambda\)</span></td>
+<td><span class="math inline">\(e^{-\lambda}\dfrac{\lambda^{x}}{x!}\)</span></td>
+<td><span class="math inline">\(\lambda\)</span></td>
+<td><span class="math inline">\(\lambda\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -324,31 +324,31 @@ window.Quarto = {
 <div class="my-table">
 <table class="table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 24%">
-<col style="width: 15%">
-<col style="width: 16%">
+<col style="width: 5%">
 <col style="width: 12%">
-<col style="width: 15%">
+<col style="width: 4%">
+<col style="width: 42%">
+<col style="width: 6%">
+<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">분포</th>
-<th style="text-align: center;"><span class="math inline">\(X\)</span></th>
-<th style="text-align: center;">모수</th>
-<th style="text-align: center;">확률질량함수</th>
-<th style="text-align: center;">평균(<span class="math inline">\(\mu\)</span>)</th>
-<th style="text-align: center;">분산(<span class="math inline">\(\sigma^2\)</span>)</th>
+<th>분포</th>
+<th><span class="math inline">\(X\)</span></th>
+<th>모수</th>
+<th>확률질량함수</th>
+<th>평균(<span class="math inline">\(\mu\)</span>)</th>
+<th>분산(<span class="math inline">\(\sigma^2\)</span>)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><strong>초기하분포</strong></td>
-<td style="text-align: center;"><span class="math inline">\(n\)</span>개 중 들어있는 <span class="math inline">\(Type1\)</span>의 개수</td>
-<td style="text-align: center;"><span class="math inline">\(N,~r,~n\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{\begin{pmatrix}r \\x\end{pmatrix}\begin{pmatrix}N-r \\n-x\end{pmatrix}}{\begin{pmatrix}N \\n\end{pmatrix}}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(n \dfrac{r}{N}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(n \dfrac{r}{N} \left(1-\dfrac{r}{N}\right)\left(\dfrac{N-n}{N-1}\right)\)</span></td>
+<td><strong>초기하분포</strong></td>
+<td><span class="math inline">\(n\)</span>개 중 들어있는 <span class="math inline">\(Type1\)</span>의 개수</td>
+<td><span class="math inline">\(N,~r,~n\)</span></td>
+<td><span class="math inline">\(\frac{\begin{pmatrix}r \\x\end{pmatrix}\begin{pmatrix}N-r \\n-x\end{pmatrix}}{\begin{pmatrix}N \\n\end{pmatrix}}\)</span></td>
+<td><span class="math inline">\(n \dfrac{r}{N}\)</span></td>
+<td><span class="math inline">\(n \dfrac{r}{N} \left(1-\dfrac{r}{N}\right)\left(\dfrac{N-n}{N-1}\right)\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -481,7 +481,7 @@ X의 값 / 도수<br>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)  <span class="co"># 10번의 시행에서 성공 확률이 0.3인 이항분포를 따르는 난수 5개 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 2 3 3 3</code></pre>
+<pre><code>[1] 4 4 2 4 3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 이항분포의 확률질량함수 그리기</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># 시행 횟수와 성공 확률 설정</span></span>
