@@ -221,6 +221,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#표본평균의-분포" id="toc-표본평균의-분포" class="nav-link" data-scroll-target="#표본평균의-분포">표본평균의 분포</a></li>
   </ul></li>
+  <li><a href="#t분포" id="toc-t분포" class="nav-link" data-scroll-target="#t분포">t분포</a></li>
   <li><a href="#모평균의-추정" id="toc-모평균의-추정" class="nav-link" data-scroll-target="#모평균의-추정">모평균의 추정</a>
   <ul class="collapse">
   <li><a href="#모평균의-구간추정-신뢰구간" id="toc-모평균의-구간추정-신뢰구간" class="nav-link" data-scroll-target="#모평균의-구간추정-신뢰구간">모평균의 구간추정, 신뢰구간</a></li>
@@ -305,15 +306,76 @@ window.Quarto = {
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>SimStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>             n=5       n=10        n=30      n=100
-mean   0.9729752 0.97978835 0.989203485 1.00230931
-var    0.0687147 0.02721471 0.009337185 0.00292739
-median 0.9503002 1.00031873 0.986953764 1.00875891
-min    0.3816914 0.58072214 0.691923772 0.84858816
-max    1.5875276 1.32769674 1.202487758 1.12337011</code></pre>
+<pre><code>              n=5      n=10       n=30       n=100
+mean   0.93039307 0.9895468 0.98181136 1.003625214
+var    0.05621064 0.0336025 0.01096695 0.002672737
+median 0.89924288 1.0119501 0.98081825 1.001256114
+min    0.47238829 0.4781252 0.67736969 0.862885826
+max    1.49521073 1.3464896 1.22876121 1.111070408</code></pre>
 </div>
 </div>
 </section>
+</section>
+<section id="t분포" class="level2">
+<h2 class="anchored" data-anchor-id="t분포">t분포</h2>
+<ul>
+<li><p>표준정규분포 <span class="math inline">\(N(0,1)\)</span>을 따르는 확률변수를 <span class="math inline">\(Z\)</span>라 하자. 독립적이면서 자유도가 <span class="math inline">\(v\)</span>인 카이제곱 분포를 따르는 확률변수를 <span class="math inline">\(V\)</span>라고 할 때, <span class="math inline">\(T=\dfrac{Z}{\sqrt{V/v}}\)</span>의 분포를 자유도가 <span class="math inline">\(v\)</span>인 <span class="math inline">\(t\)</span>분포라고 한다. 이때 <span class="math inline">\(T \sim t(v)\)</span>라고 표시한다.</p></li>
+<li><p><span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(X_n\)</span> <span class="math inline">\(\sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\(\bar{X} \sim N\left(\mu , \dfrac{\sigma^2}{n}\right)\)</span> 일때, 표준정규분포로 변환이 가능하며, <span class="math inline">\(\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)\)</span>이다.</p></li>
+<li><p>모분산 <span class="math inline">\(\sigma^2\)</span>을 모를 때, 표본분산 <span class="math inline">\(S^2 = \dfrac{\sum\limits_{i=1}^{n}(X_i - \bar{x})^2}{n-1}\)</span>으로 모분산의 추정치로 사용한다.</p></li>
+<li><p>즉, <span class="math inline">\(\sigma^2\)</span>을 <span class="math inline">\(S^2\)</span>으로 추정하면, 자유도가 <span class="math inline">\(n-1\)</span>인 <span class="math inline">\(t\)</span>분포를 따르게 되며, 이를 표현하면 <span class="math inline">\(\dfrac{\bar{X}-\mu}{S/\sqrt{n}} \sim t(n-1)\)</span>이다. (<span class="math inline">\(S\)</span>의 자유도가 <span class="math inline">\(n-1\)</span>이고, 이것으로부터 <span class="math inline">\(t\)</span>분포가 정의되기 때문에 자유도가 <span class="math inline">\(n-1\)</span>이다.)</p></li>
+<li><p><span class="math inline">\(t\)</span>분포를 따르는 이러한 변환을 <strong>스튜던트화(Studentized)</strong>라고 하며, <span class="math inline">\(t\)</span>분포를 스튜던트 <span class="math inline">\(t\)</span>분포라고도 한다.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dt</span>(<span class="dv">0</span>, <span class="at">df=</span><span class="dv">30</span>)  <span class="co"># x~t(30)일때, P(x=0)의 값 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3956322</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">0</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)  <span class="co">#정규분포 Z~N(0,1)의 값과 비교해보면, t분포에서의 값이 약간 작고 따라서 t분포의 양 끝이 조금 두꺼움을 알 수 있다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3989423</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">0</span>, <span class="at">df=</span><span class="dv">30</span>)  <span class="co"># x~t(30)일때, P(x&lt;0)의 값 계산하면 좌우대칭이라서 0.5임을 알 수 있다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> T)  <span class="co"># P(x&lt;1)의 값 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8373457</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> F)  <span class="co"># P(x&gt;1)의 값 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1626543</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> T) <span class="sc">+</span> <span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> F)  <span class="co"># 합이 1임을 확인할 수 있다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>T)  <span class="co"># 확률이 0.05인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.697261</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>T)  <span class="co"># 확률이 0.025인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.042272</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>F)  <span class="co"># P(x&gt;x) = 0.05인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.697261</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>F)  <span class="co"># P(x&gt;x) = 0.025인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.042272</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">=</span> <span class="fu">rt</span>(<span class="dv">1000</span>, <span class="at">df=</span><span class="dv">30</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="모평균의-추정" class="level2">
 <h2 class="anchored" data-anchor-id="모평균의-추정">모평균의 추정</h2>
@@ -323,10 +385,13 @@ max    1.5875276 1.32769674 1.202487758 1.12337011</code></pre>
 <li>다음은 베어링의 평균 직경을 알아보고자 9개의 베어링 표본을 대상으로 조사한 것이다. 3.4, 3.3, 4.2, 4.4, 3.7, 4.5, 4.6, 3.8, 4.1 평균 직경에 대한 95% 신뢰구간을 구하시오.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.4</span>, <span class="fl">3.3</span>, <span class="fl">4.2</span>, <span class="fl">4.4</span>, <span class="fl">3.7</span>, <span class="fl">4.5</span>, <span class="fl">4.6</span>, <span class="fl">3.8</span>, <span class="fl">4.1</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TeachingDemos)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(x, <span class="at">sd=</span><span class="fl">0.4</span>, <span class="dv">9</span>)  <span class="co"># 과거로부터 σ=0.4로 알려졌을때 신뢰구간</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.4</span>, <span class="fl">3.3</span>, <span class="fl">4.2</span>, <span class="fl">4.4</span>, <span class="fl">3.7</span>, <span class="fl">4.5</span>, <span class="fl">4.6</span>, <span class="fl">3.8</span>, <span class="fl">4.1</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TeachingDemos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'TeachingDemos' was built under R version 4.3.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(x, <span class="at">sd=</span><span class="fl">0.4</span>, <span class="dv">9</span>)  <span class="co"># 과거로부터 σ=0.4로 알려졌을때 신뢰구간</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample z-test
@@ -341,7 +406,7 @@ sample estimates:
 mean of x 
         4 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)  <span class="co"># 모표준편차를 모를때 표본표준편차를 이용한 t분포로 구한 신뢰구간</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)  <span class="co"># 모표준편차를 모를때 표본표준편차를 이용한 t분포로 구한 신뢰구간</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -363,29 +428,29 @@ mean of x
 <li>앞의 예제에서 오차한계 <span class="math inline">\(d\)</span>가 <span class="math inline">\(0.2\)</span>라면 표본수 <span class="math inline">\(n\)</span>은 얼마가 되어야 하는지 구하시오. (<span class="math inline">\(\alpha=0.05\)</span>)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 오차한계 d=0.2일때때</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qnorm</span>(.<span class="dv">975</span>) <span class="co"># σ=0.4로 알려졌을때 n의 개수</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 오차한계 d=0.2일때때</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qnorm</span>(.<span class="dv">975</span>) <span class="co"># σ=0.4로 알려졌을때 n의 개수</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 15.36584</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>, <span class="dv">15</span>) <span class="co"># 모표준편차를 모를때, 자유도를 15로 사용할때의 n의 개수</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>, <span class="dv">15</span>) <span class="co"># 모표준편차를 모를때, 자유도를 15로 사용할때의 n의 개수</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 18.17231</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>, <span class="dv">17</span>) <span class="co"># 모표준편차를 모를때, 자유도를 17로 사용할때의 n의 개수 </span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>, <span class="dv">17</span>) <span class="co"># 모표준편차를 모를때, 자유도를 17로 사용할때의 n의 개수 </span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 17.80529</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 따라서 n=18이면 적절하다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 따라서 n=18이면 적절하다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
