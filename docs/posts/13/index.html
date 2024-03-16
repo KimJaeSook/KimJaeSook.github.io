@@ -104,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -188,9 +217,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#엑셀-실습하기" id="toc-엑셀-실습하기" class="nav-link active" data-scroll-target="#엑셀-실습하기">[엑셀] 실습하기</a></li>
   <li><a href="#r기초-실습하기" id="toc-r기초-실습하기" class="nav-link" data-scroll-target="#r기초-실습하기">[R기초] 실습하기</a>
   <ul class="collapse">
+  <li><a href="#f-분포x-sim-fdf1-df2" id="toc-f-분포x-sim-fdf1-df2" class="nav-link" data-scroll-target="#f-분포x-sim-fdf1-df2">F 분포(<span class="math inline">\(X \sim F(df1, df2)\)</span>)</a></li>
   <li><a href="#일원분산분석" id="toc-일원분산분석" class="nav-link" data-scroll-target="#일원분산분석">일원분산분석</a>
   <ul class="collapse">
-  <li><a href="#시장점유율-적합도-검정" id="toc-시장점유율-적합도-검정" class="nav-link" data-scroll-target="#시장점유율-적합도-검정">시장점유율 적합도 검정</a></li>
+  <li><a href="#자동차-충돌실험-결과-여러-등급의-자동차에서-인형의-파손-정도" id="toc-자동차-충돌실험-결과-여러-등급의-자동차에서-인형의-파손-정도" class="nav-link" data-scroll-target="#자동차-충돌실험-결과-여러-등급의-자동차에서-인형의-파손-정도">자동차 충돌실험 결과 여러 등급의 자동차에서 인형의 파손 정도</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -212,12 +242,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="r기초-실습하기" class="level1">
 <h1>[R기초] 실습하기</h1>
+<section id="f-분포x-sim-fdf1-df2" class="level2">
+<h2 class="anchored" data-anchor-id="f-분포x-sim-fdf1-df2">F 분포(<span class="math inline">\(X \sim F(df1, df2)\)</span>)</h2>
+<ul>
+<li><p><span class="math inline">\(V_1\)</span>, <span class="math inline">\(V_2\)</span>가 서로 독립이고, 자유도가 각각 <span class="math inline">\(d_1\)</span>과 <span class="math inline">\(d_2\)</span>인 카이제곱(<span class="math inline">\(\chi^2\)</span>) 분포를 따를 때, <span class="math inline">\(F= \dfrac{V_1 / d_1}{V_2 /d_2}\)</span>의 분포를 자유도가 <span class="math inline">\((d_1 , d_2 )\)</span>인 <span class="math inline">\(F\)</span>분포라 한다.</p></li>
+<li><p>F분포는 분자의 자유도 <span class="math inline">\(d_1\)</span>과 분모의 자유도 <span class="math inline">\(d_2\)</span> 두 개의 자유도에 의해 분포가 유일하게 결정된다. 아래 그림과 같이 분자와 분모의 자유도가 모두 커지면 좌우대칭인 분포를 따르는 형태가 나온다.</p></li>
+</ul>
+<img src="f.png" class="center-image img-fluid"> <small>
+<div style="text-align: center;">
+* 그림 출처: 통계교육원, R을 활용한 통계분석
+</div>
+</small><p><small></small></p>
+<ul>
+<li><p>R에서 제공되는 F분포와 관련된 함수</p></li>
+<li><p>df() : <span class="math inline">\(P(X=x)\)</span></p></li>
+<li><p>pf() : <span class="math inline">\(P(X&lt;x)\)</span> 또는 <span class="math inline">\(P(X \leq x)\)</span></p></li>
+<li><p>qf() : <span class="math inline">\(P(X&lt;x)=p\)</span>가 되는 <span class="math inline">\(x\)</span>값</p></li>
+<li><p>rf() : 주어진 카이제곱에서 난수를 뽑는 방법</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chi_squares distribution</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="dv">1</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">2</span>) <span class="co"># 분자의 자유도가 5, 분모의 자유도가 2인 F분포에서 X=1에서의 확률</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3080008</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="dv">1</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">2</span>, <span class="at">lower.tail =</span> T) <span class="co"># 분자의 자유도가 5, 분모의 자유도가 2인 F분포에서 X가 1보다 작을 확률</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4312012</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="dv">1</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">2</span>, <span class="at">lower.tail =</span> F) <span class="co"># 분자의 자유도가 5, 분모의 자유도가 2인 F분포에서 X가 1보다 클 확률</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5687988</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.05</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">2</span>, <span class="at">lower.tail =</span> T) <span class="co"># 분자의 자유도가 5, 분모의 자유도가 2인 F분포에서 확률이 0.05일때의 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1728269</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">2</span>, <span class="at">lower.tail =</span> T) <span class="co"># 분자의 자유도가 5, 분모의 자유도가 2인 F분포에서 확률이 0.95일때의 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19.29641</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">=</span> <span class="fu">rf</span>(<span class="dv">1000</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">2</span>) <span class="co"># 자유도가 4인 카이제곱분포에서 1000개의 수를 임의로 뽑기</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="fu">round</span>(<span class="fu">max</span>(sample))<span class="sc">+</span><span class="dv">1</span>), <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">15</span>)) <span class="co"># 히스토그램 그리기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="일원분산분석" class="level2">
 <h2 class="anchored" data-anchor-id="일원분산분석">일원분산분석</h2>
-<section id="시장점유율-적합도-검정" class="level3">
-<h3 class="anchored" data-anchor-id="시장점유율-적합도-검정">시장점유율 적합도 검정</h3>
+<section id="자동차-충돌실험-결과-여러-등급의-자동차에서-인형의-파손-정도" class="level3">
+<h3 class="anchored" data-anchor-id="자동차-충돌실험-결과-여러-등급의-자동차에서-인형의-파손-정도">자동차 충돌실험 결과 여러 등급의 자동차에서 인형의 파손 정도</h3>
 <ul>
-<li>자동차 충돌실험의 결과가 다음과 같다.</li>
+<li>자동차 충돌실험의 결과 인형의 파손 정도가 다음과 같다.</li>
 </ul>
 <div class="my-table2">
 <table class="table">
@@ -285,16 +366,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>이 데이터를 사용하여 인형의 파손 정도는 자동차의 크기에 관계없이 동일하다는 귀무가설을 검정하시오.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">681</span>, <span class="dv">728</span>, <span class="dv">917</span>, <span class="dv">898</span>, <span class="dv">620</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       <span class="dv">643</span>, <span class="dv">655</span>, <span class="dv">742</span>, <span class="dv">514</span>, <span class="dv">525</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>       <span class="dv">469</span>, <span class="dv">727</span>, <span class="dv">525</span>, <span class="dv">454</span>, <span class="dv">459</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>       <span class="dv">384</span>, <span class="dv">656</span>, <span class="dv">602</span>, <span class="dv">687</span>, <span class="dv">360</span>) </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"소형"</span>,<span class="st">"준중형"</span>,<span class="st">"중형"</span>,<span class="st">"대형"</span>), <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="fu">factor</span>(x)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>aov.result<span class="ot">=</span><span class="fu">aov</span>(y <span class="sc">~</span> x)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov.result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">681</span>, <span class="dv">728</span>, <span class="dv">917</span>, <span class="dv">898</span>, <span class="dv">620</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="dv">643</span>, <span class="dv">655</span>, <span class="dv">742</span>, <span class="dv">514</span>, <span class="dv">525</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>       <span class="dv">469</span>, <span class="dv">727</span>, <span class="dv">525</span>, <span class="dv">454</span>, <span class="dv">459</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="dv">384</span>, <span class="dv">656</span>, <span class="dv">602</span>, <span class="dv">687</span>, <span class="dv">360</span>) </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"소형"</span>,<span class="st">"준중형"</span>,<span class="st">"중형"</span>,<span class="st">"대형"</span>), <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="fu">factor</span>(x)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>aov.result<span class="ot">=</span><span class="fu">aov</span>(y <span class="sc">~</span> x)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov.result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
 x            3 186825   62275   3.893  0.029 *
@@ -302,9 +383,9 @@ Residuals   16 255923   15995
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># F통계량값인 3.8934가 기각역에 있으므로 귀무가설을 기각한다.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 또는 p값 0.029가 유의수준 0.05보다 작으므로 귀무가설을 기각한다.</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 자동차의 크기에 따른 등급은 인형모형의 파손 정도에 통계적으로 유의한 차이를 보인다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># F통계량값인 3.8934가 기각역에 있으므로 귀무가설을 기각한다.</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 또는 p값 0.029가 유의수준 0.05보다 작으므로 귀무가설을 기각한다.</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 자동차의 크기에 따른 등급은 인형모형의 파손 정도에 통계적으로 유의한 차이를 보인다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
