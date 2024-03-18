@@ -223,6 +223,7 @@ window.Quarto = {
   <li><a href="#감마분포" id="toc-감마분포" class="nav-link" data-scroll-target="#감마분포">감마분포</a></li>
   <li><a href="#정규분포" id="toc-정규분포" class="nav-link" data-scroll-target="#정규분포">정규분포</a></li>
   </ul></li>
+  <li><a href="#정규분포의-공식-유도" id="toc-정규분포의-공식-유도" class="nav-link" data-scroll-target="#정규분포의-공식-유도">정규분포의 공식 유도</a></li>
   </ul></li>
   <li><a href="#엑셀-실습하기" id="toc-엑셀-실습하기" class="nav-link" data-scroll-target="#엑셀-실습하기">[엑셀] 실습하기</a></li>
   <li><a href="#r기초-실습하기" id="toc-r기초-실습하기" class="nav-link" data-scroll-target="#r기초-실습하기">[R기초] 실습하기</a>
@@ -254,10 +255,10 @@ window.Quarto = {
 <div class="my-table">
 <table class="table">
 <colgroup>
-<col style="width: 22%">
-<col style="width: 31%">
-<col style="width: 22%">
-<col style="width: 22%">
+<col style="width: 21%">
+<col style="width: 34%">
+<col style="width: 21%">
+<col style="width: 21%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -326,6 +327,14 @@ window.Quarto = {
 </ul>
 </section>
 </section>
+<section id="정규분포의-공식-유도" class="level2">
+<h2 class="anchored" data-anchor-id="정규분포의-공식-유도">정규분포의 공식 유도</h2>
+<ul>
+<li><p><a href="https://angeloyeo.github.io/2020/09/14/normal_distribution_derivation.html">정규분포의 공식 유도</a></p></li>
+<li><p><a href="https://color-change.tistory.com/61">정규분포 확률밀도함수의 유도, 증명, 성질</a></p></li>
+<li><p><a href="https://namu.wiki/w/%EA%B0%80%EC%9A%B0%EC%8A%A4%20%EC%A0%81%EB%B6%84">나무위키: 가우스 적분</a></p></li>
+</ul>
+</section>
 </section>
 <section id="엑셀-실습하기" class="level1">
 <h1>[엑셀] 실습하기</h1>
@@ -376,7 +385,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rnorm() : random number from normal distribution</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)  <span class="co"># 평균이 0이고 표준편차가 1인 정규분포에서 5개의 무작위 값 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.4684660 -0.5944207 -0.5054862 -1.3784119 -1.3616232</code></pre>
+<pre><code>[1] -1.0718815  1.1289207  0.4610436 -1.3036316 -0.9517088</code></pre>
 </div>
 </div>
 <p>연속확률분포에서 특정한 지점에서의 확률은 수학적으로 생각하면 선의 넓이이므로 0이다. 그런데 dnorm에서 구하는 값은 0이 나오지 않는데, 이는 아주 작은 크기의 직사각형을 만들어 면적을 계산하여 도출한다고 생각하면 된다. 직관적으로 그 점에서의 높이를 계산한다고 생각하면 된다.</p>
