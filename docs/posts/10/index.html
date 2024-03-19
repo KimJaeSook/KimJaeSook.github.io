@@ -221,6 +221,8 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#sigma를-아는-경우" id="toc-sigma를-아는-경우" class="nav-link" data-scroll-target="#sigma를-아는-경우"><span class="math inline">\(\sigma\)</span>를 아는 경우</a></li>
   <li><a href="#sigma를-모르는-경우" id="toc-sigma를-모르는-경우" class="nav-link" data-scroll-target="#sigma를-모르는-경우"><span class="math inline">\(\sigma\)</span>를 모르는 경우</a></li>
+  <li><a href="#mass-라이브러리에-있는-cars93의-연료탱크용량의-모평균-추정하기t검정" id="toc-mass-라이브러리에-있는-cars93의-연료탱크용량의-모평균-추정하기t검정" class="nav-link" data-scroll-target="#mass-라이브러리에-있는-cars93의-연료탱크용량의-모평균-추정하기t검정">MASS 라이브러리에 있는 Cars93의 연료탱크용량의 모평균 추정하기(t검정)</a></li>
+  <li><a href="#mass-라이브러리에-있는-cars93의-가격의-모평균-추정하기비모수적-방법" id="toc-mass-라이브러리에-있는-cars93의-가격의-모평균-추정하기비모수적-방법" class="nav-link" data-scroll-target="#mass-라이브러리에-있는-cars93의-가격의-모평균-추정하기비모수적-방법">MASS 라이브러리에 있는 Cars93의 가격의 모평균 추정하기(비모수적 방법)</a></li>
   </ul></li>
   <li><a href="#모비율-p에-대한-검정" id="toc-모비율-p에-대한-검정" class="nav-link" data-scroll-target="#모비율-p에-대한-검정">모비율 <span class="math inline">\(p\)</span>에 대한 검정</a></li>
   </ul></li>
@@ -300,6 +302,145 @@ window.Quarto = {
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 심장마비 환자들의 평균 콜레스테롤은 정상의 평균 콜레스테롤보다 높다고 결론을 내린다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="mass-라이브러리에-있는-cars93의-연료탱크용량의-모평균-추정하기t검정" class="level3">
+<h3 class="anchored" data-anchor-id="mass-라이브러리에-있는-cars93의-연료탱크용량의-모평균-추정하기t검정">MASS 라이브러리에 있는 Cars93의 연료탱크용량의 모평균 추정하기(t검정)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fuel <span class="ot">=</span> Cars93<span class="sc">$</span>Fuel.tank.capacity</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## mu of fuel is 16.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: mu = 16</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># H1: mu is not 16 (양측검정)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">## normality test</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(fuel)  <span class="co"># 좌우대칭인지 대략적으로 살펴보기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(fuel)  <span class="co"># alpha=0.05 &gt; p ==&gt; H0 reject인데, p=0.287이므로 정규분포를 따름</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  fuel
+W = 0.98341, p-value = 0.287</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. hypothesis H0 : mu=16  H1 : mu is not 16</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2. alpha = 0/05</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 3. test statistic = barX ~ N()</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 4. p</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 5. alpha &gt; p ==&gt; H0 reject</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(fuel, <span class="at">mu=</span><span class="dv">16</span>, <span class="at">alternative =</span> <span class="st">'two.sided'</span>)  <span class="co"># p=0.5372 &gt; 0.5이므로 H0를 기각할 수 없고, 즉 연료탱크 용량의 평균은 16이라 할 수 있음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  fuel
+t = 1.9541, df = 92, p-value = 0.05372
+alternative hypothesis: true mean is not equal to 16
+95 percent confidence interval:
+ 15.98914 17.33989
+sample estimates:
+mean of x 
+ 16.66452 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(fuel, <span class="at">mu=</span><span class="dv">16</span>, <span class="at">alternative =</span> <span class="st">'greater'</span>)  <span class="co"># p=0.02686 &lt; 0.5이므로 H0를 기각하고, 즉 연료탱크 용량의 평균은 16보다 큼(단측검정이 양측검정보다 귀무가설을 기각하기 쉬움)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  fuel
+t = 1.9541, df = 92, p-value = 0.02686
+alternative hypothesis: true mean is greater than 16
+95 percent confidence interval:
+ 16.09949      Inf
+sample estimates:
+mean of x 
+ 16.66452 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(fuel, <span class="at">mu=</span><span class="dv">16</span>, <span class="at">alternative =</span> <span class="st">'less'</span>)  <span class="co"># p=0.9731 &gt; 0.5이므로 H0를 채택한다. 즉 연료탱크 용량의 평균은 16보다 작지 않음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  fuel
+t = 1.9541, df = 92, p-value = 0.9731
+alternative hypothesis: true mean is less than 16
+95 percent confidence interval:
+     -Inf 17.22955
+sample estimates:
+mean of x 
+ 16.66452 </code></pre>
+</div>
+</div>
+</section>
+<section id="mass-라이브러리에-있는-cars93의-가격의-모평균-추정하기비모수적-방법" class="level3">
+<h3 class="anchored" data-anchor-id="mass-라이브러리에-있는-cars93의-가격의-모평균-추정하기비모수적-방법">MASS 라이브러리에 있는 Cars93의 가격의 모평균 추정하기(비모수적 방법)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>price <span class="ot">=</span> Cars93<span class="sc">$</span>Price</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="do">## mu of fuel is 16.</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: mu = 16</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># H1: mu is not 16 (양측검정)</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="do">## normality test</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(price)  <span class="co"># 좌우대칭인지 대략적으로 살펴보기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(price)  <span class="co"># alpha &gt; p ==&gt; H0 reject인데, p=0.0000004235이므로 정규분포를 따른다고 할 수 없음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  price
+W = 0.88051, p-value = 4.235e-07</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Cars93$Price, nor normal dist~, n&gt;30이면 중심극한정리에 의해 표본평균의 정규성을 활용하여 검정</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="do">## n&lt;30(소표본) ==&gt; non-parametric test of one sample(비모수적 방법)</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. hypothesis H0 : mu=19  H1 : mu is not 19</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. alpha = 0/05</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(price, <span class="at">mu=</span><span class="dv">19</span>, <span class="at">alternative =</span> <span class="st">'two.sided'</span>) <span class="co"># 윌콕슨의 부호순위검정, alpha=0.05 &gt; p ==&gt; H0 reject인데, p=0.4701이므로 price의 평균은 19라 할 수 있음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  price
+V = 1953, p-value = 0.4701
+alternative hypothesis: true location is not equal to 19</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(price, <span class="at">mu=</span><span class="dv">19</span>, <span class="at">alternative =</span> <span class="st">'greater'</span>) <span class="co"># p=0.7662이므로 price의 평균은 19보다 크지 않음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  price
+V = 1953, p-value = 0.7662
+alternative hypothesis: true location is greater than 19</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(price, <span class="at">mu=</span><span class="dv">19</span>, <span class="at">alternative =</span> <span class="st">'less'</span>) <span class="co"># p=0.235이므로 price의 평균은 19보다 작지 않음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  price
+V = 1953, p-value = 0.235
+alternative hypothesis: true location is less than 19</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="모비율-p에-대한-검정" class="level2">
 <h2 class="anchored" data-anchor-id="모비율-p에-대한-검정">모비율 <span class="math inline">\(p\)</span>에 대한 검정</h2>
@@ -307,29 +448,29 @@ window.Quarto = {
 <li>경기도 어떤 지역에 새로운 지역 신문을 발행하기 위해서는 구독률이 12%를 넘어야 광고주를 안정적으로 확보할 수 있다고 한다. 새로운 지역 신문의 발행을 고심하는 한 신문사에서는 400명의 주민을 대상으로 만약 신문이 발행되면 구독을 할 것인지를 물어서 58명이 구독할 것이라는 답을 얻었다. 새로운 지역 신문의 구독률이 12%를 초과할 것이라고 결론내릴 수 있는가?(유의수준 5% 사용)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prop_test <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha, p, N, n){</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    phat <span class="ot">=</span> n<span class="sc">/</span>N</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    se <span class="ot">=</span> <span class="fu">sqrt</span>((p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p))<span class="sc">/</span>N)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">=</span> (phat <span class="sc">-</span> p) <span class="sc">/</span> se</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    cr <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    p_value <span class="ot">=</span> <span class="fu">pnorm</span>(z, <span class="at">lower.tail=</span>F)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(p_value <span class="sc">&lt;</span> alpha) result <span class="ot">=</span> <span class="st">"Reject H0"</span> <span class="cf">else</span> result <span class="ot">=</span> <span class="st">"Accept H0"</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Hypothesis testing for H0: mu = "</span>,p,<span class="st">"or Ha: mu &gt; "</span>,p))</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">"p_hat is "</span>, <span class="fu">round</span>(phat,<span class="dv">5</span>), <span class="st">"/ Z Statistics is "</span>, <span class="fu">round</span>(z,<span class="dv">4</span>),</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>           <span class="st">"and Critical Region is "</span>, <span class="fu">round</span>(cr, <span class="dv">4</span>)), <span class="fu">paste</span>(<span class="st">"p-value ="</span>, <span class="fu">round</span>(p_value,<span class="dv">4</span>))))</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(result, <span class="st">"at significance level"</span>, alpha))</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_test</span>(<span class="fl">0.05</span>, <span class="fl">0.12</span>, <span class="dv">400</span>,<span class="dv">58</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>prop_test <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha, p, N, n){</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    phat <span class="ot">=</span> n<span class="sc">/</span>N</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    se <span class="ot">=</span> <span class="fu">sqrt</span>((p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p))<span class="sc">/</span>N)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">=</span> (phat <span class="sc">-</span> p) <span class="sc">/</span> se</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    cr <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    p_value <span class="ot">=</span> <span class="fu">pnorm</span>(z, <span class="at">lower.tail=</span>F)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(p_value <span class="sc">&lt;</span> alpha) result <span class="ot">=</span> <span class="st">"Reject H0"</span> <span class="cf">else</span> result <span class="ot">=</span> <span class="st">"Accept H0"</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Hypothesis testing for H0: mu = "</span>,p,<span class="st">"or Ha: mu &gt; "</span>,p))</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">"p_hat is "</span>, <span class="fu">round</span>(phat,<span class="dv">5</span>), <span class="st">"/ Z Statistics is "</span>, <span class="fu">round</span>(z,<span class="dv">4</span>),</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>           <span class="st">"and Critical Region is "</span>, <span class="fu">round</span>(cr, <span class="dv">4</span>)), <span class="fu">paste</span>(<span class="st">"p-value ="</span>, <span class="fu">round</span>(p_value,<span class="dv">4</span>))))</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(result, <span class="st">"at significance level"</span>, alpha))</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_test</span>(<span class="fl">0.05</span>, <span class="fl">0.12</span>, <span class="dv">400</span>,<span class="dv">58</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Hypothesis testing for H0: mu =  0.12 or Ha: mu &gt;  0.12"
 [1] "p_hat is  0.145 / Z Statistics is  1.5386 and Critical Region is  1.6449"
 [2] "p-value = 0.0619"                                                        
 [1] "Accept H0 at significance level 0.05"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p값이 유의수준 σ=0.05를 초과하므로 귀무가설을 기각하지 못한다.</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 지역 신문은 구독률이 12%를 초과할 것이라 결론내릴 수 없다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p값이 유의수준 σ=0.05를 초과하므로 귀무가설을 기각하지 못한다.</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 지역 신문은 구독률이 12%를 초과할 것이라 결론내릴 수 없다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
