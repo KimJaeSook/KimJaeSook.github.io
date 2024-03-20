@@ -225,6 +225,13 @@ window.Quarto = {
   <li><a href="#mass-라이브러리에-있는-cars93의-가격의-모평균-추정하기비모수적-방법" id="toc-mass-라이브러리에-있는-cars93의-가격의-모평균-추정하기비모수적-방법" class="nav-link" data-scroll-target="#mass-라이브러리에-있는-cars93의-가격의-모평균-추정하기비모수적-방법">MASS 라이브러리에 있는 Cars93의 가격의 모평균 추정하기(비모수적 방법)</a></li>
   </ul></li>
   <li><a href="#모비율-p에-대한-검정" id="toc-모비율-p에-대한-검정" class="nav-link" data-scroll-target="#모비율-p에-대한-검정">모비율 <span class="math inline">\(p\)</span>에 대한 검정</a></li>
+  <li><a href="#두-독립-표본-위치-차이-검정" id="toc-두-독립-표본-위치-차이-검정" class="nav-link" data-scroll-target="#두-독립-표본-위치-차이-검정">두 독립 표본 위치 차이 검정</a>
+  <ul class="collapse">
+  <li><a href="#두-독립-표본-위치-차이-검정이란" id="toc-두-독립-표본-위치-차이-검정이란" class="nav-link" data-scroll-target="#두-독립-표본-위치-차이-검정이란">두 독립 표본 위치 차이 검정이란</a></li>
+  <li><a href="#두-독립-모집단의-평균을-비교할-때의-조건" id="toc-두-독립-모집단의-평균을-비교할-때의-조건" class="nav-link" data-scroll-target="#두-독립-모집단의-평균을-비교할-때의-조건">두 독립 모집단의 평균을 비교할 때의 조건</a></li>
+  <li><a href="#두-독립-모집단의-분산-차이에-대한-등분산성-검정" id="toc-두-독립-모집단의-분산-차이에-대한-등분산성-검정" class="nav-link" data-scroll-target="#두-독립-모집단의-분산-차이에-대한-등분산성-검정">두 독립 모집단의 분산 차이에 대한 등분산성 검정</a></li>
+  <li><a href="#cars93-데이터셋으로-실습하기" id="toc-cars93-데이터셋으로-실습하기" class="nav-link" data-scroll-target="#cars93-데이터셋으로-실습하기">Cars93 데이터셋으로 실습하기</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -472,8 +479,170 @@ alternative hypothesis: true location is less than 19</code></pre>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p값이 유의수준 σ=0.05를 초과하므로 귀무가설을 기각하지 못한다.</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 지역 신문은 구독률이 12%를 초과할 것이라 결론내릴 수 없다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="두-독립-표본-위치-차이-검정" class="level2">
+<h2 class="anchored" data-anchor-id="두-독립-표본-위치-차이-검정">두 독립 표본 위치 차이 검정</h2>
+<section id="두-독립-표본-위치-차이-검정이란" class="level3">
+<h3 class="anchored" data-anchor-id="두-독립-표본-위치-차이-검정이란">두 독립 표본 위치 차이 검정이란</h3>
+<p>통계적 가설검정에서 두 독립 모집단에 대한 평균을 비교하는 검증으로,</p>
+<ul>
+<li>남녀 간의 성의식 차이</li>
+<li>농촌과 도시 간의 주거만족도</li>
+<li>수도권과 비수도권의 삶의 만족도</li>
+</ul>
+<p>와 같은 것들을, 보통 <span class="math inline">\(t\)</span>검정을 통해 두 독립 표본 평균의 차이를 비교한다.</p>
+</section>
+<section id="두-독립-모집단의-평균을-비교할-때의-조건" class="level3">
+<h3 class="anchored" data-anchor-id="두-독립-모집단의-평균을-비교할-때의-조건">두 독립 모집단의 평균을 비교할 때의 조건</h3>
+<ul>
+<li>두 독립 모집단의 분포는 각각 정규분포여야 함</li>
+<li>두 독립 모집단이 모두 정규분포이고, 분산이 알려져 있을때 <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(Z\)</span>검정을 통해 평균차이를 검정</li>
+</ul>
+<p><img src="ztest.png" class="center-image img-fluid"></p>
+<ul>
+<li>두 독립 모집단이 모두 정규분포이고, 분산이 알려져 있지 않을때 <span class="math inline">\(\rightarrow\)</span> 등분산인지 아닌지 검정 후, <span class="math inline">\(t\)</span>검정을 통해 평균차이를 검정 <img src="ttest1.png" class="center-image img-fluid"> <img src="ttest2.png" class="center-image img-fluid"></li>
+</ul>
+<p><img src="ttest3.png" class="center-image img-fluid"></p>
+</section>
+<section id="두-독립-모집단의-분산-차이에-대한-등분산성-검정" class="level3">
+<h3 class="anchored" data-anchor-id="두-독립-모집단의-분산-차이에-대한-등분산성-검정">두 독립 모집단의 분산 차이에 대한 등분산성 검정</h3>
+<ul>
+<li>분산이 동일한지 동일하지 않은지에 따라 분산추정량이 달라지기에, 두 집단의 평균을 비교하기 전에 분산의 동일 여부를 검증하며, 이것을 <strong>등분산성 검증</strong>이라 한다.</li>
+</ul>
+<p><img src="vtest1.png" class="center-image img-fluid"></p>
+<p><img src="vtest2.png" class="center-image img-fluid"></p>
+</section>
+<section id="cars93-데이터셋으로-실습하기" class="level3">
+<h3 class="anchored" data-anchor-id="cars93-데이터셋으로-실습하기">Cars93 데이터셋으로 실습하기</h3>
+<ul>
+<li><strong>‘Cars93’ 데이터셋에서 미국회사 유무(Origin)에 따른 자동차의 가격(Price)에 대한 독립표본</strong> <span class="math inline">\(t\)</span>검정하기</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># two sample t-test</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Cars93<span class="sc">$</span>Origin)  <span class="co"># 데이터가 30개가 넘으므로 중심극한정리에 의해 정규성을 만족한다고 가정</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    USA non-USA 
+     48      45 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equal variance test: leven test,  alpha = 0.05 &gt; p ==&gt; H0 reject</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("lawstat")  # lawstat 패키지가 없으면 주석을 지우고 설치하기</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lawstat)  <span class="co"># levene.test()를 하기 위해 패키지 불러오기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lawstat' was built under R version 4.3.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levene.test</span>(Cars93<span class="sc">$</span>Price, Cars93<span class="sc">$</span>Origin, <span class="at">location =</span> <span class="st">'mean'</span>)  <span class="co"># H1 채택, 즉 두 집단의 분산이 다름</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Classical Levene's test based on the absolute deviations from the mean
+    ( none not applied because the location is not set to median )
+
+data:  Cars93$Price
+Test Statistic = 4.2341, p-value = 0.04248</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># two sample t-test</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>price0 <span class="ot">=</span> Cars93<span class="sc">$</span>Price[Cars93<span class="sc">$</span>Origin <span class="sc">==</span> <span class="st">'USA'</span>]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>price1 <span class="ot">=</span> Cars93<span class="sc">$</span>Price[Cars93<span class="sc">$</span>Origin <span class="sc">!=</span> <span class="st">'USA'</span>] <span class="co"># Cars93$Origin을 치면, non-USA값이지만 왼쪽과 같이 써도 됨</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(price0, price1, <span class="at">alternative =</span> <span class="st">'two.sided'</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)  <span class="co"># p=0.3428이므로 귀무가설 채택</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  price0 and price1
+t = -0.95449, df = 77.667, p-value = 0.3428
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -5.974255  2.102311
+sample estimates:
+mean of x mean of y 
+ 18.57292  20.50889 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(price0, price1, <span class="at">alternative =</span> <span class="st">'less'</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)  <span class="co"># p=0.1714이므로 귀무가설 채택</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  price0 and price1
+t = -0.95449, df = 77.667, p-value = 0.1714
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+     -Inf 1.440539
+sample estimates:
+mean of x mean of y 
+ 18.57292  20.50889 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(price0, price1, <span class="at">alternative =</span> <span class="st">'greater'</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)  <span class="co"># p=0.8286이므로 귀무가설 채택</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  price0 and price1
+t = -0.95449, df = 77.667, p-value = 0.8286
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -5.312484       Inf
+sample estimates:
+mean of x mean of y 
+ 18.57292  20.50889 </code></pre>
+</div>
+</div>
+<ul>
+<li><strong>‘Cars93’ 데이터셋에서 수동변속기의 여부에 따른 자동차의 가격(Price)에 대한 독립표본</strong> <span class="math inline">\(t\)</span>검정하기</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Cars93<span class="sc">$</span>Man.trans.avail) <span class="co"># 데이터가 30개가 넘으므로 중심극한정리에 의해 정규성을 만족한다고 가정</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ No Yes 
+ 32  61 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equal variance test</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>price_0 <span class="ot">=</span> Cars93<span class="sc">$</span>Price[Cars93<span class="sc">$</span>Man.trans.avail <span class="sc">==</span> <span class="st">'Yes'</span>]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>price_1 <span class="ot">=</span> Cars93<span class="sc">$</span>Price[Cars93<span class="sc">$</span>Man.trans.avail <span class="sc">!=</span> <span class="st">'Yes'</span>]</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">levene.test</span>(Cars93<span class="sc">$</span>Price, Cars93<span class="sc">$</span>Man.trans.avail, <span class="at">location =</span> <span class="st">'mean'</span>)  <span class="co"># p=0.4405이므로 H0 채택, 즉 두 집단은 등분산임</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Classical Levene's test based on the absolute deviations from the mean
+    ( none not applied because the location is not set to median )
+
+data:  Cars93$Price
+Test Statistic = 0.60016, p-value = 0.4405</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(price_0, price_1, <span class="at">alternative =</span> <span class="st">'two.sided'</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)  <span class="co"># p=0.001403이므로 H1 채택, 즉 수동변속기 유무에 따른 두 집단의 가격이 다르다 할 수 있음 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  price_0 and price_1
+t = -3.2952, df = 91, p-value = 0.001403
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -10.583164  -2.622676
+sample estimates:
+mean of x mean of y 
+ 17.23770  23.84062 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(price_0, price_1, <span class="at">alternative =</span> <span class="st">'less'</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)  <span class="co"># p=0.0007013으로 양측검정때보다 더 작아짐</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  price_0 and price_1
+t = -3.2952, df = 91, p-value = 0.0007013
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+      -Inf -3.273112
+sample estimates:
+mean of x mean of y 
+ 17.23770  23.84062 </code></pre>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 
