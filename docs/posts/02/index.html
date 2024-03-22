@@ -234,7 +234,11 @@ window.Quarto = {
   <li><a href="#r기초-실습하기" id="toc-r기초-실습하기" class="nav-link" data-scroll-target="#r기초-실습하기">[R기초] 실습하기</a>
   <ul class="collapse">
   <li><a href="#이산확률변수의-분포" id="toc-이산확률변수의-분포" class="nav-link" data-scroll-target="#이산확률변수의-분포">이산확률변수의 분포</a></li>
-  <li><a href="#r명령어-설명" id="toc-r명령어-설명" class="nav-link" data-scroll-target="#r명령어-설명">R명령어 설명</a></li>
+  <li><a href="#r명령어-설명" id="toc-r명령어-설명" class="nav-link" data-scroll-target="#r명령어-설명">R명령어 설명</a>
+  <ul class="collapse">
+  <li><a href="#r-에서-제공하는-확률분포" id="toc-r-에서-제공하는-확률분포" class="nav-link" data-scroll-target="#r-에서-제공하는-확률분포">R 에서 제공하는 확률분포</a></li>
+  <li><a href="#ggplot-패키지를-사용해서-그래프-그리기" id="toc-ggplot-패키지를-사용해서-그래프-그리기" class="nav-link" data-scroll-target="#ggplot-패키지를-사용해서-그래프-그리기">ggplot 패키지를 사용해서 그래프 그리기</a></li>
+  </ul></li>
   <li><a href="#이항분포-관련-문제" id="toc-이항분포-관련-문제" class="nav-link" data-scroll-target="#이항분포-관련-문제">이항분포 관련 문제</a></li>
   </ul></li>
   </ul>
@@ -466,30 +470,52 @@ X의 값 / 도수<br>
 <li><strong>이항분포</strong><small>(Binomial Distribution)</small>에 관련된 <a href="https://search.r-project.org/R/refmans/stats/html/Binomial.html"><strong>R 명령어 설명</strong></a>&nbsp;&nbsp;</li>
 </ul>
 <p>위에 링크로 달아놓았지만, ChatGPT에게 이항분포에 관련된 r명령어를 묻고, 명령어는 알지만 더 자세한 사용법을 알고 싶을때는 프로그램에서 명령어에 커서를 두고 <strong>F1</strong>을 누르면 설명이 나옵니다.</p>
+<section id="r-에서-제공하는-확률분포" class="level3">
+<h3 class="anchored" data-anchor-id="r-에서-제공하는-확률분포">R 에서 제공하는 확률분포</h3>
+<p>▶ 이산분포</p>
+<pre><code>   ● binom : 이항분포
+   ● hyper : 초기하분포
+   ● pois  : 포와송분포
+   ● geom : 기하분포
+   ● nbinom : 음이항분포
+   ● multinom : 다항분포</code></pre>
+<p>▶ 연속분포</p>
+<pre><code>  ● unif : Uniform Distribution(균등분포)
+  ● norm : 정규분포
+  ● exp : 지수분포(Exponential Distribution)
+  ● t : t분포
+  ● f : f분포
+  ● chisq : 카이분포
+  ● 기타 : gamma, beta, cauchy, lnorm, weibull 등</code></pre>
+<p>▶ 접두사: 위 함수앞에 아래의 접두사를 붙여 사용한다.</p>
+<pre><code>  ● d : probability density(mass) function - 확률질량함수
+  ● p : cumulative distribution function - 누적함수
+  ● q : quantile function ( p ≤ P (X  ≤ x ) 를 만족하는 최소 x )
+  ● r : random number generator</code></pre>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)  <span class="co"># 10번의 시행에서 성공 확률이 0.3인 경우에 3번 성공할 확률</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)  <span class="co"># 10번의 시행에서 성공 확률이 0.3인 경우에 3번 성공할 확률</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2668279</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)  <span class="co"># 10번의 시행에서 성공 확률이 0.3인 경우에 3번 이하로 성공할 확률</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)  <span class="co"># 10번의 시행에서 성공 확률이 0.3인 경우에 3번 이하로 성공할 확률</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6496107</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qbinom</span>(<span class="fl">0.25</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)  <span class="co"># 10번의 시행에서 성공 확률이 0.3인 이항분포에서 하위 25%에 해당하는 성공 횟수</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qbinom</span>(<span class="fl">0.25</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)  <span class="co"># 10번의 시행에서 성공 확률이 0.3인 이항분포에서 하위 25%에 해당하는 성공 횟수</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)  <span class="co"># 10번의 시행에서 성공 확률이 0.3인 이항분포를 따르는 난수 5개 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)  <span class="co"># 10번의 시행에서 성공 확률이 0.3인 이항분포를 따르는 난수 5개 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 1 5 4 2</code></pre>
+<pre><code>[1] 3 2 7 3 3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 이항분포의 확률질량함수 그리기</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># 시행 횟수와 성공 확률 설정</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>size  <span class="co"># 가능한 모든 성공 횟수에 대한 확률 계산</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(x, size, prob)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(y, <span class="at">names.arg=</span>x, <span class="at">xlab=</span><span class="st">"성공 횟수"</span>, <span class="at">ylab=</span><span class="st">"확률"</span>, <span class="at">main=</span><span class="st">"이항 분포 (n=10, p=0.5)"</span>)  <span class="co"># 막대 그래프로 그리기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 이항분포의 확률질량함수 그리기</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># 시행 횟수와 성공 확률 설정</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>size  <span class="co"># 가능한 모든 성공 횟수에 대한 확률 계산</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(x, size, prob)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(y, <span class="at">names.arg=</span>x, <span class="at">xlab=</span><span class="st">"성공 횟수"</span>, <span class="at">ylab=</span><span class="st">"확률"</span>, <span class="at">main=</span><span class="st">"이항 분포 (n=10, p=0.5)"</span>)  <span class="co"># 막대 그래프로 그리기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -497,10 +523,10 @@ X의 값 / 도수<br>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 이항분포의 누적분포함수 그리기</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cumulative_probs <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(x, size, prob)  <span class="co"># 누적 확률 계산</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 계단 형태의 그래프로 그리기</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, cumulative_probs, <span class="at">type=</span><span class="st">"s"</span>, <span class="at">xlab=</span><span class="st">"성공 횟수"</span>, <span class="at">ylab=</span><span class="st">"누적 확률"</span>, <span class="at">main=</span><span class="st">"이항 분포의 누적 분포 함수 (n=10, p=0.5)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 이항분포의 누적분포함수 그리기</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>cumulative_probs <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(x, size, prob)  <span class="co"># 누적 확률 계산</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 계단 형태의 그래프로 그리기</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, cumulative_probs, <span class="at">type=</span><span class="st">"s"</span>, <span class="at">xlab=</span><span class="st">"성공 횟수"</span>, <span class="at">ylab=</span><span class="st">"누적 확률"</span>, <span class="at">main=</span><span class="st">"이항 분포의 누적 분포 함수 (n=10, p=0.5)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -510,17 +536,102 @@ X의 값 / 도수<br>
 </div>
 </div>
 </section>
+<section id="ggplot-패키지를-사용해서-그래프-그리기" class="level3">
+<h3 class="anchored" data-anchor-id="ggplot-패키지를-사용해서-그래프-그리기">ggplot 패키지를 사용해서 그래프 그리기</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("ggplot")  # ggplot페키지가 설치가 안된 경우 왼쪽 주석 지우고 명령어 실행</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x를 정의 합니다 </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>) </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>x_prob <span class="ot">&lt;-</span> x <span class="sc">/</span> <span class="dv">10</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 이항분포를 계산하는 데이터프레임을 만듭니다.</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> x,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_prob =</span> x <span class="sc">/</span> <span class="dv">10</span>, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 반복횟수 10회, 성공확률 0.5인 이항분포에 대한 각각의 확률값을 구합니다. </span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbinom =</span> <span class="fu">dbinom</span>(x, <span class="dv">10</span>, <span class="fl">0.5</span>), </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pbinom =</span> <span class="fu">pbinom</span>(x, <span class="dv">10</span>, <span class="fl">0.5</span>),  </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">qbinom =</span> <span class="fu">qbinom</span>(x_prob, <span class="dv">10</span>, <span class="fl">0.5</span>), </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">rbinom =</span> <span class="fu">rbinom</span>(x, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터를 확인 합니다. </span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>df </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 6
+       x x_prob   dbinom   pbinom qbinom rbinom
+   &lt;int&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;int&gt;
+ 1     0    0   0.000977 0.000977      0      3
+ 2     1    0.1 0.00977  0.0107        3      3
+ 3     2    0.2 0.0439   0.0547        4      4
+ 4     3    0.3 0.117    0.172         4      5
+ 5     4    0.4 0.205    0.377         5      5
+ 6     5    0.5 0.246    0.623         5      6
+ 7     6    0.6 0.205    0.828         5      6
+ 8     7    0.7 0.117    0.945         6      5
+ 9     8    0.8 0.0439   0.989         6      2
+10     9    0.9 0.00977  0.999         7      5
+11    10    1   0.000977 1            10      3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 확률질량함수 pmf 그래프 그리기 : y = dbinom 결과값 이용</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> dbinom)) <span class="sc">+</span> </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 누적확률질량함수 cdf 그래프 그리기 : y = pbinom 결과값 </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pbinom)) <span class="sc">+</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="이항분포-관련-문제" class="level2">
 <h2 class="anchored" data-anchor-id="이항분포-관련-문제">이항분포 관련 문제</h2>
 <ul>
 <li>확률변수 <span class="math inline">\(X\)</span>가 이항분포 <span class="math inline">\(B(10, 1/3)\)</span>을 따를 때, <span class="math inline">\(P(X≤2)\)</span>와 <span class="math inline">\(P(X&gt;3)\)</span>를 구하여라.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="fl">0.3333</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="fl">0.3333</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2992194</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.3333</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.3333</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4406446</code></pre>
 </div>
@@ -529,7 +640,7 @@ X의 값 / 도수<br>
 <li>어떤 병이 새로운 치료법으로 치료될 확률이 20%라고 한다. 15명의 환자에게 이 치료법을 적용하였을때 4명 이상 7명 이하가 치료될 확률을 구하여라.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">0.2</span>) <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">15</span>, <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">0.2</span>) <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">15</span>, <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3475981</code></pre>
 </div>
