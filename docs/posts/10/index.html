@@ -232,6 +232,17 @@ window.Quarto = {
   <li><a href="#두-독립-모집단의-분산-차이에-대한-등분산성-검정" id="toc-두-독립-모집단의-분산-차이에-대한-등분산성-검정" class="nav-link" data-scroll-target="#두-독립-모집단의-분산-차이에-대한-등분산성-검정">두 독립 모집단의 분산 차이에 대한 등분산성 검정</a></li>
   <li><a href="#cars93-데이터셋으로-실습하기" id="toc-cars93-데이터셋으로-실습하기" class="nav-link" data-scroll-target="#cars93-데이터셋으로-실습하기">Cars93 데이터셋으로 실습하기</a></li>
   </ul></li>
+  <li><a href="#두-독립-모집단의-정규성을-보장하지-못할-때-평균-차이에-대한-비모수적-검정" id="toc-두-독립-모집단의-정규성을-보장하지-못할-때-평균-차이에-대한-비모수적-검정" class="nav-link" data-scroll-target="#두-독립-모집단의-정규성을-보장하지-못할-때-평균-차이에-대한-비모수적-검정">두 독립 모집단의 정규성을 보장하지 못할 때, 평균 차이에 대한 비모수적 검정</a>
+  <ul class="collapse">
+  <li><a href="#윌콕슨-순위합-검정이란" id="toc-윌콕슨-순위합-검정이란" class="nav-link" data-scroll-target="#윌콕슨-순위합-검정이란">윌콕슨 순위합 검정이란</a></li>
+  <li><a href="#예제로-실습하기" id="toc-예제로-실습하기" class="nav-link" data-scroll-target="#예제로-실습하기">예제로 실습하기</a></li>
+  <li><a href="#cars93-데이터셋으로-실습하기-1" id="toc-cars93-데이터셋으로-실습하기-1" class="nav-link" data-scroll-target="#cars93-데이터셋으로-실습하기-1">Cars93 데이터셋으로 실습하기</a></li>
+  </ul></li>
+  <li><a href="#대응표본-평균-차이-검정" id="toc-대응표본-평균-차이-검정" class="nav-link" data-scroll-target="#대응표본-평균-차이-검정">대응표본 평균 차이 검정</a>
+  <ul class="collapse">
+  <li><a href="#주변-이산화탄소-농도에-따른-나무의-이산화탄소-흡수율-차이-검정" id="toc-주변-이산화탄소-농도에-따른-나무의-이산화탄소-흡수율-차이-검정" class="nav-link" data-scroll-target="#주변-이산화탄소-농도에-따른-나무의-이산화탄소-흡수율-차이-검정">주변 이산화탄소 농도에 따른 나무의 이산화탄소 흡수율 차이 검정</a></li>
+  <li><a href="#중간고사와-기말고사의-평균-비교5명이니-소표본임" id="toc-중간고사와-기말고사의-평균-비교5명이니-소표본임" class="nav-link" data-scroll-target="#중간고사와-기말고사의-평균-비교5명이니-소표본임">중간고사와 기말고사의 평균 비교(5명이니 소표본임)</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -515,7 +526,7 @@ alternative hypothesis: true location is less than 19</code></pre>
 <section id="cars93-데이터셋으로-실습하기" class="level3">
 <h3 class="anchored" data-anchor-id="cars93-데이터셋으로-실습하기">Cars93 데이터셋으로 실습하기</h3>
 <ul>
-<li><strong>‘Cars93’ 데이터셋에서 미국회사 유무(Origin)에 따른 자동차의 가격(Price)에 대한 독립표본</strong> <span class="math inline">\(t\)</span>검정하기</li>
+<li><span style="color: blue;"><strong>‘Cars93’ 데이터셋에서 미국회사 유무(Origin)에 따른 자동차의 가격(Price)에 대한 독립표본 <span class="math inline">\(t\)</span>검정하기</strong></span></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># two sample t-test</span></span>
@@ -589,7 +600,7 @@ mean of x mean of y
 </div>
 </div>
 <ul>
-<li><strong>‘Cars93’ 데이터셋에서 수동변속기의 여부에 따른 자동차의 가격(Price)에 대한 독립표본</strong> <span class="math inline">\(t\)</span>검정하기</li>
+<li><span style="color: blue;"><strong>‘Cars93’ 데이터셋에서 수동변속기의 여부에 따른 자동차의 가격(Price)에 대한 독립표본 <span class="math inline">\(t\)</span>검정하기</strong></span></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Cars93<span class="sc">$</span>Man.trans.avail) <span class="co"># 데이터가 30개가 넘으므로 중심극한정리에 의해 정규성을 만족한다고 가정</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -638,6 +649,294 @@ alternative hypothesis: true difference in means is less than 0
 sample estimates:
 mean of x mean of y 
  17.23770  23.84062 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="두-독립-모집단의-정규성을-보장하지-못할-때-평균-차이에-대한-비모수적-검정" class="level2">
+<h2 class="anchored" data-anchor-id="두-독립-모집단의-정규성을-보장하지-못할-때-평균-차이에-대한-비모수적-검정">두 독립 모집단의 정규성을 보장하지 못할 때, 평균 차이에 대한 비모수적 검정</h2>
+<section id="윌콕슨-순위합-검정이란" class="level3">
+<h3 class="anchored" data-anchor-id="윌콕슨-순위합-검정이란">윌콕슨 순위합 검정이란</h3>
+<p><img src="wtest1.png" class="center-image img-fluid"></p>
+<p><img src="wtest2.png" class="center-image img-fluid"></p>
+</section>
+<section id="예제로-실습하기" class="level3">
+<h3 class="anchored" data-anchor-id="예제로-실습하기">예제로 실습하기</h3>
+<ul>
+<li><span style="color: blue;"><strong>남학생과 여학생의 중간시험 성적이 각각 다음과 같을때, 두 집단의 중간시험 성적의 평균이 같은지를 검정하고자 한다. 남학생: 74, 43, 91, 58, 60, 여학생: 50, 23, 69, 45 </strong></span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 13 wilcoxon rank sum test for two sample </span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>male <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">74</span>, <span class="dv">43</span>, <span class="dv">91</span>, <span class="dv">58</span>, <span class="dv">60</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>female <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">23</span>, <span class="dv">69</span>, <span class="dv">45</span>)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(male) <span class="co"># normality test</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  male
+W = 0.97284, p-value = 0.8932</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(female) <span class="co"># 정규분포를 따른다고 p값이 나오지만 표본수가 적어서 정규분포를 따른다는 가정을 못하고, 윌콕슨 검정하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  female
+W = 0.98134, p-value = 0.9098</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">c</span>(male, female) <span class="co"># 데이터 합치기</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>rank_data <span class="ot">=</span> <span class="fu">rank</span>(data) <span class="co"># 데이터의 순위를 매기기</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>rank_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8 2 9 5 6 4 1 7 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>female_seq <span class="ot">=</span> <span class="fu">seq</span>(<span class="fu">length</span>(male)<span class="sc">+</span><span class="dv">1</span>, <span class="fu">length</span>(data)) <span class="co"># 여성 자료의 위치</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>female_seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6 7 8 9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>female_rank <span class="ot">=</span> rank_data[female_seq]</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>female_rank</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 1 7 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">=</span> <span class="fu">sum</span>(female_rank)  <span class="co"># 더 적은 집단의 합을 W로 함</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>W  <span class="co"># 수작업으로 W구하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(male, female, <span class="at">alternative =</span> <span class="st">'two.sided'</span>) <span class="co"># 바로 W를 구하고, p값 구함, (alpha = 0.05 &gt; p ==&gt; H0 reject) H0를 채택함, 즉 여학생과 남학생의 성적 평균의 차이가 없음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum exact test
+
+data:  male and female
+W = 15, p-value = 0.2857
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+</section>
+<section id="cars93-데이터셋으로-실습하기-1" class="level3">
+<h3 class="anchored" data-anchor-id="cars93-데이터셋으로-실습하기-1">Cars93 데이터셋으로 실습하기</h3>
+<ul>
+<li><span style="color: blue;"><strong>‘Cars93’ 데이터셋에서 미국회사 유무에 따른 자동차의 가격(Price)에 대한 독립표본 윌콕슨 순위합 검정</strong></span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Cars93<span class="sc">$</span>Origin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    USA non-USA 
+     48      45 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wilcoxon rank sum test , alpha = 0.05 &gt; p ==&gt; Ho rejcet</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>price_0 <span class="ot">=</span> Cars93<span class="sc">$</span>Price[Cars93<span class="sc">$</span>Origin <span class="sc">==</span> <span class="st">'USA'</span>]</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>price_1 <span class="ot">=</span> Cars93<span class="sc">$</span>Price[Cars93<span class="sc">$</span>Origin <span class="sc">!=</span> <span class="st">'USA'</span>]</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(price_0, price_1, <span class="at">alternative =</span> <span class="st">'two.sided'</span>) <span class="co"># p값 ==&gt; H0 채택, 즉 가격 차이가 없음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(price_0, price_1, alternative = "two.sided"):
+cannot compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  price_0 and price_1
+W = 1024.5, p-value = 0.6724
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(price_0, price_1, <span class="at">alternative =</span> <span class="st">'less'</span>) <span class="co"># p값 ==&gt; H0 채택</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(price_0, price_1, alternative = "less"): cannot
+compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  price_0 and price_1
+W = 1024.5, p-value = 0.3362
+alternative hypothesis: true location shift is less than 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(price_0, price_1, <span class="at">alternative =</span> <span class="st">'greater'</span>) <span class="co"># p값 ==&gt; H0 채택</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(price_0, price_1, alternative = "greater"):
+cannot compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  price_0 and price_1
+W = 1024.5, p-value = 0.6666
+alternative hypothesis: true location shift is greater than 0</code></pre>
+</div>
+</div>
+<ul>
+<li><span style="color: blue;"><strong>‘Cars93’ 데이터셋에서 수동변속기 유무에 따른 자동차의 가격(Price)에 대한 독립표본 윌콕슨 순위합 검정</strong></span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>price0 <span class="ot">=</span> Cars93<span class="sc">$</span>Price[Cars93<span class="sc">$</span>Man.trans.avail <span class="sc">==</span> <span class="st">'Yes'</span>]</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>price1 <span class="ot">=</span> Cars93<span class="sc">$</span>Price[Cars93<span class="sc">$</span>Man.trans.avail <span class="sc">!=</span> <span class="st">'Yes'</span>]</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(price0, price1, <span class="at">alternative =</span> <span class="st">'two.sided'</span>) <span class="co"># p값 ==&gt; H0 기각, 즉 가격 차이가 있음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  price0 and price1
+W = 530.5, p-value = 0.0003196
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(price0, price1, <span class="at">alternative =</span> <span class="st">'less'</span>) <span class="co"># p값 ==&gt; H0 기각</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  price0 and price1
+W = 530.5, p-value = 0.0001598
+alternative hypothesis: true location shift is less than 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(price0, price1, <span class="at">alternative =</span> <span class="st">'greater'</span>) <span class="co"># 'less'가 가장 적당하다는 것을 알 수 있음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  price0 and price1
+W = 530.5, p-value = 0.9998
+alternative hypothesis: true location shift is greater than 0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="대응표본-평균-차이-검정" class="level2">
+<h2 class="anchored" data-anchor-id="대응표본-평균-차이-검정">대응표본 평균 차이 검정</h2>
+<p>하나의 자료에 두 개의 대응되는 변수가 있을때, 두 변수의 평균의 차이가 있는지 검정하는 것</p>
+<section id="주변-이산화탄소-농도에-따른-나무의-이산화탄소-흡수율-차이-검정" class="level3">
+<h3 class="anchored" data-anchor-id="주변-이산화탄소-농도에-따른-나무의-이산화탄소-흡수율-차이-검정">주변 이산화탄소 농도에 따른 나무의 이산화탄소 흡수율 차이 검정</h3>
+<p>데이터의 모양은 다음과 같다. <img src="co2data.png" class="center-image img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="do">## paired t-test</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="do">## uptake of CO2</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(CO2)  <span class="co"># 데이터 구조 확인</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  84 obs. of  5 variables:
+ $ Plant    : Ord.factor w/ 12 levels "Qn1"&lt;"Qn2"&lt;"Qn3"&lt;..: 1 1 1 1 1 1 1 2 2 2 ...
+ $ Type     : Factor w/ 2 levels "Quebec","Mississippi": 1 1 1 1 1 1 1 1 1 1 ...
+ $ Treatment: Factor w/ 2 levels "nonchilled","chilled": 1 1 1 1 1 1 1 1 1 1 ...
+ $ conc     : num  95 175 250 350 500 675 1000 95 175 250 ...
+ $ uptake   : num  16 30.4 34.8 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
+ - attr(*, "formula")=Class 'formula'  language uptake ~ conc | Plant
+  .. ..- attr(*, ".Environment")=&lt;environment: R_EmptyEnv&gt; 
+ - attr(*, "outer")=Class 'formula'  language ~Treatment * Type
+  .. ..- attr(*, ".Environment")=&lt;environment: R_EmptyEnv&gt; 
+ - attr(*, "labels")=List of 2
+  ..$ x: chr "Ambient carbon dioxide concentration"
+  ..$ y: chr "CO2 uptake rate"
+ - attr(*, "units")=List of 2
+  ..$ x: chr "(uL/L)"
+  ..$ y: chr "(umol/m^2 s)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>uptake_95   <span class="ot">=</span> CO2[CO2<span class="sc">$</span>conc <span class="sc">==</span> <span class="dv">95</span>, ]<span class="sc">$</span>uptake  <span class="co"># 주변 이산화탄소의 농도가 95일때 흡수율</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>uptake_1000 <span class="ot">=</span> CO2[CO2<span class="sc">$</span>conc <span class="sc">==</span> <span class="dv">1000</span>, ]<span class="sc">$</span>uptake  <span class="co"># 주변 이산화탄소의 농도가 1000일때 흡수율</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>uptake_95</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 16.0 13.6 16.2 14.2  9.3 15.1 10.6 12.0 11.3 10.5  7.7 10.6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>uptake_1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 39.7 44.3 45.5 38.7 42.4 41.4 35.5 31.5 27.8 21.9 14.4 19.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">data.frame</span>(uptake_95, uptake_1000),  <span class="co"># 상자 그림을 그려서 데이터 분포 확인</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">'uptake'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># paired t-test : HO : mu_d = 0, mu_d is no 0</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. compare two variance </span></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(uptake_95, uptake_1000) <span class="co"># 한 모집단 내 두 변수의 등분산성 검정, H0: equal variance ==&gt; not equal variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  uptake_95 and uptake_1000
+F = 0.069007, num df = 11, denom df = 11, p-value = 0.0001066
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.01986555 0.23970934
+sample estimates:
+ratio of variances 
+        0.06900694 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 2. t-test, 두 대응표본의 이산화탄소 흡수율(uptake)에 대해 대응표본 t검정</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(uptake_95, uptake_1000, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="co"># paired 파라미터를 TRUE로 설정하면 대응표본 t검정 실시</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">'two.sided'</span>) <span class="do">## reject H0, H1 채택, 주변이산화탄소 농도에 따른 이산화탄소 흡수율에 차이가 있다 할 수 있음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  uptake_95 and uptake_1000
+t = -8.5197, df = 11, p-value = 3.573e-06
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -26.83414 -15.81586
+sample estimates:
+mean difference 
+        -21.325 </code></pre>
+</div>
+</div>
+</section>
+<section id="중간고사와-기말고사의-평균-비교5명이니-소표본임" class="level3">
+<h3 class="anchored" data-anchor-id="중간고사와-기말고사의-평균-비교5명이니-소표본임">중간고사와 기말고사의 평균 비교(5명이니 소표본임)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 수치형 변수이고, 표본이 작을 때 두 변수의 평균을 비교하는 비모수적 방법: 윌콕슨 부호 순위 검정</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="do">## non-parametric paired test : wilcoxon signed rank test</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>midterm <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">80</span>, <span class="dv">70</span>, <span class="dv">62</span>, <span class="dv">92</span>, <span class="dv">87</span>)</span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>final <span class="ot">=</span>   <span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">72</span>, <span class="dv">60</span>, <span class="dv">91</span>, <span class="dv">75</span>)</span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(midterm, final, <span class="at">alternative =</span> <span class="st">'two.sided'</span>,</span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">paired =</span> <span class="cn">TRUE</span>)  <span class="co"># H0 채택, 즉 차이가 없다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(midterm, final, alternative = "two.sided", :
+cannot compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  midterm and final
+V = 9, p-value = 0.7835
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="do">## tie(동점)가 있는 경우 ==&gt; wilcoxon test ==&gt; wilcox.exact() function</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('exactRankTests')  # 라이브러리가 없으면 주석 지우고 설치하기</span></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(exactRankTests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'exactRankTests' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code> Package 'exactRankTests' is no longer under development.
+ Please consider using package 'coin' instead.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.exact</span>(midterm, final, <span class="at">alternative =</span> <span class="st">'two.sided'</span>,</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">paired =</span> <span class="cn">TRUE</span>)  <span class="co"># H0 채택, 즉 차이가 없다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Exact Wilcoxon signed rank test
+
+data:  midterm and final
+V = 9, p-value = 0.8125
+alternative hypothesis: true mu is not equal to 0</code></pre>
 </div>
 </div>
 
