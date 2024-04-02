@@ -230,6 +230,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#r명령어-설명" id="toc-r명령어-설명" class="nav-link" data-scroll-target="#r명령어-설명">R명령어 설명</a></li>
   <li><a href="#정규분포의-확률-구하기" id="toc-정규분포의-확률-구하기" class="nav-link" data-scroll-target="#정규분포의-확률-구하기">정규분포의 확률 구하기</a></li>
+  <li><a href="#이항분포의-정규분포로의-근사" id="toc-이항분포의-정규분포로의-근사" class="nav-link" data-scroll-target="#이항분포의-정규분포로의-근사">이항분포의 정규분포로의 근사</a></li>
   <li><a href="#주어진-자료의-정규성-알아보기" id="toc-주어진-자료의-정규성-알아보기" class="nav-link" data-scroll-target="#주어진-자료의-정규성-알아보기">주어진 자료의 정규성 알아보기</a>
   <ul class="collapse">
   <li><a href="#모집단이-정규분포인지-알려져-있지-않은-경우" id="toc-모집단이-정규분포인지-알려져-있지-않은-경우" class="nav-link" data-scroll-target="#모집단이-정규분포인지-알려져-있지-않은-경우">모집단이 정규분포인지 알려져 있지 않은 경우</a></li>
@@ -255,10 +256,10 @@ window.Quarto = {
 <div class="my-table">
 <table class="table">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 34%">
-<col style="width: 21%">
-<col style="width: 21%">
+<col style="width: 22%">
+<col style="width: 31%">
+<col style="width: 22%">
+<col style="width: 22%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -385,7 +386,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rnorm() : random number from normal distribution</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)  <span class="co"># 평균이 0이고 표준편차가 1인 정규분포에서 5개의 무작위 값 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.0718815  1.1289207  0.4610436 -1.3036316 -0.9517088</code></pre>
+<pre><code>[1] -1.8068673 -0.1546857 -0.4480584 -0.6627734 -0.1325052</code></pre>
 </div>
 </div>
 <p>연속확률분포에서 특정한 지점에서의 확률은 수학적으로 생각하면 선의 넓이이므로 0이다. 그런데 dnorm에서 구하는 값은 0이 나오지 않는데, 이는 아주 작은 크기의 직사각형을 만들어 면적을 계산하여 도출한다고 생각하면 된다. 직관적으로 그 점에서의 높이를 계산한다고 생각하면 된다.</p>
@@ -437,7 +438,7 @@ window.Quarto = {
 <section id="정규분포의-확률-구하기" class="level2">
 <h2 class="anchored" data-anchor-id="정규분포의-확률-구하기">정규분포의 확률 구하기</h2>
 <ul>
-<li><span class="math inline">\(P(Z&lt;-0.155\)</span> 또는 <span class="math inline">\(Z&gt;1.6)\)</span>를 구하여라.</li>
+<li><span style="color: blue;"><span class="math inline">\(P(Z&lt;-0.155\)</span> 또는 <span class="math inline">\(Z&gt;1.6)\)</span>를 구하시오.</span></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pnorm함수는 정규분포의 확률값을 구해주는 함수이다. </span></span>
@@ -449,7 +450,7 @@ window.Quarto = {
 </div>
 </div>
 <ul>
-<li><span class="math inline">\(P(-z≤Z≤z)=0.95\)</span>를 만족시키는 양의 실수 <span class="math inline">\(z\)</span>를 구하여라.</li>
+<li><span style="color: blue;"><span class="math inline">\(P(-z≤Z≤z)=0.95\)</span>를 만족시키는 양의 실수 <span class="math inline">\(z\)</span>를 구하시오.</span></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># qnorm함수는 확률값을 입력하였을때, 그에 해당하는 표준정규분포를 따르는 변수 Z값을 구해주는 함수이다.</span></span>
@@ -459,12 +460,36 @@ window.Quarto = {
 </div>
 </div>
 <ul>
-<li>어느 저울의 성질을 알아보기 위하여 질량이 1kg인 추를 반복적으로 잰다고 하자. 이때 측정된 질량은 평균이 1kg이고, 표준편차가 20g인 정규분포를 따른다고 한다. 이러한 측정을 계속 반복할 때, 측정된 값이 1kg으로부터 10g 이내에 있는 비율은 얼마인가?</li>
+<li><span style="color: blue;">어느 저울의 성질을 알아보기 위하여 질량이 1kg인 추를 반복적으로 잰다고 하자. 이때 측정된 질량은 평균이 1kg이고, 표준편차가 20g인 정규분포를 따른다고 한다. 이러한 측정을 계속 반복할 때, 측정된 값이 1kg으로부터 10g 이내에 있는 비율은 얼마인지 구하시오.</span></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">1010</span>,<span class="at">mean=</span><span class="dv">1000</span>,<span class="at">sd=</span><span class="dv">20</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">990</span>,<span class="at">mean=</span><span class="dv">1000</span>,<span class="at">sd=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3829249</code></pre>
+</div>
+</div>
+</section>
+<section id="이항분포의-정규분포로의-근사" class="level2">
+<h2 class="anchored" data-anchor-id="이항분포의-정규분포로의-근사">이항분포의 정규분포로의 근사</h2>
+<ul>
+<li><span style="color: blue;">확률변수 <span class="math inline">\(X\)</span>가 이항분포 <span class="math inline">\(B(400, 0.2)\)</span>를 따르고, 확률변수 <span class="math inline">\(Y\)</span>가 정규분포 <span class="math inline">\(B(80, 8^2)\)</span>을 따를 때, <span class="math display">\[\left| P(X=k)-P(k-0.5 \le Y \le k+0.5) \right|\]</span>의 최댓값을 구하시오.(단, <span class="math inline">\(k\)</span>는 <span class="math inline">\(0\le k \le 400\)</span>인 정수)</span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>newprob <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(k<span class="sc">&lt;=</span><span class="dv">400</span>){</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k, <span class="dv">400</span>, <span class="fl">0.2</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  b <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(k<span class="fl">+0.5</span>, <span class="dv">80</span>, <span class="dv">8</span>)<span class="sc">-</span><span class="fu">pnorm</span>(k<span class="fl">-0.5</span>, <span class="dv">80</span>, <span class="dv">8</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(a<span class="sc">&gt;=</span>b){newprob <span class="ot">&lt;-</span> a<span class="sc">-</span>b}</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{newprob <span class="ot">&lt;-</span> b<span class="sc">-</span>a}</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(prob<span class="sc">&lt;=</span>newprob){prob <span class="ot">&lt;-</span> newprob; k <span class="ot">&lt;-</span> k<span class="sc">+</span><span class="dv">1</span>}</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{ k <span class="ot">&lt;-</span> k<span class="sc">+</span><span class="dv">1</span> }</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>prob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0008873549</code></pre>
 </div>
 </div>
 </section>
@@ -492,26 +517,26 @@ window.Quarto = {
 <li><p>MASS 라이브러리에 있는 Cars93의 price라는 자료가 정규분포인지 확인해보자.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Cars93<span class="sc">$</span>Price)  <span class="co"># 자료의 구조를 살펴보기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Cars93<span class="sc">$</span>Price)  <span class="co"># 자료의 구조를 살펴보기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> num [1:93] 15.9 33.9 29.1 37.7 30 15.7 20.8 23.7 26.3 34.7 ...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>price <span class="ot">=</span> Cars93<span class="sc">$</span>Price</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(price)  <span class="co"># 히스토그램을 그려서 좌우대칭인지 살펴보기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>price <span class="ot">=</span> Cars93<span class="sc">$</span>Price</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(price)  <span class="co"># 히스토그램을 그려서 좌우대칭인지 살펴보기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(price)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(price)  <span class="co"># qqnorm으로 그린 그림에 직선을 추가하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(price)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(price)  <span class="co"># qqnorm으로 그린 그림에 직선을 추가하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -520,13 +545,13 @@ window.Quarto = {
 <li>BodyWeight에 있는 자료의 정규확률그림을 그려보자.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>body <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"BodyWeight.txt"</span>, <span class="at">header=</span>T)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(body<span class="sc">$</span>몸무게)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(body<span class="sc">$</span>몸무게, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>body <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"BodyWeight.txt"</span>, <span class="at">header=</span>T)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(body<span class="sc">$</span>몸무게)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(body<span class="sc">$</span>몸무게, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -535,13 +560,13 @@ window.Quarto = {
 <li>직선에 어느 정도 근접하느냐는 주관적이므로, 위 자료(100개)와 비교해보기 위해 정규분포를 이루는 난수를 발생하여 같은 그래프를 그려보자.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="co">#평균이 0이고, 표준편차가 1인 표준정규분포에서 100개의 난수를 발생하여 x에 넣기</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="co">#평균이 0이고, 표준편차가 1인 표준정규분포에서 100개의 난수를 발생하여 x에 넣기</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
