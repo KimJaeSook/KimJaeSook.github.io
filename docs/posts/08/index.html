@@ -221,6 +221,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#복원추출sampling-with-replacement" id="toc-복원추출sampling-with-replacement" class="nav-link" data-scroll-target="#복원추출sampling-with-replacement">복원추출(Sampling with replacement)</a></li>
   <li><a href="#비복원추출sampling-without-replacement" id="toc-비복원추출sampling-without-replacement" class="nav-link" data-scroll-target="#비복원추출sampling-without-replacement">비복원추출(Sampling without replacement)</a></li>
+  <li><a href="#표본추출예제" id="toc-표본추출예제" class="nav-link" data-scroll-target="#표본추출예제">표본추출예제</a></li>
   </ul></li>
   <li><a href="#모집단과-표본" id="toc-모집단과-표본" class="nav-link" data-scroll-target="#모집단과-표본">모집단과 표본</a>
   <ul class="collapse">
@@ -274,6 +275,53 @@ window.Quarto = {
 </div>
 </div>
 </section>
+<section id="표본추출예제" class="level3">
+<h3 class="anchored" data-anchor-id="표본추출예제">표본추출예제</h3>
+<ul>
+<li><span style="color: blue;"><span class="math inline">\(1\)</span>부터 <span class="math inline">\(45\)</span>까지 자연수 중 서로 다른 수 <span class="math inline">\(6\)</span>개를 추출하시오.</span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">45</span>, <span class="dv">6</span>, <span class="at">replace=</span>F) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 43 37 14 25 26 27</code></pre>
+</div>
+</div>
+<ul>
+<li><span style="color: blue;">등이 나올 확률이 <span class="math inline">\(0.4\)</span>인 윷짝 <span class="math inline">\(4\)</span>개를 한 번 던지는 모의실험을 하시오.</span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">0</span>), <span class="dv">4</span>, <span class="at">replace=</span>T, <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>)) <span class="co"># 등을 1, 배를 0으로 간주함 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 0 1</code></pre>
+</div>
+</div>
+<ul>
+<li><span style="color: blue;">표준정규분포를 따르는 모집단에서 크기가 <span class="math inline">\(10\)</span>인 표본을 임의로 추출하시오.</span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1.2240818  0.3598138  0.4007715  0.1106827 -0.5558411  1.7869131
+ [7]  0.4978505 -1.9666172  0.7013559 -0.4727914</code></pre>
+</div>
+</div>
+<ul>
+<li><span style="color: blue;">한 개의 주사위를 <span class="math inline">\(1000\)</span>번 던질 때, <span class="math inline">\(1\)</span>의 눈이 나오는 횟수를 구하는 모의실험을 하시오.</span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(n<span class="sc">&lt;=</span><span class="dv">1000</span>){</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(s<span class="sc">==</span><span class="dv">1</span>){count <span class="ot">&lt;-</span> count<span class="sc">+</span><span class="dv">1</span>; n <span class="ot">&lt;-</span> n<span class="sc">+</span><span class="dv">1</span>}</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{n <span class="ot">&lt;-</span> n<span class="sc">+</span><span class="dv">1</span>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 170</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="모집단과-표본" class="level2">
 <h2 class="anchored" data-anchor-id="모집단과-표본">모집단과 표본</h2>
@@ -283,34 +331,34 @@ window.Quarto = {
 <li>히스토그램을 그려 표본수의 증가에 따른 변화를 관찰하기</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 난수발생에 따라 평균값이 xlim=c(0.3, 1.7)을 벗어나거나, </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 도수가 40보다 많아 ylim=c(0, 40)의 범위를 벗어나는 경우가 있을 수 있다.</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>column_1 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) column_1[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">2</span>)) <span class="co"># 균등분포에서 난수발생하기</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(column_1, <span class="at">border=</span><span class="st">"white"</span>, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"mean of 5 samples"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">"Class"</span>, <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>column_2 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) column_2[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(column_2, <span class="at">border=</span><span class="st">"white"</span>, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"mean of 10 samples"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">"Class"</span>, <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>column_3 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) column_3[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="dv">30</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(column_3, <span class="at">border=</span><span class="st">"white"</span>, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"mean of 30 samples"</span>,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">"Class"</span>, <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>column_4 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) column_4[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(column_4, <span class="at">border=</span><span class="st">"white"</span>, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"mean of 100 samples"</span>,</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">"Class"</span>, <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 난수발생에 따라 평균값이 xlim=c(0.3, 1.7)을 벗어나거나, </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 도수가 40보다 많아 ylim=c(0, 40)의 범위를 벗어나는 경우가 있을 수 있다.</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>column_1 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) column_1[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">2</span>)) <span class="co"># 균등분포에서 난수발생하기</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(column_1, <span class="at">border=</span><span class="st">"white"</span>, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"mean of 5 samples"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">"Class"</span>, <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>column_2 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) column_2[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(column_2, <span class="at">border=</span><span class="st">"white"</span>, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"mean of 10 samples"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">"Class"</span>, <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>column_3 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) column_3[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="dv">30</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(column_3, <span class="at">border=</span><span class="st">"white"</span>, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"mean of 30 samples"</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">"Class"</span>, <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>column_4 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) column_4[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(column_4, <span class="at">border=</span><span class="st">"white"</span>, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"mean of 100 samples"</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">"Class"</span>, <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -320,27 +368,27 @@ window.Quarto = {
 </ul>
 <p><strong>중심극한정리</strong>에 의하면 표본평균 <span class="math inline">\(\bar{X}\)</span>의 분포는 이론적으로 평균이 <span class="math inline">\(\mu=\frac{0+2}{2}=1\)</span>, 분산이 <span class="math inline">\(\frac{\sigma^2}{n}=\frac{(2-0)^2}{12}\times\frac{1}{5}=\frac{1}{15}=0.06667\)</span>이다. 계산된 요약 통계량을 보면 이론값과 근사적으로 같다는 것을 확인할 수 있다. 최솟값은 점점 커지면서 1로 가고 있고 최댓값은 점점 작아지면서 1로 가고 있기에 <strong>대수의 법칙</strong>이 작동하고 있음을 알 수 있다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stat_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(column_1), <span class="fu">var</span>(column_1), <span class="fu">median</span>(column_1), </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">min</span>(column_1), <span class="fu">max</span>(column_1))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>stat_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(column_2), <span class="fu">var</span>(column_2), <span class="fu">median</span>(column_2), </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">min</span>(column_2), <span class="fu">max</span>(column_2))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>stat_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(column_3), <span class="fu">var</span>(column_3), <span class="fu">median</span>(column_3), </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">min</span>(column_3), <span class="fu">max</span>(column_3))</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>stat_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(column_4), <span class="fu">var</span>(column_4), <span class="fu">median</span>(column_4), </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">min</span>(column_4), <span class="fu">max</span>(column_4))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>SimStat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(stat_1, stat_2, stat_3, stat_4) </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(SimStat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"var"</span>, <span class="st">"median"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(SimStat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n=5"</span>, <span class="st">"n=10"</span>, <span class="st">"n=30"</span>, <span class="st">"n=100"</span>) </span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>SimStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>stat_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(column_1), <span class="fu">var</span>(column_1), <span class="fu">median</span>(column_1), </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">min</span>(column_1), <span class="fu">max</span>(column_1))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>stat_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(column_2), <span class="fu">var</span>(column_2), <span class="fu">median</span>(column_2), </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">min</span>(column_2), <span class="fu">max</span>(column_2))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>stat_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(column_3), <span class="fu">var</span>(column_3), <span class="fu">median</span>(column_3), </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">min</span>(column_3), <span class="fu">max</span>(column_3))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>stat_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(column_4), <span class="fu">var</span>(column_4), <span class="fu">median</span>(column_4), </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">min</span>(column_4), <span class="fu">max</span>(column_4))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>SimStat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(stat_1, stat_2, stat_3, stat_4) </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(SimStat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"var"</span>, <span class="st">"median"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(SimStat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n=5"</span>, <span class="st">"n=10"</span>, <span class="st">"n=30"</span>, <span class="st">"n=100"</span>) </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>SimStat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              n=5       n=10       n=30       n=100
-mean   0.98215204 0.99759046 0.99792404 0.997120891
-var    0.06030627 0.02839346 0.01053265 0.003109049
-median 0.97001181 1.01110299 1.00815885 1.001057480
-min    0.38786052 0.57975311 0.70073091 0.881305201
-max    1.54035985 1.33560145 1.21215504 1.156224741</code></pre>
+mean   1.04403650 0.99194277 0.99585782 0.993736371
+var    0.04754242 0.02959242 0.01132904 0.002992766
+median 1.04478925 0.98403686 0.98856144 0.990584588
+min    0.43296607 0.50810527 0.71512453 0.877360070
+max    1.51308187 1.39665089 1.28565056 1.141150215</code></pre>
 </div>
 </div>
 </section>
@@ -355,52 +403,52 @@ max    1.54035985 1.33560145 1.21215504 1.156224741</code></pre>
 <li><p><span class="math inline">\(t\)</span>분포를 따르는 이러한 변환을 <strong>스튜던트화(Studentized)</strong>라고 하며, <span class="math inline">\(t\)</span>분포를 스튜던트 <span class="math inline">\(t\)</span>분포라고도 한다.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dt</span>(<span class="dv">0</span>, <span class="at">df=</span><span class="dv">30</span>)  <span class="co"># x~t(30)일때, P(x=0)의 값 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dt</span>(<span class="dv">0</span>, <span class="at">df=</span><span class="dv">30</span>)  <span class="co"># x~t(30)일때, P(x=0)의 값 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3956322</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">0</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)  <span class="co">#정규분포 Z~N(0,1)의 값과 비교해보면, t분포에서의 값이 약간 작고 따라서 t분포의 양 끝이 조금 두꺼움을 알 수 있다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">0</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)  <span class="co">#정규분포 Z~N(0,1)의 값과 비교해보면, t분포에서의 값이 약간 작고 따라서 t분포의 양 끝이 조금 두꺼움을 알 수 있다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3989423</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">0</span>, <span class="at">df=</span><span class="dv">30</span>)  <span class="co"># x~t(30)일때, P(x&lt;0)의 값 계산하면 좌우대칭이라서 0.5임을 알 수 있다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">0</span>, <span class="at">df=</span><span class="dv">30</span>)  <span class="co"># x~t(30)일때, P(x&lt;0)의 값 계산하면 좌우대칭이라서 0.5임을 알 수 있다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> T)  <span class="co"># P(x&lt;1)의 값 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> T)  <span class="co"># P(x&lt;1)의 값 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8373457</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> F)  <span class="co"># P(x&gt;1)의 값 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> F)  <span class="co"># P(x&gt;1)의 값 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1626543</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> T) <span class="sc">+</span> <span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> F)  <span class="co"># 합이 1임을 확인할 수 있다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> T) <span class="sc">+</span> <span class="fu">pt</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail =</span> F)  <span class="co"># 합이 1임을 확인할 수 있다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>T)  <span class="co"># 확률이 0.05인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>T)  <span class="co"># 확률이 0.05인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -1.697261</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>T)  <span class="co"># 확률이 0.025인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>T)  <span class="co"># 확률이 0.025인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -2.042272</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>F)  <span class="co"># P(x&gt;x) = 0.05인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>F)  <span class="co"># P(x&gt;x) = 0.05인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.697261</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>F)  <span class="co"># P(x&gt;x) = 0.025인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">30</span>, <span class="at">lower.tail=</span>F)  <span class="co"># P(x&gt;x) = 0.025인 x값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.042272</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">=</span> <span class="fu">rt</span>(<span class="dv">1000</span>, <span class="at">df=</span><span class="dv">30</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">=</span> <span class="fu">rt</span>(<span class="dv">1000</span>, <span class="at">df=</span><span class="dv">30</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -425,13 +473,13 @@ max    1.54035985 1.33560145 1.21215504 1.156224741</code></pre>
 <li>다음은 베어링의 평균 직경을 알아보고자 9개의 베어링 표본을 대상으로 조사한 것이다. 3.4, 3.3, 4.2, 4.4, 3.7, 4.5, 4.6, 3.8, 4.1 평균 직경에 대한 95% 신뢰구간을 구하시오.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.4</span>, <span class="fl">3.3</span>, <span class="fl">4.2</span>, <span class="fl">4.4</span>, <span class="fl">3.7</span>, <span class="fl">4.5</span>, <span class="fl">4.6</span>, <span class="fl">3.8</span>, <span class="fl">4.1</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TeachingDemos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.4</span>, <span class="fl">3.3</span>, <span class="fl">4.2</span>, <span class="fl">4.4</span>, <span class="fl">3.7</span>, <span class="fl">4.5</span>, <span class="fl">4.6</span>, <span class="fl">3.8</span>, <span class="fl">4.1</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TeachingDemos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'TeachingDemos' was built under R version 4.3.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(x, <span class="at">sd=</span><span class="fl">0.4</span>, <span class="dv">9</span>)  <span class="co"># 과거로부터 σ=0.4로 알려졌을때 신뢰구간</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(x, <span class="at">sd=</span><span class="fl">0.4</span>, <span class="dv">9</span>)  <span class="co"># 과거로부터 σ=0.4로 알려졌을때 신뢰구간</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample z-test
@@ -446,7 +494,7 @@ sample estimates:
 mean of x 
         4 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)  <span class="co"># 모표준편차를 모를때 표본표준편차를 이용한 t분포로 구한 신뢰구간</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)  <span class="co"># 모표준편차를 모를때 표본표준편차를 이용한 t분포로 구한 신뢰구간</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -468,29 +516,29 @@ mean of x
 <li>앞의 예제에서 오차한계 <span class="math inline">\(d\)</span>가 <span class="math inline">\(0.2\)</span>라면 표본수 <span class="math inline">\(n\)</span>은 얼마가 되어야 하는지 구하시오. (<span class="math inline">\(\alpha=0.05\)</span>)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 오차한계 d=0.2일때때</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qnorm</span>(.<span class="dv">975</span>) <span class="co"># σ=0.4로 알려졌을때 n의 개수</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 오차한계 d=0.2일때때</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qnorm</span>(.<span class="dv">975</span>) <span class="co"># σ=0.4로 알려졌을때 n의 개수</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 15.36584</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>, <span class="dv">15</span>) <span class="co"># 모표준편차를 모를때, 자유도를 15로 사용할때의 n의 개수</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>, <span class="dv">15</span>) <span class="co"># 모표준편차를 모를때, 자유도를 15로 사용할때의 n의 개수</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 18.17231</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>, <span class="dv">17</span>) <span class="co"># 모표준편차를 모를때, 자유도를 17로 사용할때의 n의 개수 </span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>zstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>, <span class="dv">17</span>) <span class="co"># 모표준편차를 모를때, 자유도를 17로 사용할때의 n의 개수 </span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">0.4</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">=</span> <span class="fl">0.2</span> </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>zstar<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 17.80529</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 따라서 n=18이면 적절하다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 따라서 n=18이면 적절하다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
