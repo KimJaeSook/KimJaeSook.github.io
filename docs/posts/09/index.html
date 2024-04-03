@@ -245,9 +245,9 @@ window.Quarto = {
 <h1>[R기초] 실습하기</h1>
 <section id="모비율과-표본비율" class="level2">
 <h2 class="anchored" data-anchor-id="모비율과-표본비율">모비율과 표본비율</h2>
-<p>평균이 일반적인 자료들의 대푯값이라면, 표본비율은 <span class="math inline">\(0\)</span>과 $14로 된 특수한 자료의 평균이다. 즉 비율은 평균의 개념과 같다. 따라서 모비율의 구간추정은 모평균의 구간추정방법과 거의 동일하다. 모비율 <span class="math inline">\(p\)</span>를 추정하기 위하여 <span class="math inline">\(n\)</span>개의 표본을 추출하여 조사한 결과, ’성공’의 수가 <span class="math inline">\(X\)</span>라면, 모비율 <span class="math inline">\(p\)</span>의 점추정량인 <strong>표본비율</strong>(sample proportion) <span class="math inline">\(\bar{p}\)</span>은 다음과 같이 구해진다.</p>
+<p>평균이 일반적인 자료들의 대푯값이라면, 표본비율은 <span class="math inline">\(0\)</span>과 <span class="math inline">\(1\)</span>로 된 특수한 자료의 평균이다. 즉 비율은 평균의 개념과 같다. 따라서 모비율(한 모집단에서 특정한 속성을 가지는 비율 <span class="math inline">\(p\)</span>)의 구간추정은 모평균의 구간추정방법과 거의 동일하다. 모비율 <span class="math inline">\(p\)</span>를 추정하기 위하여 <span class="math inline">\(n\)</span>개의 표본을 추출하여 조사한 결과, ’성공’의 수가 <span class="math inline">\(X\)</span>라면, 모비율 <span class="math inline">\(p\)</span>의 점추정량인 <strong>표본비율</strong>(sample proportion) <span class="math inline">\(\bar{p}\)</span>은 다음과 같이 구해진다.</p>
 <p><span class="math display">\[\bar{p}=\dfrac{X}{n},~X=0, 1, \cdots, n\]</span></p>
-<p>위의 식에서 표본의 수 <span class="math inline">\(n\)</span>이 커지면 확률변수 <span class="math inline">\(X\)</span>는 다음과 같은 평균과 분산을 갖는 정규분포를 근사적으로 따르게 된다.</p>
+<p>위의 식에서 확률변수 <span class="math inline">\(X\)</span>는 이항분포를 따른다. 즉, <span class="math inline">\(X ~ B(n, ~p)\)</span>이다. 그리고 표본의 수 <span class="math inline">\(n\)</span>이 커지면 확률변수 <span class="math inline">\(X\)</span>는 다음과 같은 평균과 분산을 갖는 정규분포를 근사적으로 따르게 된다.</p>
 <p><span class="math display">\[X ~ \dot{\sim} ~ N(np, ~np(1-p))\]</span></p>
 <p>따라서 표본비율 <span class="math inline">\(\bar{p}\)</span>은 근사적으로 다음과 같은 정규분포를 따른다.</p>
 <p><span class="math display">\[\bar{p} ~ \dot\sim ~ N \left( p, ~\frac{p(1-p)}{n} \right)\]</span></p>
