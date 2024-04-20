@@ -243,6 +243,7 @@ window.Quarto = {
   <li><a href="#주변-이산화탄소-농도에-따른-나무의-이산화탄소-흡수율-차이-검정" id="toc-주변-이산화탄소-농도에-따른-나무의-이산화탄소-흡수율-차이-검정" class="nav-link" data-scroll-target="#주변-이산화탄소-농도에-따른-나무의-이산화탄소-흡수율-차이-검정">주변 이산화탄소 농도에 따른 나무의 이산화탄소 흡수율 차이 검정</a></li>
   <li><a href="#중간고사와-기말고사의-평균-비교5명이니-소표본임" id="toc-중간고사와-기말고사의-평균-비교5명이니-소표본임" class="nav-link" data-scroll-target="#중간고사와-기말고사의-평균-비교5명이니-소표본임">중간고사와 기말고사의 평균 비교(5명이니 소표본임)</a></li>
   </ul></li>
+  <li><a href="#두-모집단에-대한-비율-차이-검정-예제" id="toc-두-모집단에-대한-비율-차이-검정-예제" class="nav-link" data-scroll-target="#두-모집단에-대한-비율-차이-검정-예제">두 모집단에 대한 비율 차이 검정 예제</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -709,7 +710,7 @@ sample estimates:
 <section id="cars93-데이터셋으로-실습하기" class="level3">
 <h3 class="anchored" data-anchor-id="cars93-데이터셋으로-실습하기">Cars93 데이터셋으로 실습하기</h3>
 <ul>
-<li><span style="color: blue;"><strong>‘Cars93’ 데이터셋에서 미국회사 유무(Origin)에 따른 자동차의 가격(Price)에 대한 독립표본</strong> <span class="math inline">\(t\)</span>검정하기</span></li>
+<li><span style="color: blue;"><strong>‘Cars93’ 데이터셋에서 미국회사 유무(Origin)에 따른 자동차의 가격(Price)에 대한 독립표본 <span class="math inline">\(t\)</span>검정하기</strong></span></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># two sample t-test</span></span>
@@ -783,7 +784,7 @@ mean of x mean of y
 </div>
 </div>
 <ul>
-<li><span style="color: blue;"><strong>‘Cars93’ 데이터셋에서 수동변속기의 여부에 따른 자동차의 가격(Price)에 대한 독립표본</strong> <span class="math inline">\(t\)</span>검정하기</span></li>
+<li><span style="color: blue;"><strong>‘Cars93’ 데이터셋에서 수동변속기의 여부에 따른 자동차의 가격(Price)에 대한 독립표본 <span class="math inline">\(t\)</span>검정하기</strong></span></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Cars93<span class="sc">$</span>Man.trans.avail) <span class="co"># 데이터가 30개가 넘으므로 중심극한정리에 의해 정규성을 만족한다고 가정</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1122,9 +1123,158 @@ V = 9, p-value = 0.8125
 alternative hypothesis: true mu is not equal to 0</code></pre>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="두-모집단에-대한-비율-차이-검정-예제" class="level2">
+<h2 class="anchored" data-anchor-id="두-모집단에-대한-비율-차이-검정-예제">두 모집단에 대한 비율 차이 검정 예제</h2>
+<p>여러 독립 모집단의 모비율 차이에 대한 검정도 두 독립모집단의 모비율 차이와 동일하게 검토할 수 있다. 독감예방주사여부에 따른 감기증세 비율 예제를 통해 이항분포를 활용하여 검정하는 방법과 정규근사를 활용하여 검정하는 두 가지 방법을 배워보자. 그리고 Cars93 데이터셋에서 prop.test()으로 검정하는 것도 배워보자.</p>
+<ul>
+<li><span style="color: blue;"><strong>독감예방백신주사를 맞은 집단과 맞지 않은 집단에서의 감기증세를 보이는 비율 차이 검정</strong></span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant test for two-sample proportion </span></span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. binomial distribution</span></span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="do">## binom.test(x, n, p0, alternative='two.sided'): 하나의 모비율에 대한 검정</span></span>
+<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="do">## binom.test(x-vector, n-vector, ~): 두 모비율의 차이에 대한 검정</span></span>
+<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="do">## H0: p1 = p2   p1: shot   p2: not-shot</span></span>
+<span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a><span class="do">## H1: p1 is not p2</span></span>
+<span id="cb120-9"><a href="#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="co"># shot    : n1 = 201    number of catch cold x1=11  </span></span>
+<span id="cb120-10"><a href="#cb120-10" aria-hidden="true" tabindex="-1"></a><span class="co"># not-shot: n2 = 200    number of catch cold x2=33</span></span>
+<span id="cb120-11"><a href="#cb120-11" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha = 0.05</span></span>
+<span id="cb120-12"><a href="#cb120-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-13"><a href="#cb120-13" aria-hidden="true" tabindex="-1"></a>n1<span class="ot">=</span><span class="dv">201</span>  <span class="co">#독감예방접종을 한 사람</span></span>
+<span id="cb120-14"><a href="#cb120-14" aria-hidden="true" tabindex="-1"></a>n2<span class="ot">=</span><span class="dv">200</span>  <span class="co">#독감예방접종을 안한 사람</span></span>
+<span id="cb120-15"><a href="#cb120-15" aria-hidden="true" tabindex="-1"></a>x1<span class="ot">=</span><span class="dv">11</span>  <span class="co">#n1에서 감기증세 있는 사람 수</span></span>
+<span id="cb120-16"><a href="#cb120-16" aria-hidden="true" tabindex="-1"></a>x2<span class="ot">=</span><span class="dv">33</span>  <span class="co">#n2에서 감기증세 있는 사람 수</span></span>
+<span id="cb120-17"><a href="#cb120-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-18"><a href="#cb120-18" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(n1, n2)</span>
+<span id="cb120-19"><a href="#cb120-19" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(x1, x2)</span>
+<span id="cb120-20"><a href="#cb120-20" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(x, n, <span class="at">alternative =</span> <span class="st">'two.sided'</span>) <span class="co">#검정결과 두 집단에서 감기증세를 보이는 사람의 비율은 같지 않음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Exact binomial test
+
+data:  x
+number of successes = 11, number of trials = 44, p-value = 0.00126
+alternative hypothesis: true probability of success is not equal to 0.5
+95 percent confidence interval:
+ 0.1319274 0.4033804
+sample estimates:
+probability of success 
+                  0.25 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="do">## H1: p1 &lt; p2</span></span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(x, n, <span class="at">alternative =</span> <span class="st">'less'</span>) <span class="co">#검정결과 독감주사를 맞은 집단이 감기 걸릴 확률이 더 낮음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Exact binomial test
+
+data:  x
+number of successes = 11, number of trials = 44, p-value = 0.00063
+alternative hypothesis: true probability of success is less than 0.5
+95 percent confidence interval:
+ 0.0000000 0.3797055
+sample estimates:
+probability of success 
+                  0.25 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="do">## normal distribution(n이 크므로 정규분포의 근사를 활용하여 검정)</span></span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">alternative =</span> <span class="st">'two.sided'</span>, <span class="at">correct =</span> T) <span class="co">#검정결과 귀무가설 기각으로 두 모비율이 차이가 있음.(함수 내부적으로 카이제곱검정 사용)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  x out of n
+X-squared = 11.376, df = 1, p-value = 0.000744
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.17555184 -0.04499543
+sample estimates:
+    prop 1     prop 2 
+0.05472637 0.16500000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">alternative =</span> <span class="st">'less'</span>, <span class="at">correct =</span> T) <span class="co">#단측검정을 하면 p값이 더 작아지고, 더 잘 기각하게 됨. 즉 독감예방주사를 맞은 집단이 모비율이 더 작음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  x out of n
+X-squared = 11.376, df = 1, p-value = 0.000372
+alternative hypothesis: less
+95 percent confidence interval:
+ -1.00000000 -0.05468857
+sample estimates:
+    prop 1     prop 2 
+0.05472637 0.16500000 </code></pre>
+</div>
+</div>
+<ul>
+<li><span style="color: blue;"><strong>Cars93 데이터셋에서 미국회사 여부(Origin)에 따른 두 집단의 수동변속기 사용 가능 비율에 대한 모비율 검정</strong></span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Origin: USA, non-USA</span></span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Man.trans.avail: 수동변속기 사용 여부</span></span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Cars93[ , <span class="fu">c</span>(<span class="st">'Man.trans.avail'</span>, <span class="st">'Origin'</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Origin
+Man.trans.avail USA non-USA
+            No   26       6
+            Yes  22      39</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="do">## H0: p1 of USA = p2 of non-USA  Yes prop of Man.trans.avail </span></span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="do">## H1: p1 is not p2</span></span>
+<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-4"><a href="#cb130-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">45</span>) <span class="co">#미국회사 유무에 따른 차량수</span></span>
+<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">39</span>) <span class="co">#수동변속기 사용 가능한 차량수</span></span>
+<span id="cb130-6"><a href="#cb130-6" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">alternative =</span> <span class="st">'two.sided'</span>) <span class="co">#모비율을 검정하는 내장함수, 검정결과 귀무가설 기각, 즉 비율이 다름</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  x out of n
+X-squared = 15.397, df = 1, p-value = 8.712e-05
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.6022941 -0.2143725
+sample estimates:
+   prop 1    prop 2 
+0.4583333 0.8666667 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">alternative =</span> <span class="st">'less'</span>) <span class="co">#정보를 더 알면 단측검정이 유리함</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  x out of n
+X-squared = 15.397, df = 1, p-value = 4.356e-05
+alternative hypothesis: less
+95 percent confidence interval:
+ -1.0000000 -0.2420952
+sample estimates:
+   prop 1    prop 2 
+0.4583333 0.8666667 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">alternative =</span> <span class="st">'greater'</span>) <span class="co">#이 경우는 할 필요가 없다는 것을 알 수 있음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  x out of n
+X-squared = 15.397, df = 1, p-value = 1
+alternative hypothesis: greater
+95 percent confidence interval:
+ -0.5745715  1.0000000
+sample estimates:
+   prop 1    prop 2 
+0.4583333 0.8666667 </code></pre>
+</div>
+</div>
+
+
 </section>
 </section>
 
