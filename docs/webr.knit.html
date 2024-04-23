@@ -217,7 +217,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"context":"interactive"},"code":"fit = lm(mpg ~ am, data = mtcars)\n\nsummary(fit)","id":1},{"options":{"context":"interactive"},"code":"hist(mtcars$mpg)","id":2},{"options":{"context":"interactive"},"code":"fit = lm(mpg ~ ___ + wt, data = mtcars)\n\nsummary(fit)","id":3}];
+globalThis.qwebrCellDetails = [{"options":{"context":"interactive"},"id":1,"code":"fit = lm(mpg ~ am, data = mtcars)\n\nsummary(fit)"},{"options":{"context":"interactive"},"id":2,"code":"hist(mtcars$mpg)"},{"options":{"context":"interactive"},"id":3,"code":"fit = lm(mpg ~ ___ + wt, data = mtcars)\n\nsummary(fit)"}];
 
 </script>
 <script type="module">
@@ -834,7 +834,7 @@ globalThis.qwebrExecuteCode = async function (
 <span class="menu-text">소개</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./webr.html" aria-current="page"> 
+    <a class="nav-link" href="./webr.html"> 
 <span class="menu-text">Web-R</span></a>
   </li>  
   <li class="nav-item">
