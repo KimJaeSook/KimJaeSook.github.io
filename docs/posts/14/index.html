@@ -9,7 +9,7 @@
 <meta name="author" content="Kim Jae Sook">
 <meta name="dcterms.date" content="2024-02-05">
 
-<title>확률과 통계(2024) - 14. 다중선형회귀분석</title>
+<title>확률과 통계(2024) - 14. 선형회귀분석</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -177,7 +177,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">14. 다중선형회귀분석</h1>
+      <h1 class="title">14. 선형회귀분석</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Statistics</div>
                 <div class="quarto-category">교재 9장</div>
@@ -217,8 +217,16 @@ window.Quarto = {
   <li><a href="#엑셀-실습하기" id="toc-엑셀-실습하기" class="nav-link active" data-scroll-target="#엑셀-실습하기">[엑셀] 실습하기</a></li>
   <li><a href="#r기초-실습하기" id="toc-r기초-실습하기" class="nav-link" data-scroll-target="#r기초-실습하기">[R기초] 실습하기</a>
   <ul class="collapse">
+  <li><a href="#단순선형회귀분석" id="toc-단순선형회귀분석" class="nav-link" data-scroll-target="#단순선형회귀분석">단순선형회귀분석</a>
+  <ul class="collapse">
+  <li><a href="#단순선형회귀분석-실행-방법" id="toc-단순선형회귀분석-실행-방법" class="nav-link" data-scroll-target="#단순선형회귀분석-실행-방법">단순선형회귀분석 실행 방법</a></li>
+  <li><a href="#참고자료" id="toc-참고자료" class="nav-link" data-scroll-target="#참고자료">참고자료</a></li>
+  <li><a href="#심장병-자료" id="toc-심장병-자료" class="nav-link" data-scroll-target="#심장병-자료">심장병 자료</a></li>
+  </ul></li>
   <li><a href="#다중선형회귀분석" id="toc-다중선형회귀분석" class="nav-link" data-scroll-target="#다중선형회귀분석">다중선형회귀분석</a>
   <ul class="collapse">
+  <li><a href="#단순선형회귀분석-실행-방법-1" id="toc-단순선형회귀분석-실행-방법-1" class="nav-link" data-scroll-target="#단순선형회귀분석-실행-방법-1">단순선형회귀분석 실행 방법</a></li>
+  <li><a href="#cars93-데이터셋에서의-예시" id="toc-cars93-데이터셋에서의-예시" class="nav-link" data-scroll-target="#cars93-데이터셋에서의-예시">Cars93 데이터셋에서의 예시</a></li>
   <li><a href="#광고비-및-설비투자와-매출액-연관성-비교-자료" id="toc-광고비-및-설비투자와-매출액-연관성-비교-자료" class="nav-link" data-scroll-target="#광고비-및-설비투자와-매출액-연관성-비교-자료">광고비 및 설비투자와 매출액 연관성 비교 자료</a></li>
   </ul></li>
   </ul></li>
@@ -233,8 +241,6 @@ window.Quarto = {
 
 
 <p>국민총생산에 영향을 주는 것이 이자율 이외에 수출, 수입, R&amp;D비율, 실업률 등 여러가지일 수 있다. 몸무게를 설명할 수 있는 변수가 키뿐 아니라 하루 칼로리 섭취량과 운동량도 영향을 줄 것이라고 생각한다면 키, 칼로리 섭취량과 운동량을 동시에 고려하여 선형회귀분석을 시도할 수 있다. 이와 같이 둘 이상의 설명변수를 고려하는 것을 <strong>다중선형회귀분석</strong>이라고 한다.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LZe94nm1lZg?si=WPLGRSTVk6pQBAfu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-</iframe>
 <section id="엑셀-실습하기" class="level1">
 <h1>[엑셀] 실습하기</h1>
 <ul>
@@ -243,12 +249,640 @@ window.Quarto = {
 </section>
 <section id="r기초-실습하기" class="level1">
 <h1>[R기초] 실습하기</h1>
+<section id="단순선형회귀분석" class="level2">
+<h2 class="anchored" data-anchor-id="단순선형회귀분석">단순선형회귀분석</h2>
+<p><strong>단순선형회귀분석</strong>(Simple Linear Regression)이란 종속변수와 이에 영향을 주는 독립변수가 하나인 분석이다. 독립변수와 종속변수가 모두 수치형 변수이어야 한다. 그런데 범주형 독립변수의 경우 더미변수로 만들어 사용 가능하다. <strong>회귀모형</strong>(regression model)은 하나의 종속변수를 여러 개의 독립변수가 설명한다고 보는 통계적 모형이다. 회귀모형은 선형과 비선형으로 나눌 수 있으며, 선형회귀모형은 종속변수 <span class="math inline">\(Y\)</span>가 독립변수들의 선형 함수로 표현되는 것, 비선형회귀모형은 지수함수, 로그함수 등과 같이 종속변수 <span class="math inline">\(Y\)</span>가 독립변수들의 비선형 함수로 표현되는 것을 말한다. <strong>단순선형회귀모형</strong>은 독립변수가 한 개이고 종속변수와 선형관계가 있는 것을 말하며, <strong>다중선형회귀모형</strong>은 독립변수가 두 개 이상이고 종속변수와 선형관계가 있는 것을 말한다.</p>
+<section id="단순선형회귀분석-실행-방법" class="level3">
+<h3 class="anchored" data-anchor-id="단순선형회귀분석-실행-방법">단순선형회귀분석 실행 방법</h3>
+<section id="회귀모형-설정" class="level4">
+<h4 class="anchored" data-anchor-id="회귀모형-설정"><strong>회귀모형 설정</strong></h4>
+<p><span class="math display">\[
+Y=\beta_0 + \beta_1 X + \varepsilon, \ \ \varepsilon \sim N(0,\ \sigma^2 )
+\]</span></p>
+<ul>
+<li><p>모든 점들이 선형 위에 놓이는 것은 아니므로 오차항이 들어간다.</p></li>
+<li><p>오차항이 정규분포를 따르므로 <span class="math inline">\(Y\)</span>도 정규분포를 따른다.</p></li>
+<li><p>추정해야할 회귀계수는 <span class="math inline">\(\beta_0\)</span>(절편), <span class="math inline">\(\beta_1\)</span>(기울기)이고, 절편보다는 기울기에 관심이 있다. 기울기를 알면 독립변수가 종속변수에 얼만큼 영향을 주는지 알 수 있다. 즉 <span class="math inline">\(X\)</span>의 변화에 따라 <span class="math inline">\(Y\)</span>의 변화량이 높으면, 독립변수가 종속변수를 설명하는 부분이 크다는 뜻이다. 반대로 <span class="math inline">\(X\)</span>의 변화에 따라 <span class="math inline">\(Y\)</span>의 변화량이 낮으면, 독립변수가 종속변수를 설명하는 부분은 큰 영향력이 없다는 뜻이다.</p></li>
+</ul>
+</section>
+<section id="회귀계수-추정" class="level4">
+<h4 class="anchored" data-anchor-id="회귀계수-추정"><strong>회귀계수 추정</strong></h4>
+<ul>
+<li>오차제곱합을 최소화하는 방법(최소제곱법, Least Squared Method)으로 추정한다.</li>
+</ul>
+<p><span class="math display">\[
+min \left(\sum_{i} \varepsilon^2 _i \right)= \sum_{i=1}^{n} \left(y_i - \beta_0 - \beta_1 X_i \right)^2
+\]</span> - 각각 편미분을 통해서 <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>을 추정하며, 최종적으로 추정된 식은 <span class="math inline">\(\hat{y}\)</span>으로 표현한다.</p>
+<p><span class="math display">\[
+\hat{y}=\hat{\beta_0} + \hat{\beta_1} \hat{x}
+\]</span></p>
+</section>
+<section id="회귀모형의-타당성-검정" class="level4">
+<h4 class="anchored" data-anchor-id="회귀모형의-타당성-검정"><strong>회귀모형의 타당성 검정</strong></h4>
+<ul>
+<li><p>오차항이 서로 독립이라는 가정에서 회귀계수를 추정하기 때문에 회귀모형의 타당성을 검증할 필요가 있다.</p></li>
+<li><p>독립변수가 종속변수에 선형적으로 영향을 주는 것인가에 대한 검정이다. 즉 독립변수 각각의 기울기에 대해 종속변수의 영향력을 검정하는 것이다.</p></li>
+<li><p>단순선형회귀모형에서의 타당성: 회귀모형의 적합성=회귀계수에 대한 검정 결과</p></li>
+<li><p><strong>모형 전체에 대한 검정</strong>:</p></li>
+</ul>
+<p><span class="math inline">\(\ \ \ \ \ \ \ \)</span> <strong>귀무가설</strong>: <span class="math inline">\(\beta_1 = \beta_2 = \cdots = \beta_k =0\)</span> (독립변수 <span class="math inline">\(X_i\)</span>가 종속변수에 영향을 주지 않는다.)</p>
+<p><span class="math inline">\(\ \ \ \ \ \ \ \)</span> <strong>대립가설</strong>: <span class="math inline">\(\beta_i \neq 0\)</span> (적어도 하나의 독립변수는 종속변수에 영향을 준다.)</p>
+<p><img src="table1.png" class="center3-image img-fluid"></p>
+<ul>
+<li><strong>회귀계수에 대한 검정</strong>의 귀무가설과 대립가설은 다음과 같으며, 회귀계수에 대한 검정은 <span class="math inline">\(t\)</span>분포를 이용하므로 <span class="math inline">\(t\)</span>-검정을 통해 가설 검정이 가능하다.</li>
+</ul>
+<p><span class="math inline">\(\ \ \ \ \ \ \ \)</span> <strong>귀무가설</strong>: <span class="math inline">\(\beta_i  =0\)</span> (독립변수 <span class="math inline">\(X_i\)</span>가 종속변수에 영향을 주지 않는다.)</p>
+<p><span class="math inline">\(\ \ \ \ \ \ \ \)</span> <strong>대립가설</strong>: <span class="math inline">\(\beta_i \neq 0\)</span> (독립변수 <span class="math inline">\(X_i\)</span>가 종속변수에 영향을 준다.)</p>
+<p><span class="math display">\[
+T = \dfrac{\hat{\beta_i}}{\hat{\beta_i}의 표준오차}
+\]</span></p>
+</section>
+<section id="변수선택" class="level4">
+<h4 class="anchored" data-anchor-id="변수선택"><strong>변수선택</strong></h4>
+<ul>
+<li><p>독립변수가 여러 개일때 해당된다.</p></li>
+<li><p>단순회귀분석은 변수가 하나이므로 변수 선택의 의미가 없다.</p></li>
+</ul>
+</section>
+<section id="결정계수coefficient-of-determinant" class="level4">
+<h4 class="anchored" data-anchor-id="결정계수coefficient-of-determinant"><strong>결정계수(coefficient of determinant)</strong></h4>
+<ul>
+<li><p>하나의 독립변수가 종속변수 <span class="math inline">\(Y\)</span>를 얼마나 설명해주는가에 대한 비율이다.</p></li>
+<li><p><span class="math inline">\(R^2\)</span>: <span class="math inline">\(0 \sim 1\)</span>로 표현되며, <span class="math inline">\(1\)</span>에 가까울수록 독립변수가 종속변수 <span class="math inline">\(Y\)</span>를 잘 설명한다고 해석한다.</p></li>
+<li><p><strong>자연과학</strong>에서는 실험을 통해서 자료를 수집하며, <span class="math inline">\(0.8\)</span> 이상으로 높은 설명력을 보이며, <strong>사회과학</strong>에서는 관찰을 통해서 자료를 수집하며, <span class="math inline">\(0.3\)</span> 근처의 수치로 나타난다.</p></li>
+</ul>
+</section>
+<section id="가정에-대한-검토" class="level4">
+<h4 class="anchored" data-anchor-id="가정에-대한-검토"><strong>가정에 대한 검토</strong></h4>
+<ul>
+<li><p>회귀모형설정에서 오차에 대한 정규성, 독립성, 등분산성을 가정한다.</p></li>
+<li><p>추정된 회귀식으로부터 잔차(residual)를 계산할 수 있고, 잔차는 오차항을 추정하는데 사용할 수 있다.</p></li>
+</ul>
+<p><span class="math display">\[
+e_i = y_i - \hat{y_i}
+\]</span></p>
+<ul>
+<li><p>잔차를 이용하여 모형이 선형인지 적합성 검정을 할 수 있고, 오차항의 정규분포, 오차항의 등분산성 등을 확인할 수 있다.</p></li>
+<li><p>오차항들은 서로 독립이어야 하므로 자기상관이 있는지 검토해야 한다. <strong>더빈-왓슨</strong>(Durbin-Watson) 검정을 통해 하며, 다음 식의 <span class="math inline">\(d\)</span>의 값이 <span class="math inline">\(0 \sim 4\)</span>의 값을 가진다. <span class="math inline">\(2\)</span>근방이면 자기 상관이 없는 것(독립)이고, <span class="math inline">\(2\)</span> 미만이면 양의 자기상관, <span class="math inline">\(2\)</span> 초과면 음의 자기상관을 갖는다.</p></li>
+</ul>
+<p><span class="math display">\[
+d = \dfrac{\sum\limits_{i=2}^{N}\left(e_i - e_{i-1}\right)^2}{\sum\limits_{i=1}^{N} e^2 _i}
+\]</span></p>
+</section>
+</section>
+<section id="참고자료" class="level3">
+<h3 class="anchored" data-anchor-id="참고자료">참고자료</h3>
+<ul>
+<li><a href="https://wikidocs.net/142640">단순선형회귀분석</a></li>
+</ul>
+</section>
+<section id="심장병-자료" class="level3">
+<h3 class="anchored" data-anchor-id="심장병-자료">심장병 자료</h3>
+<ul>
+<li><span style="color: blue;"><strong>리터 단위로 와인을 마셨을 때, 인구 10만명당 사망자수는 어떻게 될 것인가? 와인소비(wine)가 심장병 사망(death)에 영향을 미치는지 검정하시오.</strong></span> 아래 표는 오래된 자료임.</li>
+</ul>
+<p><img src="table2.png" class="center5-image img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple linear regression analysis</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>heartData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">'heartData.csv'</span>, <span class="at">header =</span> T)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(heartData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   19 obs. of  3 variables:
+ $ Country: chr  "Australias" "Austria" "Belgium/Luxembourg" "Canada" ...
+ $ wine   : num  2.5 3.9 2.9 2.4 2.9 0.8 9.1 0.8 0.7 7.9 ...
+ $ death  : int  211 167 131 191 220 297 71 211 300 107 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> heartData<span class="sc">$</span>wine</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> heartData<span class="sc">$</span>death</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)  <span class="co"># 그래프 상 와인을 많이 마실수록 심장사망률이 낮아지고 있음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation coefficient</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x, y)  <span class="co"># 강한 음의 상관관계가 존재하며, 즉 의미있는 음의 기울기가 나옴</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  x and y
+t = -6.4566, df = 17, p-value = 5.913e-06
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9379588 -0.6296368
+sample estimates:
+       cor 
+-0.8428127 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># regression analysis</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">=</span> <span class="fu">lm</span>(y<span class="sc">~</span>x)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)  <span class="co"># hat y = 260.563 - 22.969 x, 포도주소비량은 심장병 사망에 영향을 미치며, 결정계수 값이 0.7103이므로 포도주 소비량이 심장병 사망에 대해 71% 정도 설명함.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-62.95 -25.91 -12.35  26.97  55.52 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  260.563     13.835  18.833 7.97e-13 ***
+x            -22.969      3.557  -6.457 5.91e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 37.88 on 17 degrees of freedom
+Multiple R-squared:  0.7103,    Adjusted R-squared:  0.6933 
+F-statistic: 41.69 on 1 and 17 DF,  p-value: 5.913e-06</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## normal, equal variance, independent(단순선형회귀 결과의 잔차를 통한 회귀진단)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="dv">1</span>)  <span class="co"># linear, 모든 예측값에서 점선을 기준으로 잔차가 비슷하게 분포해야 모형이 선형성을 만족한다고 할 수 있음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="dv">2</span>)  <span class="co"># normality, 직선 상에 점들이 놓이면 정규분포임</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(model<span class="sc">$</span>residuals) <span class="co"># normality, 귀무가설이 정규분포를 따름, p값에 따라 귀무가설 채택</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.93787, p-value = 0.2413</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="dv">3</span>)  <span class="co"># equal variance, 빨간 실선이 수평선으로 나올수록 오차항의 등분산성 만족</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Durbin-Watson test: Ho: errors are independent</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('lmtest')  # lmtest 패키지가 없으면 주석을 지우고 설치하기</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lmtest' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: zoo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'zoo'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(model)  <span class="co"># DW값이 2근방에 와야함.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Durbin-Watson test
+
+data:  model
+DW = 2.2068, p-value = 0.7181
+alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+</div>
+</div>
+</section>
+</section>
 <section id="다중선형회귀분석" class="level2">
 <h2 class="anchored" data-anchor-id="다중선형회귀분석">다중선형회귀분석</h2>
+<p><strong>다중선형회귀모형</strong>은 독립변수가 여러 개인 선형모형이다. 여러 독립변수들은 서로 독립이며, 독립변수의 숫자가 적을수록, 그리고 종속변수를 잘 설명할수록 좋은 모형이다.</p>
+<section id="단순선형회귀분석-실행-방법-1" class="level3">
+<h3 class="anchored" data-anchor-id="단순선형회귀분석-실행-방법-1">단순선형회귀분석 실행 방법</h3>
+<section id="회귀모형-설정-1" class="level4">
+<h4 class="anchored" data-anchor-id="회귀모형-설정-1"><strong>회귀모형 설정</strong></h4>
+<p><span class="math display">\[
+Y=\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_k x_k + \varepsilon, \ \ \varepsilon \sim N(0,\ \sigma^2 )
+\]</span></p>
+<ul>
+<li>여러 독립변수들이 종속변수에 선형적으로 영향을 미친다. 이때 오차항은 평균이 <span class="math inline">\(0\)</span>, 분산이 <span class="math inline">\(\sigma^2\)</span>이고, 등분산인 정규분포를 따른다고 가정한다.</li>
+</ul>
+</section>
+<section id="회귀계수-추정-1" class="level4">
+<h4 class="anchored" data-anchor-id="회귀계수-추정-1"><strong>회귀계수 추정</strong></h4>
+<ul>
+<li><p>절편과 <span class="math inline">\(k\)</span>개의 기울기: <span class="math inline">\(k+1\)</span>개의 회귀계수 추정</p></li>
+<li><p>최소제곱법(Least Squared Method)으로 추정</p></li>
+</ul>
+<p><span class="math display">\[
+min \left(\sum_{i} \varepsilon^2 _i \right)= \sum_{i=1}^{n} \left(y_i - \beta_0 - \beta_1 X_{1i} + \cdots + \beta_k X_{ki} \right)^2
+\]</span></p>
+</section>
+<section id="회귀모형의-타당성-검정-1" class="level4">
+<h4 class="anchored" data-anchor-id="회귀모형의-타당성-검정-1"><strong>회귀모형의 타당성 검정</strong></h4>
+<ul>
+<li><strong>모형 전체에 대한 적합성 검정</strong>: 적어도 하나의 독립변수가 종속변수에 선형적인 영향을 주는가?</li>
+</ul>
+<p><span class="math inline">\(\ \ \ \ \ \ \ \)</span> <strong>귀무가설</strong>: <span class="math inline">\(\beta_1 = \beta_2 = \cdots = \beta_k =0\)</span> (독립변수 <span class="math inline">\(X_i\)</span>가 종속변수에 영향을 주지 않는다.)</p>
+<p><span class="math inline">\(\ \ \ \ \ \ \ \)</span> <strong>대립가설</strong>: <span class="math inline">\(\beta_i \neq 0\)</span> (적어도 하나의 독립변수는 종속변수에 영향을 준다.)</p>
+<p><span class="math inline">\(\ \ \ \ \ \ \ \)</span> <strong>검정통계량</strong>: 분산분석표에 의한 <span class="math inline">\(F\)</span>통계량 (유의확률이 <span class="math inline">\(0.05\)</span>보다 작으면 이 선형모형은 타당하다.)</p>
+<ul>
+<li><strong>회귀계수에 대한 검정</strong>은 독립변수 하나하나에 대한 종속변수의 영향력을 검정하며, 귀무가설과 대립가설은 다음과 같다. 회귀계수에 대한 검정은 <span class="math inline">\(t\)</span>분포를 이용하므로 <span class="math inline">\(t\)</span>-검정을 통해 가설 검정이 가능하다.</li>
+</ul>
+<p><span class="math inline">\(\ \ \ \ \ \ \ \)</span> <strong>귀무가설</strong>: <span class="math inline">\(\beta_i  =0\)</span> (독립변수 <span class="math inline">\(X_i\)</span>가 종속변수에 영향을 주지 않는다.)</p>
+<p><span class="math inline">\(\ \ \ \ \ \ \ \)</span> <strong>대립가설</strong>: <span class="math inline">\(\beta_i \neq 0\)</span> (독립변수 <span class="math inline">\(X_i\)</span>가 종속변수에 영향을 준다.)</p>
+</section>
+<section id="변수선택-1" class="level4">
+<h4 class="anchored" data-anchor-id="변수선택-1"><strong>변수선택</strong></h4>
+<ul>
+<li><p>독립변수가 여러 개인 경우 독립변수는 종속변수에 유의한 영향력이 있는 변수로 구성하는 것이 효과적이다.</p></li>
+<li><p>독립변수들끼리 서로 독립이라고 가정한다.</p></li>
+<li><p><strong>다중공선성</strong>(multicollinearity): 독립변수들끼리 상관이 높아, 회귀 계수의 분산을 크게 해서 추정 회귀 계수를 믿을 수 없게 되는 문제가 발생하는 것을 말한다. 모형이 이상한 방향으로 나타나기도 한다.</p></li>
+<li><p>유의하지 않은 독립변수를 제거한다.</p></li>
+<li><p><strong>전진 선택법</strong>(forward selection): 종속변수에 영향을 줄 것으로 생각되는 독립변수들 중 가장 크게 영향을 주는 변수를 하나씩 선택하여 모형에 추가하는 방식이다.(단점: 한번 추가하면 다시는 모형에서 변수를 빼지 않음)</p></li>
+<li><p><strong>후진 제거법</strong>(backward elimination): 다중선형회귀모형에 모든 독립변수를 넣고, 가장 영향력이 적은 독립변수를 선택하여 유의성을 판단하여 유의하지 안흐면 제거한다.(단점: 한번 제거하면 다시는 모형에서 변수를 넣지 않음)</p></li>
+<li><p><strong>stepwise 방법</strong>: 전진 선택법과 후진 제거법을 혼합하여, 독립변수를 한번에 하나씩 추가 또는 제거하는 방식이다.</p></li>
+</ul>
+</section>
+<section id="결정계수coefficient-of-determinant-1" class="level4">
+<h4 class="anchored" data-anchor-id="결정계수coefficient-of-determinant-1"><strong>결정계수(coefficient of determinant)</strong></h4>
+<ul>
+<li><p>종속변수의 총변동량 중 독립변수에 의해 설명되는 비율</p></li>
+<li><p><span class="math inline">\(R^2=\dfrac{SS_R}{SS_T}\)</span>: <span class="math inline">\(0 \sim 1\)</span>로 표현되며, <span class="math inline">\(1\)</span>에 가까울수록 독립변수들의 설명력이 좋다.</p></li>
+<li><p><strong>다중상관계수</strong>(multiple correlation coefficient): <span class="math inline">\(Y\)</span>와 예측된 <span class="math inline">\(\hat{T}\)</span> 사이의 피어슨 상관계수임. 결정계수의 양의 제곱근으로 계산되며 <span class="math inline">\(1\)</span>에 가까울수록 추정된 회귀식으로 종속변수를 잘 추측할 수 있음을 의미한다.</p></li>
+</ul>
+</section>
+<section id="가정에-대한-검토-1" class="level4">
+<h4 class="anchored" data-anchor-id="가정에-대한-검토-1"><strong>가정에 대한 검토</strong></h4>
+<ul>
+<li><p>회귀모형설정에서 오차에 대한 정규성, 독립성, 등분산성을 가정한다.</p></li>
+<li><p>추정된 회귀식으로부터 <strong>잔차</strong>(residual)를 계산할 수 있고, 잔차는 오차항을 추정하는데 활용한다.(모형이 선형모형으로 적절한가, 오차항이 정규분포를 따르는가, 오차항이 등분산을 따르는가, 오차항들이 자기상관(autocorrelation)이 없는가)</p></li>
+<li><p>다중공선성 검토: <strong>분산팽창계수</strong>(Variance Inflation Factor)를 계산하여 <span class="math inline">\(10\)</span> 이하이면 다중공선성이 없다고 판단한다.</p></li>
+</ul>
+</section>
+<section id="더미변수-독립변수의-처리" class="level4">
+<h4 class="anchored" data-anchor-id="더미변수-독립변수의-처리"><strong>더미변수 독립변수의 처리</strong></h4>
+<ul>
+<li>명목이나 순서척도변수를 독립변수로 넣고자 할 경우, 그 변수를 더미변수 형태로 변환해서 사용한다. 예를 들어 성별에서 남자를 <span class="math inline">\(0\)</span>, 여자를 <span class="math inline">\(1\)</span>로 놓거나, 거주지역 중 농촌, 도농복합, 도시를 <span class="math inline">\(00\)</span>, <span class="math inline">\(10\)</span>, <span class="math inline">\(01\)</span>으로 놓을 수 있다.</li>
+</ul>
+</section>
+</section>
+<section id="cars93-데이터셋에서의-예시" class="level3">
+<h3 class="anchored" data-anchor-id="cars93-데이터셋에서의-예시">Cars93 데이터셋에서의 예시</h3>
+<ul>
+<li><span style="color: blue;"><strong>종속변수: 가격</strong>(Price), <span class="math inline">\(\ \ \)</span><strong>독립변수: 연비</strong>(MPG.city), <strong>엔진크기</strong>(Enginesize), <strong>분당 회전수</strong>(RPM), <strong>연료탱크 용량</strong>(Fuel.tank.capacity), <strong>차량 중량</strong>(Weight)</span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple linear regression</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Cars93)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   93 obs. of  27 variables:
+ $ Manufacturer      : Factor w/ 32 levels "Acura","Audi",..: 1 1 2 2 3 4 4 4 4 5 ...
+ $ Model             : Factor w/ 93 levels "100","190E","240",..: 49 56 9 1 6 24 54 74 73 35 ...
+ $ Type              : Factor w/ 6 levels "Compact","Large",..: 4 3 1 3 3 3 2 2 3 2 ...
+ $ Min.Price         : num  12.9 29.2 25.9 30.8 23.7 14.2 19.9 22.6 26.3 33 ...
+ $ Price             : num  15.9 33.9 29.1 37.7 30 15.7 20.8 23.7 26.3 34.7 ...
+ $ Max.Price         : num  18.8 38.7 32.3 44.6 36.2 17.3 21.7 24.9 26.3 36.3 ...
+ $ MPG.city          : int  25 18 20 19 22 22 19 16 19 16 ...
+ $ MPG.highway       : int  31 25 26 26 30 31 28 25 27 25 ...
+ $ AirBags           : Factor w/ 3 levels "Driver &amp; Passenger",..: 3 1 2 1 2 2 2 2 2 2 ...
+ $ DriveTrain        : Factor w/ 3 levels "4WD","Front",..: 2 2 2 2 3 2 2 3 2 2 ...
+ $ Cylinders         : Factor w/ 6 levels "3","4","5","6",..: 2 4 4 4 2 2 4 4 4 5 ...
+ $ EngineSize        : num  1.8 3.2 2.8 2.8 3.5 2.2 3.8 5.7 3.8 4.9 ...
+ $ Horsepower        : int  140 200 172 172 208 110 170 180 170 200 ...
+ $ RPM               : int  6300 5500 5500 5500 5700 5200 4800 4000 4800 4100 ...
+ $ Rev.per.mile      : int  2890 2335 2280 2535 2545 2565 1570 1320 1690 1510 ...
+ $ Man.trans.avail   : Factor w/ 2 levels "No","Yes": 2 2 2 2 2 1 1 1 1 1 ...
+ $ Fuel.tank.capacity: num  13.2 18 16.9 21.1 21.1 16.4 18 23 18.8 18 ...
+ $ Passengers        : int  5 5 5 6 4 6 6 6 5 6 ...
+ $ Length            : int  177 195 180 193 186 189 200 216 198 206 ...
+ $ Wheelbase         : int  102 115 102 106 109 105 111 116 108 114 ...
+ $ Width             : int  68 71 67 70 69 69 74 78 73 73 ...
+ $ Turn.circle       : int  37 38 37 37 39 41 42 45 41 43 ...
+ $ Rear.seat.room    : num  26.5 30 28 31 27 28 30.5 30.5 26.5 35 ...
+ $ Luggage.room      : int  11 15 14 17 13 16 17 21 14 18 ...
+ $ Weight            : int  2705 3560 3375 3405 3640 2880 3470 4105 3495 3620 ...
+ $ Origin            : Factor w/ 2 levels "USA","non-USA": 2 2 2 2 2 1 1 1 1 1 ...
+ $ Make              : Factor w/ 93 levels "Acura Integra",..: 1 2 4 3 5 6 7 9 8 10 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> Cars93[, <span class="fu">c</span>(<span class="st">'Price'</span>,<span class="st">'MPG.city'</span>,<span class="st">'EngineSize'</span>,<span class="st">'RPM'</span>,<span class="st">'Fuel.tank.capacity'</span>,<span class="st">'Weight'</span>)]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Price MPG.city EngineSize  RPM Fuel.tank.capacity Weight
+1  15.9       25        1.8 6300               13.2   2705
+2  33.9       18        3.2 5500               18.0   3560
+3  29.1       20        2.8 5500               16.9   3375
+4  37.7       19        2.8 5500               21.1   3405
+5  30.0       22        3.5 5700               21.1   3640
+6  15.7       22        2.2 5200               16.4   2880</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## scatter plot(산점도 행렬)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## multiple linear regression analysis</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">lm</span>(Price<span class="sc">~</span>., <span class="at">data =</span> data)  <span class="co"># Price~.에서 .의 의미는 Price를 뺀 나머지를 독립변수로 설정</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)  <span class="co">#검정결과 EngineSize와 RPM이 가격에 영향을 줌</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Price ~ ., data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-11.344  -3.552  -0.556   2.252  35.390 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        -38.107015  14.098134  -2.703  0.00826 ** 
+MPG.city            -0.290017   0.231941  -1.250  0.21451    
+EngineSize           4.303060   1.329544   3.236  0.00171 ** 
+RPM                  0.007066   0.001378   5.127 1.76e-06 ***
+Fuel.tank.capacity   0.111959   0.481680   0.232  0.81675    
+Weight               0.004375   0.003386   1.292  0.19973    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.508 on 87 degrees of freedom
+Multiple R-squared:  0.5707,    Adjusted R-squared:  0.546 
+F-statistic: 23.13 on 5 and 87 DF,  p-value: 1.053e-14</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## hat price = -38.10 - 0.29 * MPG.city + 4.30 * Enginsize</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="do">##             + 0.007* RPM + 0.11 * Fuel.tank.capacity</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="do">##             + 0.004 * Weight</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="do">## error  linearity normality, equal variance  independence multicollinearity</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="dv">1</span>)  <span class="co"># linearity(점선을 기준으로 특별한 패턴없이 움직여야 함)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="dv">2</span>)  <span class="co"># normality(데이터가 직선 상에 놓여야 함)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(fit<span class="sc">$</span>residuals)  <span class="co"># 검정 결과 정규분포가 아님, 그런데 대표본은 정규성 가정이 가능함</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  fit$residuals
+W = 0.8608, p-value = 7.139e-08</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="dv">3</span>)  <span class="co"># equal variance(빨간선이 수평인 직선으로 나와야 함)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## multicollineariy : VIF &gt; 10 </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('car')  # car 패키지가 없으면 주석기호를 지우고 설치하기</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'car' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: carData</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(fit)  <span class="co"># 10을 넘은 값이 없기에 다중공선성은 없음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          MPG.city         EngineSize                RPM Fuel.tank.capacity 
+          3.690362           4.131796           1.468805           5.419632 
+            Weight 
+          8.666616 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variable selection</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="do">## forward selection(전진선택법)</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>fit.con <span class="ot">=</span> <span class="fu">lm</span>(Price<span class="sc">~</span> <span class="dv">1</span>, <span class="at">data=</span>data)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>fit.forward <span class="ot">=</span> <span class="fu">step</span>(fit.con, <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower=</span>fit.con, <span class="at">upper=</span>fit), <span class="at">direction=</span><span class="st">'forward'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=422.83
+Price ~ 1
+
+                     Df Sum of Sq    RSS    AIC
++ Weight              1    3595.3 4988.7 374.36
++ Fuel.tank.capacity  1    3294.2 5289.9 379.81
++ EngineSize          1    3063.8 5520.2 383.77
++ MPG.city            1    3034.5 5549.5 384.26
+&lt;none&gt;                            8584.0 422.83
++ RPM                 1       0.2 8583.8 424.83
+
+Step:  AIC=374.36
+Price ~ Weight
+
+                     Df Sum of Sq    RSS    AIC
++ RPM                 1    777.41 4211.3 360.60
+&lt;none&gt;                            4988.7 374.36
++ EngineSize          1     76.62 4912.1 374.92
++ Fuel.tank.capacity  1     71.50 4917.2 375.01
++ MPG.city            1     71.00 4917.7 375.02
+
+Step:  AIC=360.6
+Price ~ Weight + RPM
+
+                     Df Sum of Sq    RSS    AIC
++ EngineSize          1    446.63 3764.6 352.18
+&lt;none&gt;                            4211.3 360.60
++ MPG.city            1     73.18 4138.1 360.97
++ Fuel.tank.capacity  1     26.05 4185.2 362.02
+
+Step:  AIC=352.18
+Price ~ Weight + RPM + EngineSize
+
+                     Df Sum of Sq    RSS    AIC
+&lt;none&gt;                            3764.6 352.18
++ MPG.city            1    77.370 3687.3 352.24
++ Fuel.tank.capacity  1    13.436 3751.2 353.84</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.forward)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Price ~ Weight + RPM + EngineSize, data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-10.511  -3.806  -0.300   1.447  35.255 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -51.793292   9.106309  -5.688 1.62e-07 ***
+Weight        0.007271   0.002157   3.372  0.00111 ** 
+RPM           0.007096   0.001363   5.208 1.22e-06 ***
+EngineSize    4.305387   1.324961   3.249  0.00163 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.504 on 89 degrees of freedom
+Multiple R-squared:  0.5614,    Adjusted R-squared:  0.5467 
+F-statistic: 37.98 on 3 and 89 DF,  p-value: 6.746e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="do">## backward elimination(후진제거법)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>fit.con <span class="ot">=</span> <span class="fu">lm</span>(Price<span class="sc">~</span> <span class="dv">1</span>, <span class="at">data=</span>data) <span class="co"># 상수항만 들어있는 항을 만듦</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>fit.backward <span class="ot">=</span> <span class="fu">step</span>(fit, <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower=</span>fit.con, <span class="at">upper=</span>fit), <span class="at">direction =</span> <span class="st">'backward'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=354.19
+Price ~ MPG.city + EngineSize + RPM + Fuel.tank.capacity + Weight
+
+                     Df Sum of Sq    RSS    AIC
+- Fuel.tank.capacity  1      2.29 3687.3 352.24
+- MPG.city            1     66.22 3751.2 353.84
+- Weight              1     70.72 3755.7 353.95
+&lt;none&gt;                            3685.0 354.19
+- EngineSize          1    443.68 4128.7 362.76
+- RPM                 1   1113.58 4798.6 376.74
+
+Step:  AIC=352.24
+Price ~ MPG.city + EngineSize + RPM + Weight
+
+             Df Sum of Sq    RSS    AIC
+- MPG.city    1     77.37 3764.6 352.18
+&lt;none&gt;                    3687.3 352.24
+- Weight      1    122.89 3810.2 353.29
+- EngineSize  1    450.82 4138.1 360.97
+- RPM         1   1152.50 4839.8 375.54
+
+Step:  AIC=352.18
+Price ~ EngineSize + RPM + Weight
+
+             Df Sum of Sq    RSS    AIC
+&lt;none&gt;                    3764.6 352.18
+- EngineSize  1    446.63 4211.3 360.60
+- Weight      1    480.84 4245.5 361.35
+- RPM         1   1147.43 4912.1 374.92</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.backward)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Price ~ EngineSize + RPM + Weight, data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-10.511  -3.806  -0.300   1.447  35.255 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -51.793292   9.106309  -5.688 1.62e-07 ***
+EngineSize    4.305387   1.324961   3.249  0.00163 ** 
+RPM           0.007096   0.001363   5.208 1.22e-06 ***
+Weight        0.007271   0.002157   3.372  0.00111 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.504 on 89 degrees of freedom
+Multiple R-squared:  0.5614,    Adjusted R-squared:  0.5467 
+F-statistic: 37.98 on 3 and 89 DF,  p-value: 6.746e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="do">## stepwise </span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>fit.con <span class="ot">=</span> <span class="fu">lm</span>(Price<span class="sc">~</span> <span class="dv">1</span>, <span class="at">data=</span>data)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>fit.stepwise <span class="ot">=</span> <span class="fu">step</span>(fit.con, <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower=</span>fit.con, <span class="at">upper=</span>fit), <span class="at">direction =</span> <span class="st">'both'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=422.83
+Price ~ 1
+
+                     Df Sum of Sq    RSS    AIC
++ Weight              1    3595.3 4988.7 374.36
++ Fuel.tank.capacity  1    3294.2 5289.9 379.81
++ EngineSize          1    3063.8 5520.2 383.77
++ MPG.city            1    3034.5 5549.5 384.26
+&lt;none&gt;                            8584.0 422.83
++ RPM                 1       0.2 8583.8 424.83
+
+Step:  AIC=374.36
+Price ~ Weight
+
+                     Df Sum of Sq    RSS    AIC
++ RPM                 1     777.4 4211.3 360.60
+&lt;none&gt;                            4988.7 374.36
++ EngineSize          1      76.6 4912.1 374.92
++ Fuel.tank.capacity  1      71.5 4917.2 375.01
++ MPG.city            1      71.0 4917.7 375.02
+- Weight              1    3595.3 8584.0 422.83
+
+Step:  AIC=360.6
+Price ~ Weight + RPM
+
+                     Df Sum of Sq    RSS    AIC
++ EngineSize          1     446.6 3764.6 352.18
+&lt;none&gt;                            4211.3 360.60
++ MPG.city            1      73.2 4138.1 360.97
++ Fuel.tank.capacity  1      26.0 4185.2 362.02
+- RPM                 1     777.4 4988.7 374.36
+- Weight              1    4372.5 8583.8 424.83
+
+Step:  AIC=352.18
+Price ~ Weight + RPM + EngineSize
+
+                     Df Sum of Sq    RSS    AIC
+&lt;none&gt;                            3764.6 352.18
++ MPG.city            1     77.37 3687.3 352.24
++ Fuel.tank.capacity  1     13.44 3751.2 353.84
+- EngineSize          1    446.63 4211.3 360.60
+- Weight              1    480.84 4245.5 361.35
+- RPM                 1   1147.43 4912.1 374.92</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.stepwise )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Price ~ Weight + RPM + EngineSize, data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-10.511  -3.806  -0.300   1.447  35.255 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -51.793292   9.106309  -5.688 1.62e-07 ***
+Weight        0.007271   0.002157   3.372  0.00111 ** 
+RPM           0.007096   0.001363   5.208 1.22e-06 ***
+EngineSize    4.305387   1.324961   3.249  0.00163 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.504 on 89 degrees of freedom
+Multiple R-squared:  0.5614,    Adjusted R-squared:  0.5467 
+F-statistic: 37.98 on 3 and 89 DF,  p-value: 6.746e-16</code></pre>
+</div>
+</div>
+</section>
 <section id="광고비-및-설비투자와-매출액-연관성-비교-자료" class="level3">
 <h3 class="anchored" data-anchor-id="광고비-및-설비투자와-매출액-연관성-비교-자료">광고비 및 설비투자와 매출액 연관성 비교 자료</h3>
 <ul>
-<li>다음 표는 광고비와 설비투자가 매출액에 어떤 영향을 미치는지 보여주고 있다.</li>
+<li><span style="color: blue;"><strong>다음 표는 광고비와 설비투자가 매출액에 어떤 영향을 미치는지 보여주고 있다.</strong></span></li>
 </ul>
 <div class="my-table2">
 <table class="table">
@@ -295,13 +929,13 @@ window.Quarto = {
 </tbody>
 </table>
 </div>
-<p>매출액(<span class="math inline">\(Y\)</span>)에 대한 광고비(<span class="math inline">\(X_{1}\)</span>)와 설비투자(<span class="math inline">\(X_{2}\)</span>)의 다중선형회귀모형을 구하시오.</p>
+<p><span style="color: blue;"><strong>매출액(<span class="math inline">\(Y\)</span>)에 대한 광고비(<span class="math inline">\(X_{1}\)</span>)와 설비투자(<span class="math inline">\(X_{2}\)</span>)의 다중선형회귀모형을 구하시오.</strong></span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">2</span>,<span class="fl">1.9</span>,<span class="dv">4</span>,<span class="fl">5.6</span>,<span class="fl">6.1</span>,<span class="fl">6.2</span>,<span class="dv">7</span>,<span class="fl">7.2</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">16</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">26</span>,<span class="dv">30</span>,<span class="dv">32</span>,<span class="dv">31</span>,<span class="dv">34</span>), <span class="at">nrow=</span><span class="dv">10</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(x)<span class="ot">=</span><span class="fu">c</span>(<span class="st">"광고비"</span>,<span class="st">"설비투자"</span>,<span class="st">"매출액"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">data.frame</span>(x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(x)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">2</span>,<span class="fl">1.9</span>,<span class="dv">4</span>,<span class="fl">5.6</span>,<span class="fl">6.1</span>,<span class="fl">6.2</span>,<span class="dv">7</span>,<span class="fl">7.2</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">16</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">26</span>,<span class="dv">30</span>,<span class="dv">32</span>,<span class="dv">31</span>,<span class="dv">34</span>), <span class="at">nrow=</span><span class="dv">10</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(x)<span class="ot">=</span><span class="fu">c</span>(<span class="st">"광고비"</span>,<span class="st">"설비투자"</span>,<span class="st">"매출액"</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">data.frame</span>(x)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(x)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   광고비 설비투자 매출액
 1       5      2.0     16
@@ -315,8 +949,8 @@ window.Quarto = {
 9      14      8.0     31
 10     15      9.0     34</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(매출액 <span class="sc">~</span> 광고비 <span class="sc">+</span> 설비투자)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(매출액 <span class="sc">~</span> 광고비 <span class="sc">+</span> 설비투자)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -326,7 +960,7 @@ Coefficients:
 (Intercept)       광고비     설비투자  
       6.099        2.257       -0.643  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -338,7 +972,7 @@ Residuals  7  11.17    1.60
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -360,23 +994,24 @@ Residual standard error: 1.263 on 7 degrees of freedom
 Multiple R-squared:  0.9709,    Adjusted R-squared:  0.9626 
 F-statistic: 116.8 on 2 and 7 DF,  p-value: 4.195e-06</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                2.5 %    97.5 %
 (Intercept)  2.878488 9.3186072
 광고비       1.299484 3.2138731
 설비투자    -2.041147 0.7550655</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit<span class="sc">$</span>fitted, fit<span class="sc">$</span>residuals, <span class="at">xlab=</span><span class="st">"예측치 매출액"</span>, <span class="at">ylab=</span><span class="st">"잔차"</span>, <span class="at">main=</span><span class="st">"잔차그림"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit<span class="sc">$</span>fitted, fit<span class="sc">$</span>residuals, <span class="at">xlab=</span><span class="st">"예측치 매출액"</span>, <span class="at">ylab=</span><span class="st">"잔차"</span>, <span class="at">main=</span><span class="st">"잔차그림"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+
 
 
 </section>
