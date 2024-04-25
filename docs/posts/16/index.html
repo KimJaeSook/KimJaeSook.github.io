@@ -104,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -185,11 +214,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#참고자료" id="toc-참고자료" class="nav-link active" data-scroll-target="#참고자료">참고자료</a></li>
-  <li><a href="#예제" id="toc-예제" class="nav-link" data-scroll-target="#예제">예제</a>
+  <li><a href="#상관분석-모수적-상관분석" id="toc-상관분석-모수적-상관분석" class="nav-link active" data-scroll-target="#상관분석-모수적-상관분석">상관분석: 모수적 상관분석</a>
   <ul class="collapse">
-  <li><a href="#학생들의-대학-합격-여부-예측" id="toc-학생들의-대학-합격-여부-예측" class="nav-link" data-scroll-target="#학생들의-대학-합격-여부-예측">학생들의 대학 합격 여부 예측</a></li>
-  <li><a href="#은행에서-대출-승인-여부-예측" id="toc-은행에서-대출-승인-여부-예측" class="nav-link" data-scroll-target="#은행에서-대출-승인-여부-예측">은행에서 대출 승인 여부 예측</a></li>
+  <li><a href="#pearson-상관분석" id="toc-pearson-상관분석" class="nav-link" data-scroll-target="#pearson-상관분석">Pearson 상관분석</a></li>
+  </ul></li>
+  <li><a href="#상관분석-비모수적-상관분석" id="toc-상관분석-비모수적-상관분석" class="nav-link" data-scroll-target="#상관분석-비모수적-상관분석">상관분석: 비모수적 상관분석</a>
+  <ul class="collapse">
+  <li><a href="#spearman의-순위상관계수" id="toc-spearman의-순위상관계수" class="nav-link" data-scroll-target="#spearman의-순위상관계수">Spearman의 순위상관계수</a></li>
+  <li><a href="#kendalls-tau켄달의-순위상관계수" id="toc-kendalls-tau켄달의-순위상관계수" class="nav-link" data-scroll-target="#kendalls-tau켄달의-순위상관계수">Kendall’s Tau(켄달의 순위상관계수)</a></li>
+  </ul></li>
+  <li><a href="#r기초-실습하기" id="toc-r기초-실습하기" class="nav-link" data-scroll-target="#r기초-실습하기">[R기초] 실습하기</a>
+  <ul class="collapse">
+  <li><a href="#선형적-자료에-대한-상관분석" id="toc-선형적-자료에-대한-상관분석" class="nav-link" data-scroll-target="#선형적-자료에-대한-상관분석"><span style="color: blue;">선형적 자료에 대한 상관분석</span></a></li>
+  <li><a href="#비선형적-자료에-대한-상관분석" id="toc-비선형적-자료에-대한-상관분석" class="nav-link" data-scroll-target="#비선형적-자료에-대한-상관분석"><span style="color: blue;">비선형적 자료에 대한 상관분석</span></a></li>
+  <li><a href="#서로-독립인-두-변수의-상관분석" id="toc-서로-독립인-두-변수의-상관분석" class="nav-link" data-scroll-target="#서로-독립인-두-변수의-상관분석"><span style="color: blue;">서로 독립인 두 변수의 상관분석</span></a></li>
+  <li><a href="#cars93-데이터셋에서-차량중량과-가격-간의-상관관계-검정" id="toc-cars93-데이터셋에서-차량중량과-가격-간의-상관관계-검정" class="nav-link" data-scroll-target="#cars93-데이터셋에서-차량중량과-가격-간의-상관관계-검정"><span style="color: blue;">Cars93 데이터셋에서 차량중량과 가격 간의 상관관계 검정</span></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -201,113 +240,344 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p><strong>상관분석</strong>(correlation analysis)은 내용작성 중.</p>
-<section id="참고자료" class="level1">
-<h1>참고자료</h1>
+<p>두개의 변량에 대해 서로 상관되는 인자항목들이 어떤 관련성이 있고, 그 관련성이 어느 정도인지를 수치적으로 분석하는 것을 <strong>상관분석</strong>(correlation analysis)이라 하며, 실제 관측된 값과 모형의 결과를 서로 비교할 때 상관분석을 통하여 모형의 적합성 정도를 표현하기도 한다. 상관계수는 pearson, spearman, kendall의 3가지 상관계수가 있으며, <span class="math inline">\(-1 \sim 1\)</span>의 값을 가지는데 두 변수가 음의 상관성을 가질수록 <span class="math inline">\(-1\)</span>, 양의 상관성을 가질수록 <span class="math inline">\(1\)</span>, 상관성을 가지지 않을수록 <span class="math inline">\(0\)</span>과 가깝게 나타난다.</p>
 <ul>
-<li><p><a href="https://losskatsu.github.io/statistics/logistic-regression/#">로지스틱회귀분석1</a></p></li>
-<li><p><a href="https://datascienceschool.net/03%20machine%20learning/10.01%20%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1%20%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D.html#">로지스틱회귀분석2</a></p></li>
-<li><p><a href="https://blog.naver.com/ashley3602/223198628264">로지스틱회귀분석3</a></p></li>
-<li><p><a href="https://blog.naver.com/kunyoung90/223238314507">로지스틱회귀분석4</a></p></li>
+<li>R 내장함수 <strong>corr()</strong>로 pearson, spearman, kendall 상관계수를 구할 수 있다. corr()의 파라미터 method에 아무것도 지정하지 않으면, pearman, ’spearman’으로 지정하면 spearman, ’kendall’로 지정하면 kendall 상관계수가 출력된다.</li>
+</ul>
+<section id="상관분석-모수적-상관분석" class="level1">
+<h1>상관분석: 모수적 상관분석</h1>
+<section id="pearson-상관분석" class="level2">
+<h2 class="anchored" data-anchor-id="pearson-상관분석">Pearson 상관분석</h2>
+<ul>
+<li>두 변수가 모두 수치형 변수인 경우 일반적으로 pearson의 상관계수를 계산한다.</li>
+<li>pearson 상관계수는 대표본이거나 각 변수의 모집단분포가 정규분포인 경우, <span class="math inline">\((x_i ,\ y_i)\)</span>와 같은 순서쌍으로 주어진다. 모집단의 상관계수는 모수로서 일반적으로 알려져 있지 않다.</li>
+<li>모집단으로부터 랜덤하게 <span class="math inline">\(n\)</span>개를 표본으로 뽑은 경우, <span class="math inline">\((x_1 ,\ y_1)\)</span>, <span class="math inline">\(\cdots\)</span> , <span class="math inline">\((x_n ,\ y_n)\)</span>의 표본의 순서쌍에서 <strong>표본상관계수</strong>를 계산할 수 있다.<small>(<span class="math inline">\(S_{x}\)</span>: <span class="math inline">\(X\)</span>의 표준편차, <span class="math inline">\(S_{y}\)</span>: <span class="math inline">\(Y\)</span>의 표준편차, <span class="math inline">\(S_{xy}\)</span>: <span class="math inline">\(X\)</span>와 <span class="math inline">\(Y\)</span>의 공분산)</small></li>
+</ul>
+<p><span class="math display">\[
+r=\dfrac{S_{xy}}{S_{x}S_{y}}
+\]</span></p>
+<ul>
+<li><p>표본상관계수 <span class="math inline">\(r\)</span>을 가지고 모상관계수 <span class="math inline">\(\rho\)</span>에 대한 가설검정을 할 수 있다.</p></li>
+<li><p><strong>귀무가설</strong> <span class="math inline">\(~ ~H_0 : \rho=0\)</span> (모집단에서는 두 변수 간에 상관관계가 없다.)</p></li>
+<li><p><strong>대립가설</strong></p></li>
+</ul>
+<p><span class="math inline">\(~ ~ ~ ~ ~ ~ ~H_1 : \rho\neq0\)</span> (모집단에서는 두 변수 간에 상관관계가 있다.)[양측검정]</p>
+<p><span class="math inline">\(~ ~ ~ ~ ~ ~ ~H_1 : \rho&gt;0\)</span> (모집단에서는 두 변수 간에 양의 상관관계가 있다.)[단측검정]</p>
+<p><span class="math inline">\(~ ~ ~ ~ ~ ~ ~H_1 : \rho&lt;0\)</span> (모집단에서는 두 변수 간에 음의 상관관계가 있다.)[단측검정]</p>
+<ul>
+<li>가설검정을 위한 검정통계량은 다음과 같다.</li>
+</ul>
+<p><span class="math display">\[
+T=\dfrac{r}{\sqrt{\dfrac{1-r^2}{n-2}}} \sim t(n-2)
+\]</span></p>
+<ul>
+<li><p>자유도가 <span class="math inline">\(n-2\)</span>인 <span class="math inline">\(t\)</span>분포를 따르므로 표본상관계수에 대해서 <span class="math inline">\(t\)</span>검정을 한다.</p></li>
+<li><p><span class="math inline">\(t\)</span>분포를 이용하여 유의확률 <span class="math inline">\(p\)</span>를 계산했을 대 유의수준 <span class="math inline">\(\alpha\)</span>보다 작으면 귀무가설을 기각한다.</p></li>
 </ul>
 </section>
-<section id="예제" class="level1">
-<h1>예제</h1>
-<section id="학생들의-대학-합격-여부-예측" class="level2">
-<h2 class="anchored" data-anchor-id="학생들의-대학-합격-여부-예측">학생들의 대학 합격 여부 예측</h2>
+</section>
+<section id="상관분석-비모수적-상관분석" class="level1">
+<h1>상관분석: 비모수적 상관분석</h1>
+<section id="spearman의-순위상관계수" class="level2">
+<h2 class="anchored" data-anchor-id="spearman의-순위상관계수">Spearman의 순위상관계수</h2>
 <ul>
-<li>학생들의 대학 합격 여부를 예측하는 로지스틱 회귀분석을 가정해보자. 여기서 종속 변수는 합격 여부(합격=1, 불합격=0)이고, 독립 변수로는 시험 점수(GRE), 학점(GPA), 그리고 추천서의 수(Recommendations)를 사용한다.<br>
-<span style="color: grey;"><small>(아래 코드에서 생성한 가상데이터가 통계적으로 유의미한 결과를 가져오지 않을 수 있음.)</small></span></li>
+<li><p>비모수적 상관계수이다.</p></li>
+<li><p>소표본이며 변수의 분포가 정규분포라고 할 수 없을 때, 각 변수의 순위를 가지고 순위에 대한 pearson 상관계수를 구하는 공식으로 계산한다.</p></li>
+<li><p>유의성 검정은 pearson의 상관과는 달리 비모수적 검정에 의해 실시한다.</p></li>
 </ul>
+</section>
+<section id="kendalls-tau켄달의-순위상관계수" class="level2">
+<h2 class="anchored" data-anchor-id="kendalls-tau켄달의-순위상관계수">Kendall’s Tau(켄달의 순위상관계수)</h2>
+<ul>
+<li><p>spearman 순위상관계수처럼 두 변수 사이의 연관성을 나타내는 비모수적 방법이다.</p></li>
+<li><p><span class="math inline">\((x_1 ,\ y_1)\)</span>, <span class="math inline">\(\cdots\)</span> , <span class="math inline">\((x_n ,\ y_n)\)</span>의 순서쌍에서 모든 <span class="math inline">\(i&lt;j\)</span>에 대해 <span class="math inline">\(P=(x_i - x_j)(y_i - y_j)&gt;0\)</span>인 쌍의 개수, <span class="math inline">\(Q=(x_i - x_j)(y_i - y_j)&lt;0\)</span>인 쌍의 개수일 때, 켄달의 타우는 다음 식과 같다.</p></li>
+</ul>
+<p><span class="math display">\[
+Kendall's \ \tau =\dfrac{P-Q}{P+Q}
+\]</span></p>
+</section>
+</section>
+<section id="r기초-실습하기" class="level1">
+<h1>[R기초] 실습하기</h1>
+<section id="선형적-자료에-대한-상관분석" class="level2">
+<h2 class="anchored" data-anchor-id="선형적-자료에-대한-상관분석"><span style="color: blue;">선형적 자료에 대한 상관분석</span></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터 준비</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">admit =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="co"># 합격 여부</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gre =</span> <span class="fu">c</span>(<span class="dv">600</span>, <span class="dv">700</span>, <span class="dv">700</span>, <span class="dv">500</span>, <span class="dv">660</span>, <span class="dv">680</span>), <span class="co"># GRE 점수</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">gpa =</span> <span class="fu">c</span>(<span class="fl">3.3</span>, <span class="fl">3.7</span>, <span class="fl">3.9</span>, <span class="fl">2.5</span>, <span class="fl">3.3</span>, <span class="fl">3.8</span>), <span class="co"># GPA</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">recommendations =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>) <span class="co"># 추천서의 수</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 로지스틱 회귀 모델 적합</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(admit <span class="sc">~</span> gre <span class="sc">+</span> gpa <span class="sc">+</span> recommendations, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## correlation analaysis</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. linear data </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>) ; x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+[26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)  <span class="co"># 초기치 지정하여 동일한 값 유지</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">50</span>) ; y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  0.3735462  2.1836433  2.1643714  5.5952808  5.3295078  5.1795316
+ [7]  7.4874291  8.7383247  9.5757814  9.6946116 12.5117812 12.3898432
+[13] 12.3787594 11.7853001 16.1249309 15.9550664 16.9838097 18.9438362
+[19] 19.8212212 20.5939013 21.9189774 22.7821363 23.0745650 22.0106483
+[25] 25.6198257 25.9438713 26.8442045 26.5292476 28.5218499 30.4179416
+[31] 32.3586796 31.8972123 33.3876716 33.9461950 33.6229404 35.5850054
+[37] 36.6057100 37.9406866 40.1000254 40.7631757 40.8354764 41.7466383
+[43] 43.6969634 44.5566632 44.3112443 45.2925048 47.3645820 48.7685329
+[49] 48.8876538 50.8811077</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">###1) pearson correlation coefficient</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)  <span class="co">#상관계수 구하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9983757</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## significant test(유의성 검정)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x, y)  <span class="co"># HO: x and y are independent, 검정결과 귀무가설 기각</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  x and y
+t = 121.41, df = 48, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9971245 0.9990827
+sample estimates:
+      cor 
+0.9983757 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">###2) spearman correlation coefficient</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">'spearman'</span>)  <span class="co">#상관계수 구하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9977911</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x, y, <span class="at">method =</span> <span class="st">'spearman'</span>)  <span class="co">#유의성 검정</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  x and y
+S = 46, p-value &lt; 2.2e-16
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.9977911 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">###3) kendall correlation coefficient</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">'kendall'</span>)  <span class="co">#상관계수 구하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9722449</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x,y, <span class="at">method =</span> <span class="st">'kendall'</span>)  <span class="co">#유의성 검정</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kendall's rank correlation tau
+
+data:  x and y
+z = 9.9625, p-value &lt; 2.2e-16
+alternative hypothesis: true tau is not equal to 0
+sample estimates:
+      tau 
+0.9722449 </code></pre>
+</div>
+</div>
+</section>
+<section id="비선형적-자료에-대한-상관분석" class="level2">
+<h2 class="anchored" data-anchor-id="비선형적-자료에-대한-상관분석"><span style="color: blue;">비선형적 자료에 대한 상관분석</span></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">##2 non-linear data</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> x<span class="sc">**</span><span class="dv">2</span>  <span class="co"># x를 제곱함</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+[26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]    1    4    9   16   25   36   49   64   81  100  121  144  169  196  225
+[16]  256  289  324  361  400  441  484  529  576  625  676  729  784  841  900
+[31]  961 1024 1089 1156 1225 1296 1369 1444 1521 1600 1681 1764 1849 1936 2025
+[46] 2116 2209 2304 2401 2500</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x,y)  <span class="co"># 검정결과 귀무가설 기각, 즉 독립이 아님</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  x and y
+t = 27.391, df = 48, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9465474 0.9826497
+sample estimates:
+      cor 
+0.9694696 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x,y, <span class="at">method=</span><span class="st">'spearman'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  x and y
+S = 0, p-value &lt; 2.2e-16
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+rho 
+  1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x,y, <span class="at">method=</span><span class="st">'kendall'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kendall's rank correlation tau
+
+data:  x and y
+z = 10.247, p-value &lt; 2.2e-16
+alternative hypothesis: true tau is not equal to 0
+sample estimates:
+tau 
+  1 </code></pre>
+</div>
+</div>
+</section>
+<section id="서로-독립인-두-변수의-상관분석" class="level2">
+<h2 class="anchored" data-anchor-id="서로-독립인-두-변수의-상관분석"><span style="color: blue;">서로 독립인 두 변수의 상관분석</span></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 3) independent data</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>sample0 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>sample1 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sample0, sample1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(sample0, sample1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  sample0 and sample1
+t = 0.20223, df = 998, p-value = 0.8398
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.05561394  0.06836716
+sample estimates:
+        cor 
+0.006401211 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(sample0, sample1, <span class="at">method=</span><span class="st">'spearman'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  sample0 and sample1
+S = 168382440, p-value = 0.745
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+        rho 
+-0.01029565 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(sample0, sample1, <span class="at">method=</span><span class="st">'kendall'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kendall's rank correlation tau
+
+data:  sample0 and sample1
+z = -0.32648, p-value = 0.7441
+alternative hypothesis: true tau is not equal to 0
+sample estimates:
+         tau 
+-0.006894895 </code></pre>
+</div>
+</div>
+</section>
+<section id="cars93-데이터셋에서-차량중량과-가격-간의-상관관계-검정" class="level2">
+<h2 class="anchored" data-anchor-id="cars93-데이터셋에서-차량중량과-가격-간의-상관관계-검정"><span style="color: blue;">Cars93 데이터셋에서 차량중량과 가격 간의 상관관계 검정</span></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 4) MASS's Cars93</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Cars93<span class="sc">$</span>Weight, Cars93<span class="sc">$</span>Price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="sc">~</span>Price<span class="sc">+</span>Weight<span class="sc">+</span>MPG.city <span class="sc">+</span> Length, <span class="at">data=</span>Cars93) <span class="co">#가격, 차량 중량, 연비, 차량 길이 비교, 산점도 행렬 그리기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pearson correlation of Weight and Price</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(Cars93<span class="sc">$</span>Weight, Cars93<span class="sc">$</span>Price) <span class="co">#검정결과 두 변수는 양의 상관관계(직선관계)가 있다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  Cars93$Weight and Cars93$Price
+t = 8.0984, df = 91, p-value = 2.395e-12
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.5108143 0.7517763
+sample estimates:
+     cor 
+0.647179 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spearman corr~</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(Cars93<span class="sc">$</span>Weight, Cars93<span class="sc">$</span>Price, <span class="at">method=</span><span class="st">'spearman'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<pre><code>Warning in cor.test.default(Cars93$Weight, Cars93$Price, method = "spearman"):
+Cannot compute exact p-value with ties</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 결과 해석</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Call:
-glm(formula = admit ~ gre + gpa + recommendations, family = binomial(link = "logit"), 
-    data = data)
+    Spearman's rank correlation rho
 
-Coefficients:
-                  Estimate Std. Error z value Pr(&gt;|z|)
-(Intercept)     -2.086e+02  5.506e+05       0        1
-gre              7.937e-01  2.117e+03       0        1
-gpa             -9.818e+01  3.886e+05       0        1
-recommendations  3.257e+01  1.612e+05       0        1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 7.6382e+00  on 5  degrees of freedom
-Residual deviance: 3.9359e-10  on 2  degrees of freedom
-AIC: 8
-
-Number of Fisher Scoring iterations: 23</code></pre>
+data:  Cars93$Weight and Cars93$Price
+S = 29343, p-value &lt; 2.2e-16
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.7810954 </code></pre>
 </div>
-</div>
-</section>
-<section id="은행에서-대출-승인-여부-예측" class="level2">
-<h2 class="anchored" data-anchor-id="은행에서-대출-승인-여부-예측">은행에서 대출 승인 여부 예측</h2>
-<ul>
-<li>은행에서 고객의 신용 데이터를 기반으로 개인 대출 승인 여부를 예측하는 경우를 들 수 있다. 이 예제에서는 고객의 신용 점수(credit score), 연 소득(annual income), 대출 요청 금액(loan amount)을 독립 변수로 사용하여 대출 승인 여부(loan approval)를 종속 변수로 예측하는 모델을 구축한다.<br>
-<span style="color: grey;"><small>(아래 코드에서 생성한 가상데이터가 통계적으로 유의미한 결과를 가져오지 않을 수 있음.)</small></span></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 가상 데이터 생성</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># 결과 재현성을 위한 시드 설정</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>loan_approval <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>credit_score <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">650</span>, <span class="at">sd =</span> <span class="dv">100</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>annual_income <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50000</span>, <span class="at">sd =</span> <span class="dv">20000</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>loan_amount <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">15000</span>, <span class="at">sd =</span> <span class="dv">5000</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(loan_approval, credit_score, annual_income, loan_amount)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 로지스틱 회귀 모델 적합</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(loan_approval <span class="sc">~</span> credit_score <span class="sc">+</span> annual_income <span class="sc">+</span> loan_amount, </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> data)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 모델 요약 결과 출력</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># kendall corr~</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(Cars93<span class="sc">$</span>Weight, Cars93<span class="sc">$</span>Price, <span class="at">method=</span><span class="st">'kendall'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Call:
-glm(formula = loan_approval ~ credit_score + annual_income + 
-    loan_amount, family = binomial(link = "logit"), data = data)
+    Kendall's rank correlation tau
 
-Coefficients:
-                Estimate Std. Error z value Pr(&gt;|z|)
-(Intercept)    1.879e-02  1.657e+00   0.011    0.991
-credit_score  -1.656e-04  2.119e-03  -0.078    0.938
-annual_income -1.180e-05  1.129e-05  -1.046    0.296
-loan_amount    2.527e-05  4.156e-05   0.608    0.543
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 136.66  on 99  degrees of freedom
-Residual deviance: 135.24  on 96  degrees of freedom
-AIC: 143.24
-
-Number of Fisher Scoring iterations: 4</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 데이터에 대한 예측</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">credit_score =</span> <span class="fu">c</span>(<span class="dv">700</span>), <span class="at">annual_income =</span> <span class="fu">c</span>(<span class="dv">60000</span>), <span class="at">loan_amount =</span> <span class="fu">c</span>(<span class="dv">10000</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> new_data, <span class="at">type =</span> <span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        1 
-0.3652591 </code></pre>
+data:  Cars93$Weight and Cars93$Price
+z = 8.3879, p-value &lt; 2.2e-16
+alternative hypothesis: true tau is not equal to 0
+sample estimates:
+      tau 
+0.5924276 </code></pre>
 </div>
 </div>
+
 
 
 </section>
